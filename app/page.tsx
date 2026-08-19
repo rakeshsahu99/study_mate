@@ -1677,14 +1677,29 @@ export default function Home() {
                 </div>
               </div>
 
-              <button
-                onClick={() => setSelectedChunk(null)}
-                className="p-1 rounded-lg hover:bg-neutral-500/10 text-neutral-500 dark:text-neutral-400 transition-colors"
-              >
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => handleToggleSpeak(selectedChunk.text, "modal-selected-chunk")}
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all shadow-sm ${
+                    speakingId === "modal-selected-chunk"
+                      ? "bg-accent text-white animate-pulse"
+                      : "bg-indigo-500/15 text-accent hover:bg-indigo-500/25 border border-indigo-500/30"
+                  }`}
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072M12 6v12m-6.414-3H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                  </svg>
+                  <span>{speakingId === "modal-selected-chunk" ? "Speaking..." : "🔊 Read Snippet Aloud"}</span>
+                </button>
+                <button
+                  onClick={() => setSelectedChunk(null)}
+                  className="p-1.5 rounded-lg hover:bg-neutral-500/10 text-neutral-500 dark:text-neutral-400 transition-colors"
+                >
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
             </div>
 
             <div className="flex-1 overflow-y-auto max-h-[50vh] pr-2">
@@ -1693,7 +1708,21 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="pt-4 border-t border-card-border flex justify-end">
+            <div className="pt-4 border-t border-card-border flex justify-between items-center">
+              <button
+                onClick={() => handleToggleSpeak(selectedChunk.text, "modal-selected-chunk-footer")}
+                className={`px-4 py-2 text-xs font-semibold rounded-xl flex items-center gap-2 transition-all shadow-sm ${
+                  speakingId === "modal-selected-chunk-footer"
+                    ? "bg-accent text-white animate-pulse"
+                    : "bg-indigo-500/15 text-accent hover:bg-indigo-500/25 border border-indigo-500/30"
+                }`}
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072M12 6v12m-6.414-3H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                </svg>
+                <span>{speakingId === "modal-selected-chunk-footer" ? "Speaking..." : "🔊 Read Aloud"}</span>
+              </button>
+
               <button
                 onClick={() => setSelectedChunk(null)}
                 className="px-4 py-2 text-xs font-semibold rounded-lg bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-700 transition-colors"
