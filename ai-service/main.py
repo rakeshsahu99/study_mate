@@ -194,6 +194,25 @@ async def clear_documents(x_user_id: str = Header(None)):
         raise HTTPException(status_code=500, detail=f"Failed to clear documents: {str(e)}")
 
 
+@app.delete("/documents/{filename}", summary="Delete a specific user document and its indexed vector chunks")
+async def delete_document(
+    filename: str,
+    x_user_id: str = Header(None)
+):
+    if not x_user_id:
+        raise HTTPException(status_code=401, detail="Missing user credential header 'X-User-Id'")
+        
+    try:
+        supabase_store.delete_user_document(x_user_id, filename)
+        return {
+            "status": "success",
+            "message": f"Document '{filename}' deleted successfully."
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to delete document: {str(e)}")
+
+
+
 @app.get("/query", summary="Query the cloud RAG pipeline")
 async def query_rag(
     query: str, 

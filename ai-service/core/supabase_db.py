@@ -112,3 +112,14 @@ class SupabaseVectorStore:
         except Exception as e:
             print(f"Error clearing user records: {e}")
             raise e
+
+    def delete_user_document(self, user_id: str, filename: str):
+        """
+        Deletes vector records matching the target user and specific filename.
+        """
+        try:
+            self.client.table("document_chunks").delete().eq("user_id", user_id).eq("filename", filename).execute()
+        except Exception as e:
+            print(f"Error deleting document '{filename}' for user: {e}")
+            raise e
+
