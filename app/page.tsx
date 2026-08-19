@@ -69,6 +69,7 @@ export default function Home() {
   const [quizScore, setQuizScore] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [exportingType, setExportingType] = useState<"pdf" | "anki" | null>(null);
+  const [speakingId, setSpeakingId] = useState<string | null>(null);
 
 
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -490,6 +491,51 @@ export default function Home() {
     } finally {
       setExportingType(null);
     }
+  };
+
+  const handleToggleSpeak = (text: string, id: string) => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+      alert("Text-to-Speech is not supported in your browser.");
+      return;
+    }
+
+    const synth = window.speechSynthesis;
+
+    if (speakingId === id) {
+      if (synth.speaking && !synth.paused) {
+        synth.pause();
+        return;
+      } else if (synth.paused) {
+        synth.resume();
+        return;
+      }
+    }
+
+    synth.cancel();
+
+    if (!text.trim()) return;
+
+    const cleanText = text.replace(/[*_#`~\[\]()]/g, "").trim();
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    utterance.rate = 1.0;
+
+    utterance.onend = () => {
+      setSpeakingId(null);
+    };
+
+    utterance.onerror = () => {
+      setSpeakingId(null);
+    };
+
+    setSpeakingId(id);
+    synth.speak(utterance);
+  };
+
+  const handleStopSpeech = () => {
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
+    setSpeakingId(null);
   };
 
   // Auto-scroll chat window when new messages are added
@@ -924,15 +970,35 @@ export default function Home() {
                                 </span>
                               </div>
 
-                              <div className="flex flex-col items-end gap-1 shrink-0">
-                                <span className="text-[10px] font-semibold text-neutral-500">
-                                  RRF: {getResultScore(result).toFixed(4)}
-                                </span>
-                                <div className="w-16 h-1.5 bg-neutral-200 dark:bg-neutral-800 rounded-full overflow-hidden">
-                                  <div
-                                    className="h-full bg-accent rounded-full"
-                                    style={{ width: `${getProgressWidth(getResultScore(result))}%` }}
-                                  />
+                              <div className="flex items-center gap-3 shrink-0">
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleToggleSpeak(result.text, `search-res-${idx}`);
+                                  }}
+                                  title="Listen to snippet"
+                                  className="p-1 rounded text-neutral-400 hover:text-accent transition-colors"
+                                >
+                                  {speakingId === `search-res-${idx}` ? (
+                                    <svg className="w-4 h-4 text-accent animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                    </svg>
+                                  ) : (
+                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072M12 6v12m-6.414-3H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                    </svg>
+                                  )}
+                                </button>
+                                <div className="flex flex-col items-end gap-1">
+                                  <span className="text-[10px] font-semibold text-neutral-500">
+                                    RRF: {getResultScore(result).toFixed(4)}
+                                  </span>
+                                  <div className="w-16 h-1.5 bg-neutral-200 dark:bg-neutral-800 rounded-full overflow-hidden">
+                                    <div
+                                      className="h-full bg-accent rounded-full"
+                                      style={{ width: `${getProgressWidth(getResultScore(result))}%` }}
+                                    />
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -985,8 +1051,33 @@ export default function Home() {
                           className={`flex flex-col gap-1.5 max-w-[85%] ${msg.role === "user" ? "self-end items-end" : "self-start items-start"
                             }`}
                         >
-                          <div className="text-[10px] text-neutral-400 font-semibold px-2 uppercase tracking-wider">
-                            {msg.role === "user" ? "You" : "Study Companion"}
+                          <div className="flex justify-between items-center w-full px-2">
+                            <div className="text-[10px] text-neutral-400 font-semibold uppercase tracking-wider">
+                              {msg.role === "user" ? "You" : "Study Companion"}
+                            </div>
+                            {msg.role !== "user" && (
+                              <button
+                                onClick={() => handleToggleSpeak(msg.content, `chat-msg-${idx}`)}
+                                title="Listen to response"
+                                className="p-1 rounded text-neutral-400 hover:text-accent transition-colors flex items-center gap-1 text-[10px]"
+                              >
+                                {speakingId === `chat-msg-${idx}` ? (
+                                  <>
+                                    <svg className="w-3.5 h-3.5 text-accent animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                    </svg>
+                                    <span className="font-semibold text-accent">Speaking...</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072M12 6v12m-6.414-3H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                    </svg>
+                                    <span>Listen</span>
+                                  </>
+                                )}
+                              </button>
+                            )}
                           </div>
 
                           {/* Chat Bubble */}
@@ -1244,34 +1335,86 @@ export default function Home() {
                       >
                         {/* Front Side */}
                         <div
-                          className="absolute inset-0 w-full h-full rounded-2xl border border-card-border bg-card-bg p-8 flex flex-col items-center justify-center gap-4 shadow-sm"
+                          className="absolute inset-0 w-full h-full rounded-2xl border border-card-border bg-card-bg p-8 flex flex-col items-center justify-between shadow-sm"
                           style={{ backfaceVisibility: "hidden" }}
                         >
-                          <span className="text-[9px] uppercase font-bold text-accent tracking-wider bg-indigo-500/10 px-2.5 py-1 rounded-full">
-                            Question (Front)
-                          </span>
-                          <p className="text-base font-semibold text-neutral-800 dark:text-neutral-100 text-center leading-relaxed">
+                          <div className="flex items-center justify-between w-full">
+                            <span className="text-[9px] uppercase font-bold text-accent tracking-wider bg-indigo-500/10 px-2.5 py-1 rounded-full">
+                              Question (Front)
+                            </span>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleToggleSpeak(flashcardsList[activeCardIdx]?.front || "", `fc-${activeCardIdx}-front`);
+                              }}
+                              title="Listen to Question"
+                              className="p-1 rounded-md hover:bg-neutral-500/10 text-neutral-400 hover:text-accent transition-colors flex items-center gap-1 text-[10px]"
+                            >
+                              {speakingId === `fc-${activeCardIdx}-front` ? (
+                                <>
+                                  <svg className="w-3.5 h-3.5 text-accent animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                  </svg>
+                                  <span className="font-semibold text-accent">Speaking...</span>
+                                </>
+                              ) : (
+                                <>
+                                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072M12 6v12m-6.414-3H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                  </svg>
+                                  <span>Listen</span>
+                                </>
+                              )}
+                            </button>
+                          </div>
+                          <p className="text-base font-semibold text-neutral-800 dark:text-neutral-100 text-center leading-relaxed my-auto">
                             {flashcardsList[activeCardIdx]?.front}
                           </p>
-                          <span className="text-[10px] text-neutral-400 font-semibold absolute bottom-4">
+                          <span className="text-[10px] text-neutral-400 font-semibold">
                             Click card to reveal answer
                           </span>
                         </div>
                         {/* Back Side */}
                         <div
-                          className="absolute inset-0 w-full h-full rounded-2xl border border-accent/25 bg-indigo-500/5 p-8 flex flex-col items-center justify-center gap-4 shadow-sm"
+                          className="absolute inset-0 w-full h-full rounded-2xl border border-accent/25 bg-indigo-500/5 p-8 flex flex-col items-center justify-between shadow-sm"
                           style={{
                             backfaceVisibility: "hidden",
                             transform: "rotateY(180deg)"
                           }}
                         >
-                          <span className="text-[9px] uppercase font-bold text-indigo-500 tracking-wider bg-indigo-500/10 px-2.5 py-1 rounded-full">
-                            Explanation (Back)
-                          </span>
-                          <p className="text-sm leading-relaxed text-neutral-700 dark:text-neutral-200 text-center overflow-y-auto max-h-40 px-2">
+                          <div className="flex items-center justify-between w-full">
+                            <span className="text-[9px] uppercase font-bold text-indigo-500 tracking-wider bg-indigo-500/10 px-2.5 py-1 rounded-full">
+                              Explanation (Back)
+                            </span>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleToggleSpeak(flashcardsList[activeCardIdx]?.back || "", `fc-${activeCardIdx}-back`);
+                              }}
+                              title="Listen to Explanation"
+                              className="p-1 rounded-md hover:bg-neutral-500/10 text-neutral-400 hover:text-accent transition-colors flex items-center gap-1 text-[10px]"
+                            >
+                              {speakingId === `fc-${activeCardIdx}-back` ? (
+                                <>
+                                  <svg className="w-3.5 h-3.5 text-accent animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                  </svg>
+                                  <span className="font-semibold text-accent">Speaking...</span>
+                                </>
+                              ) : (
+                                <>
+                                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072M12 6v12m-6.414-3H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                  </svg>
+                                  <span>Listen</span>
+                                </>
+                              )}
+                            </button>
+                          </div>
+                          <p className="text-sm leading-relaxed text-neutral-700 dark:text-neutral-200 text-center overflow-y-auto max-h-40 px-2 my-auto">
                             {flashcardsList[activeCardIdx]?.back}
                           </p>
-                          <span className="text-[10px] text-neutral-400 font-semibold absolute bottom-4">
+                          <span className="text-[10px] text-neutral-400 font-semibold">
                             Click card to flip back
                           </span>
                         </div>
