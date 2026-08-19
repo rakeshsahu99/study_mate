@@ -1307,6 +1307,30 @@ export default function Home() {
                           )}
                           <span>Export Anki (.apkg)</span>
                         </button>
+
+                        <button
+                          onClick={() => {
+                            if (studyToolType === "flashcards" && flashcardsList.length > 0) {
+                              const fc = flashcardsList[activeCardIdx];
+                              const textToSpeak = isCardFlipped ? fc?.back : fc?.front;
+                              handleToggleSpeak(textToSpeak || "", `top-fc-${activeCardIdx}`);
+                            } else if (studyToolType === "quiz" && quizQuestions.length > 0) {
+                              const q = quizQuestions[activeQuizQuestionIdx];
+                              const opts = q?.options ? q.options.map((o: string, i: number) => `Option ${String.fromCharCode(65+i)}: ${o}`).join(". ") : "";
+                              handleToggleSpeak(`Question ${activeQuizQuestionIdx + 1}: ${q?.question}. ${opts}`, `top-quiz-${activeQuizQuestionIdx}`);
+                            }
+                          }}
+                          className={`px-3 py-1.5 rounded-lg border text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm ${
+                            speakingId
+                              ? "bg-accent border-accent text-white animate-pulse"
+                              : "border-card-border bg-indigo-500/10 text-accent hover:bg-indigo-500/20"
+                          }`}
+                        >
+                          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072M12 6v12m-6.414-3H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                          </svg>
+                          <span>{speakingId ? "Speaking..." : "Read Aloud (TTS)"}</span>
+                        </button>
                       </div>
                     </div>
 
