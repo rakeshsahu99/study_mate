@@ -1257,7 +1257,7 @@ export default function Home() {
                       Try Again
                     </button>
                   </div>
-                ) : flashcardsList.length === 0 && quizQuestions.length === 0 ? (
+                ) : (studyToolType === "flashcards" && flashcardsList.length === 0) || (studyToolType === "quiz" && quizQuestions.length === 0) ? (
                   /* Idle Placeholder */
                   <div className="text-center py-16 border border-dashed border-card-border rounded-2xl bg-neutral-500/5 flex flex-col items-center justify-center">
                     <div className="w-12 h-12 rounded-full bg-indigo-500/10 flex items-center justify-center text-accent mb-4">

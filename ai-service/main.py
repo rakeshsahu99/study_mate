@@ -317,9 +317,8 @@ async def generate_tools_endpoint(
         raise HTTPException(status_code=400, detail="No documents indexed. Please upload files in the Document Hub first.")
         
     try:
-        # Retrieve chunks for target document (using a dummy zero vector since we want to query a block of chunks)
-        test_vector = [0.0] * 384
-        chunks = supabase_store.search(user_id=x_user_id, query_embedding=test_vector, filename=filename, top_k=10)
+        # Retrieve chunks for target document directly from Supabase
+        chunks = supabase_store.get_document_chunks_for_study(user_id=x_user_id, filename=filename, limit=10)
         
         if not chunks:
             raise HTTPException(status_code=404, detail="No indexed chunks found matching your request.")

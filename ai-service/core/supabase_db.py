@@ -123,3 +123,28 @@ class SupabaseVectorStore:
             print(f"Error deleting document '{filename}' for user: {e}")
             raise e
 
+    def get_document_chunks_for_study(self, user_id: str, filename: str = "all", limit: int = 10) -> List[Dict[str, Any]]:
+        """
+        Fetches document chunks directly for generating study materials (flashcards/quizzes).
+        """
+        try:
+            query = self.client.table("document_chunks").select("text_content, filename, page_number").eq("user_id", user_id)
+            if filename != "all":
+                query = query.eq("filename", filename)
+            response = query.limit(limit).execute()
+            
+            results = []
+            for item in response.data:
+                results.append({
+                    "text": item.get("text_content"),
+                    "metadata": {
+                        "source": item.get("filename"),
+                        "page": item.get("page_number")
+                    }
+                })
+            return results
+        except Exception as e:
+            print(f"Error fetching document chunks for study: {e}")
+            return []
+
+
