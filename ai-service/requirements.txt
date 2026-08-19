@@ -20,3 +20,8 @@ python-dotenv
 
 # Phase 8 Cloud Database & Supabase
 supabase>=2.31.0
+
+# Export Tools
+genanki>=0.13.0
+reportlab>=5.0.0
+

@@ -68,6 +68,7 @@ export default function Home() {
   const [selectedQuizOption, setSelectedQuizOption] = useState<number | null>(null);
   const [quizScore, setQuizScore] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
+  const [exportingType, setExportingType] = useState<"pdf" | "anki" | null>(null);
 
 
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -419,6 +420,76 @@ export default function Home() {
     setSelectedQuizOption(null);
     setQuizScore(0);
     setQuizCompleted(false);
+  };
+
+  const handleExportPDF = async () => {
+    const isFlashcards = studyToolType === "flashcards";
+    const data = isFlashcards ? flashcardsList : quizQuestions;
+    if (!data || data.length === 0) return;
+
+    try {
+      setExportingType("pdf");
+      const res = await fetch(`${API_BASE}/study-tools/export/pdf`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: studyToolType,
+          data: data,
+          title: isFlashcards ? "AI Study Hub - Flashcards" : "AI Study Hub - Practice Quiz"
+        })
+      });
+
+      if (!res.ok) throw new Error("Failed to export PDF");
+
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = isFlashcards ? "study_flashcards.pdf" : "practice_quiz.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err: any) {
+      alert(err.message || "Error exporting PDF");
+    } finally {
+      setExportingType(null);
+    }
+  };
+
+  const handleExportAnki = async () => {
+    const isFlashcards = studyToolType === "flashcards";
+    const data = isFlashcards ? flashcardsList : quizQuestions;
+    if (!data || data.length === 0) return;
+
+    try {
+      setExportingType("anki");
+      const res = await fetch(`${API_BASE}/study-tools/export/anki`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: studyToolType,
+          data: data,
+          title: isFlashcards ? "AI Study Hub Flashcards" : "AI Study Hub Quiz"
+        })
+      });
+
+      if (!res.ok) throw new Error("Failed to export Anki deck");
+
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = isFlashcards ? "study_flashcards.apkg" : "practice_quiz.apkg";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err: any) {
+      alert(err.message || "Error exporting Anki package");
+    } finally {
+      setExportingType(null);
+    }
   };
 
   // Auto-scroll chat window when new messages are added
@@ -1110,9 +1181,55 @@ export default function Home() {
                         : "Choose a target material, select either Flashcards or Quiz, and click generate above."}
                     </p>
                   </div>
-                ) : studyToolType === "flashcards" ? (
-                  /* --- FLASHCARD PLAYER INTERFACE --- */
-                  <div className="flex flex-col gap-6 items-center">
+                ) : (
+                  /* --- STUDY TOOLS ACTIVE VIEW --- */
+                  <div className="flex flex-col gap-6 w-full">
+                    <div className="flex justify-between items-center w-full pb-3 border-b border-card-border">
+                      <span className="text-xs font-semibold text-neutral-500 uppercase tracking-wider">
+                        {studyToolType === "flashcards" ? `Generated Flashcards (${flashcardsList.length})` : `Practice Quiz (${quizQuestions.length} Questions)`}
+                      </span>
+                      <div className="flex gap-2 items-center">
+                        <button
+                          onClick={handleExportPDF}
+                          disabled={exportingType !== null}
+                          className="px-3 py-1.5 rounded-lg border border-card-border bg-neutral-500/5 hover:bg-neutral-500/10 text-xs font-semibold text-neutral-700 dark:text-neutral-200 flex items-center gap-1.5 transition-all disabled:opacity-50"
+                        >
+                          {exportingType === "pdf" ? (
+                            <svg className="animate-spin w-3.5 h-3.5 text-accent" viewBox="0 0 24 24" fill="none">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                            </svg>
+                          ) : (
+                            <svg className="w-3.5 h-3.5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
+                          )}
+                          <span>Export PDF</span>
+                        </button>
+
+                        <button
+                          onClick={handleExportAnki}
+                          disabled={exportingType !== null}
+                          className="px-3 py-1.5 rounded-lg border border-card-border bg-neutral-500/5 hover:bg-neutral-500/10 text-xs font-semibold text-neutral-700 dark:text-neutral-200 flex items-center gap-1.5 transition-all disabled:opacity-50"
+                        >
+                          {exportingType === "anki" ? (
+                            <svg className="animate-spin w-3.5 h-3.5 text-accent" viewBox="0 0 24 24" fill="none">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                            </svg>
+                          ) : (
+                            <svg className="w-3.5 h-3.5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                            </svg>
+                          )}
+                          <span>Export Anki (.apkg)</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    {studyToolType === "flashcards" ? (
+                      /* --- FLASHCARD PLAYER INTERFACE --- */
+                      <div className="flex flex-col gap-6 items-center">
                     <div
                       className="w-full max-w-md h-64 cursor-pointer"
                       onClick={() => setIsCardFlipped(!isCardFlipped)}
@@ -1306,6 +1423,8 @@ export default function Home() {
                     )}
                   </div>
                 )}
+                </div>
+              )}
               </div>
             </>
           )}

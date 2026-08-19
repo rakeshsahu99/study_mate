@@ -1,13 +1,14 @@
 import os
-from fastapi import FastAPI, UploadFile, File, HTTPException, Header
+from fastapi import FastAPI, UploadFile, File, HTTPException, Header, Response
 from fastapi.middleware.cors import CORSMiddleware
 from core.parser import extract_text_from_pdf, extract_text_from_docx, extract_text_from_txt
 from core.chunker import chunk_parsed_documents
 from core.embedder import generate_embeddings
 from core.supabase_db import SupabaseVectorStore
 from core.generator import generate_answer, contextualize_query, generate_conversational_answer, generate_study_materials
+from core.exporter import export_flashcards_pdf, export_quiz_pdf, export_flashcards_anki, export_quiz_anki
 from pydantic import BaseModel
-from typing import List, Dict
+from typing import List, Dict, Any
 
 class ChatMessagePayload(BaseModel):
     role: str
@@ -329,3 +330,54 @@ async def generate_tools_endpoint(
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Study Tool Generation Error: {str(e)}")
+
+
+class ExportRequest(BaseModel):
+    type: str  # "flashcards" | "quiz"
+    data: List[Dict[str, Any]]
+    title: str = "AI Study Hub Export"
+
+
+@app.post("/study-tools/export/pdf", summary="Export study flashcards or quiz to printable PDF format")
+async def export_pdf_endpoint(payload: ExportRequest):
+    material_type = payload.type.lower()
+    try:
+        if material_type == "flashcards":
+            pdf_bytes = export_flashcards_pdf(payload.data, payload.title)
+            filename = "study_flashcards.pdf"
+        elif material_type == "quiz":
+            pdf_bytes = export_quiz_pdf(payload.data, payload.title)
+            filename = "practice_quiz.pdf"
+        else:
+            raise HTTPException(status_code=400, detail="Invalid export type. Choose 'flashcards' or 'quiz'.")
+            
+        return Response(
+            content=pdf_bytes,
+            media_type="application/pdf",
+            headers={"Content-Disposition": f"attachment; filename={filename}"}
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"PDF Export Error: {str(e)}")
+
+
+@app.post("/study-tools/export/anki", summary="Export study flashcards or quiz to native Anki (.apkg) format")
+async def export_anki_endpoint(payload: ExportRequest):
+    material_type = payload.type.lower()
+    try:
+        if material_type == "flashcards":
+            apkg_bytes = export_flashcards_anki(payload.data, payload.title)
+            filename = "study_flashcards.apkg"
+        elif material_type == "quiz":
+            apkg_bytes = export_quiz_anki(payload.data, payload.title)
+            filename = "practice_quiz.apkg"
+        else:
+            raise HTTPException(status_code=400, detail="Invalid export type. Choose 'flashcards' or 'quiz'.")
+            
+        return Response(
+            content=apkg_bytes,
+            media_type="application/octet-stream",
+            headers={"Content-Disposition": f"attachment; filename={filename}"}
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Anki Export Error: {str(e)}")
+
