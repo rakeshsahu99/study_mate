@@ -1,5 +1,6 @@
 import io
 import random
+# pyrefly: ignore [missing-import]
 import genanki
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, HRFlowable

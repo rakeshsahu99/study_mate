@@ -493,6 +493,8 @@ export default function Home() {
     }
   };
 
+  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+
   const handleToggleSpeak = (text: string, id: string) => {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) {
       alert("Text-to-Speech is not supported in your browser.");
@@ -501,40 +503,70 @@ export default function Home() {
 
     const synth = window.speechSynthesis;
 
+    // If currently speaking this item, toggle off/stop
     if (speakingId === id) {
-      if (synth.speaking && !synth.paused) {
-        synth.pause();
-        return;
-      } else if (synth.paused) {
-        synth.resume();
-        return;
-      }
+      synth.cancel();
+      setSpeakingId(null);
+      utteranceRef.current = null;
+      return;
     }
 
+    // Cancel existing speech & ensure synth state is reset
     synth.cancel();
+    if (synth.paused) {
+      synth.resume();
+    }
 
     if (!text.trim()) return;
 
-    const cleanText = text.replace(/[*_#`~\[\]()]/g, "").trim();
+    // Clean Markdown tags safely without breaking text formatting
+    const cleanText = text
+      .replace(/```[\s\S]*?```/g, "")
+      .replace(/[*_#`~]/g, "")
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+      .trim();
+
+    if (!cleanText) return;
+
     const utterance = new SpeechSynthesisUtterance(cleanText);
     utterance.rate = 1.0;
+    utterance.pitch = 1.0;
+
+    // Select available English voice if present
+    const voices = synth.getVoices();
+    if (voices.length > 0) {
+      const selectedVoice = voices.find(v => v.lang.startsWith("en") && (v.name.includes("Google") || v.name.includes("Natural") || v.name.includes("Microsoft"))) || voices.find(v => v.lang.startsWith("en"));
+      if (selectedVoice) {
+        utterance.voice = selectedVoice;
+      }
+    }
 
     utterance.onend = () => {
       setSpeakingId(null);
+      utteranceRef.current = null;
     };
 
-    utterance.onerror = () => {
+    utterance.onerror = (e) => {
+      console.error("TTS playback error:", e);
       setSpeakingId(null);
+      utteranceRef.current = null;
     };
 
+    // Store reference to prevent Chrome Garbage Collection mid-speech bug
+    utteranceRef.current = utterance;
     setSpeakingId(id);
-    synth.speak(utterance);
+
+    // Timeout ensures Chrome synth state clears before starting speak
+    setTimeout(() => {
+      synth.speak(utterance);
+    }, 50);
   };
 
   const handleStopSpeech = () => {
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
       window.speechSynthesis.cancel();
     }
+    utteranceRef.current = null;
     setSpeakingId(null);
   };
 
