@@ -977,17 +977,16 @@ export default function Home() {
                                     handleToggleSpeak(result.text, `search-res-${idx}`);
                                   }}
                                   title="Listen to snippet"
-                                  className="p-1 rounded text-neutral-400 hover:text-accent transition-colors"
+                                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
+                                    speakingId === `search-res-${idx}`
+                                      ? "bg-accent text-white animate-pulse"
+                                      : "bg-indigo-500/15 text-accent hover:bg-indigo-500/25 border border-indigo-500/30"
+                                  }`}
                                 >
-                                  {speakingId === `search-res-${idx}` ? (
-                                    <svg className="w-4 h-4 text-accent animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                                    </svg>
-                                  ) : (
-                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072M12 6v12m-6.414-3H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                                    </svg>
-                                  )}
+                                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072M12 6v12m-6.414-3H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                  </svg>
+                                  <span>{speakingId === `search-res-${idx}` ? "Speaking..." : "🔊 Listen"}</span>
                                 </button>
                                 <div className="flex flex-col items-end gap-1">
                                   <span className="text-[10px] font-semibold text-neutral-500">
@@ -1059,23 +1058,16 @@ export default function Home() {
                               <button
                                 onClick={() => handleToggleSpeak(msg.content, `chat-msg-${idx}`)}
                                 title="Listen to response"
-                                className="p-1 rounded text-neutral-400 hover:text-accent transition-colors flex items-center gap-1 text-[10px]"
+                                className={`px-3 py-1 rounded-full text-[11px] font-semibold flex items-center gap-1.5 transition-all ${
+                                  speakingId === `chat-msg-${idx}`
+                                    ? "bg-accent text-white animate-pulse"
+                                    : "bg-indigo-500/15 hover:bg-indigo-500/25 text-accent border border-accent/20"
+                                }`}
                               >
-                                {speakingId === `chat-msg-${idx}` ? (
-                                  <>
-                                    <svg className="w-3.5 h-3.5 text-accent animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                                    </svg>
-                                    <span className="font-semibold text-accent">Speaking...</span>
-                                  </>
-                                ) : (
-                                  <>
-                                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072M12 6v12m-6.414-3H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                                    </svg>
-                                    <span>Listen</span>
-                                  </>
-                                )}
+                                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072M12 6v12m-6.414-3H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                </svg>
+                                <span>{speakingId === `chat-msg-${idx}` ? "Speaking..." : "🔊 Read Answer Aloud"}</span>
                               </button>
                             )}
                           </div>
@@ -1421,7 +1413,7 @@ export default function Home() {
                       </div>
                     </div>
                     {/* Flashcard Nav controls */}
-                    <div className="flex justify-between items-center w-full max-w-md mt-4">
+                    <div className="flex justify-between items-center w-full max-w-md mt-4 gap-3">
                       <button
                         onClick={() => {
                           setIsCardFlipped(false);
@@ -1432,9 +1424,23 @@ export default function Home() {
                       >
                         Previous
                       </button>
-                      <span className="text-xs font-semibold text-neutral-500">
-                        Card {activeCardIdx + 1} of {flashcardsList.length}
-                      </span>
+                      <button
+                        onClick={() => {
+                          const currentCard = flashcardsList[activeCardIdx];
+                          const textToSpeak = isCardFlipped ? currentCard?.back : currentCard?.front;
+                          handleToggleSpeak(textToSpeak || "", `fc-nav-${activeCardIdx}-${isCardFlipped ? "back" : "front"}`);
+                        }}
+                        className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm ${
+                          speakingId?.startsWith(`fc-nav-${activeCardIdx}`) || speakingId?.startsWith(`fc-${activeCardIdx}`)
+                            ? "bg-accent text-white animate-pulse"
+                            : "bg-indigo-500/15 text-accent hover:bg-indigo-500/25 border border-indigo-500/30"
+                        }`}
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072M12 6v12m-6.414-3H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                        </svg>
+                        <span>{speakingId?.startsWith(`fc-nav-${activeCardIdx}`) || speakingId?.startsWith(`fc-${activeCardIdx}`) ? "Speaking..." : "Read Aloud (TTS)"}</span>
+                      </button>
                       <button
                         onClick={() => {
                           setIsCardFlipped(false);
@@ -1465,10 +1471,28 @@ export default function Home() {
                               style={{ width: `${((activeQuizQuestionIdx + 1) / quizQuestions.length) * 100}%` }}
                             />
                           </div>
-                          <div className="p-6 border border-card-border bg-neutral-500/5 rounded-2xl">
-                            <h3 className="font-semibold text-neutral-800 dark:text-neutral-100 text-sm md:text-base leading-relaxed">
+                          <div className="p-6 border border-card-border bg-neutral-500/5 rounded-2xl flex justify-between items-start gap-4">
+                            <h3 className="font-semibold text-neutral-800 dark:text-neutral-100 text-sm md:text-base leading-relaxed flex-1">
                               {quizQuestions[activeQuizQuestionIdx]?.question}
                             </h3>
+                            <button
+                              onClick={() => {
+                                const q = quizQuestions[activeQuizQuestionIdx];
+                                const opts = q?.options ? q.options.map((o: string, i: number) => `Option ${String.fromCharCode(65+i)}: ${o}`).join(". ") : "";
+                                const fullText = `Question ${activeQuizQuestionIdx + 1}: ${q?.question}. ${opts}`;
+                                handleToggleSpeak(fullText, `quiz-q-${activeQuizQuestionIdx}`);
+                              }}
+                              className={`shrink-0 px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all ${
+                                speakingId === `quiz-q-${activeQuizQuestionIdx}`
+                                  ? "bg-accent text-white animate-pulse"
+                                  : "bg-indigo-500/15 text-accent hover:bg-indigo-500/25 border border-indigo-500/30"
+                              }`}
+                            >
+                              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072M12 6v12m-6.414-3H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                              </svg>
+                              <span>{speakingId === `quiz-q-${activeQuizQuestionIdx}` ? "Speaking..." : "Read Question"}</span>
+                            </button>
                           </div>
                           {/* Options List */}
                           <div className="flex flex-col gap-2.5">
@@ -1622,6 +1646,23 @@ export default function Home() {
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Floating Audio Controller Bar */}
+      {speakingId && (
+        <div className="fixed bottom-6 right-6 z-50 bg-neutral-900 dark:bg-zinc-900 text-white border border-accent/40 p-4 px-6 rounded-2xl shadow-2xl flex items-center gap-4 animate-in slide-in-from-bottom-5 duration-300">
+          <div className="w-3 h-3 rounded-full bg-emerald-400 animate-ping" />
+          <div className="flex flex-col">
+            <span className="text-xs font-bold text-neutral-100">Text-to-Speech Active 🔊</span>
+            <span className="text-[10px] text-neutral-400">Audio playback in progress</span>
+          </div>
+          <button
+            onClick={handleStopSpeech}
+            className="px-3.5 py-1.5 rounded-xl bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white text-xs font-bold transition-all ml-2"
+          >
+            Stop Audio ⏹
+          </button>
         </div>
       )}
     </div>
