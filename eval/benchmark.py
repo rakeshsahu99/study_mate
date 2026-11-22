@@ -433,7 +433,9 @@ def generate_svg_charts(summary_data: Dict[str, Any], output_path: str):
     bar_height = 24
     
     svg = [
-        f'<svg width="{width}" height="{height}" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, -apple-system, sans-serif">',
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        f'<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 {width} {height}" width="{width}" height="{height}">',
+        '<style>text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }</style>',
         f'<rect width="{width}" height="{height}" fill="#0f172a" rx="8"/>',
         f'<text x="{width/2}" y="34" fill="#f8fafc" font-size="17" font-weight="bold" text-anchor="middle">Ablation Study: Baseline (Vanilla Vector) vs. Proposed (Neural Cross-Encoder)</text>',
         f'<rect x="{width - 330}" y="20" width="14" height="14" fill="#64748b" rx="3"/>',
@@ -480,7 +482,9 @@ def generate_three_config_svg(summary_data: Dict[str, Any], output_path: str):
     """
     width, height = 780, 360
     svg = [
-        f'<svg width="{width}" height="{height}" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">',
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        f'<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 {width} {height}" width="{width}" height="{height}">',
+        '<style>text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }</style>',
         f'<rect width="{width}" height="{height}" fill="#0f172a" rx="8"/>',
         f'<text x="{width/2}" y="32" fill="#f8fafc" font-size="16" font-weight="bold" text-anchor="middle">Comparative Ablation: 3-Way Architectural Benchmark</text>',
     ]
@@ -567,9 +571,11 @@ def generate_rag_triad_svg(summary_data: Dict[str, Any], output_path: str):
     
     width, height = 800, 220
     svg = [
-        f'<svg width="{width}" height="{height}" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">',
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        f'<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 {width} {height}" width="{width}" height="{height}">',
+        '<style>text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }</style>',
         f'<rect width="{width}" height="{height}" fill="#0f172a" rx="8"/>',
-        f'<text x="{width/2}" y="32" fill="#f8fafc" font-size="16" font-weight="bold" text-anchor="middle">RAG Generation Quality, Provenance & Noise Filtering</text>',
+        f'<text x="{width/2}" y="32" fill="#f8fafc" font-size="16" font-weight="bold" text-anchor="middle">RAG Generation Quality, Provenance &amp; Noise Filtering</text>',
     ]
     
     card_w = 175

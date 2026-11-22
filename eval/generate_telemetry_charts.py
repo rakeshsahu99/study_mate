@@ -77,7 +77,9 @@ def generate_latency_breakdown_svg(output_path: str = None) -> str:
     bar_h = 38
 
     svg = [
-        f'<svg width="{width}" height="{height}" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, -apple-system, sans-serif">',
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        f'<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 {width} {height}" width="{width}" height="{height}">',
+        '<style>text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }</style>',
         f'<rect width="{width}" height="{height}" fill="#090d16" rx="12"/>',
         f'<rect x="2" y="2" width="{width-4}" height="{height-4}" fill="none" stroke="#1e293b" stroke-width="2" rx="10"/>',
         
@@ -186,7 +188,9 @@ def generate_parser_throughput_svg(output_path: str = None) -> str:
     speedup = 160.0
 
     svg = [
-        f'<svg width="{width}" height="{height}" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, -apple-system, sans-serif">',
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        f'<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 {width} {height}" width="{width}" height="{height}">',
+        '<style>text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }</style>',
         f'<rect width="{width}" height="{height}" fill="#0b0f19" rx="12"/>',
         f'<rect x="2" y="2" width="{width-4}" height="{height-4}" fill="none" stroke="#1e293b" stroke-width="2" rx="10"/>',
         

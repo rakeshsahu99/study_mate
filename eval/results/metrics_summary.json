@@ -5,8 +5,8 @@
     "execution_mode": "offline",
     "reranking_enabled": true,
     "target_configuration": "all",
-    "total_runtime_seconds": 0.03,
-    "timestamp": "2026-11-22 21:52:17"
+    "total_runtime_seconds": 0.07,
+    "timestamp": "2026-11-22 23:08:45"
   },
   "standalone": {
     "name": "Configuration A: Standalone LLM (No RAG / Zero-Shot)",
@@ -22,7 +22,7 @@
     "context_precision": 0.8477623456790123,
     "fact_recall": 0.6913359788359789,
     "fp_rate": 0.28888888888888886,
-    "avg_latency_ms": 0.4400213559468587
+    "avg_latency_ms": 1.3127525647481282
   },
   "proposed": {
     "name": "Configuration C: Proposed System (FastEmbed + Neural Cross-Encoder Re-Ranking + Multimodal Parser)",
@@ -35,6 +35,6 @@
     "faithfulness": 0.7992777777777778,
     "relevance": 1.0,
     "citation_accuracy": 0.3666666666666667,
-    "avg_latency_ms": 0.8449090851677789
+    "avg_latency_ms": 1.6739898257785373
   }
 }

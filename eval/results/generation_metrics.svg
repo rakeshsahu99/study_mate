@@ -1,6 +1,8 @@
-<svg width="800" height="220" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 800 220" width="800" height="220">
+<style>text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }</style>
 <rect width="800" height="220" fill="#0f172a" rx="8"/>
-<text x="400.0" y="32" fill="#f8fafc" font-size="16" font-weight="bold" text-anchor="middle">RAG Generation Quality, Provenance & Noise Filtering</text>
+<text x="400.0" y="32" fill="#f8fafc" font-size="16" font-weight="bold" text-anchor="middle">RAG Generation Quality, Provenance &amp; Noise Filtering</text>
 <rect x="23.0" y="55" width="175" height="130" fill="#1e293b" stroke="#334155" stroke-width="1.5" rx="8"/>
 <text x="110.5" y="83" fill="#94a3b8" font-size="11" text-anchor="middle">Faithfulness Score</text>
 <text x="110.5" y="129" fill="#10b981" font-size="30" font-weight="bold" text-anchor="middle">79.9%</text>
