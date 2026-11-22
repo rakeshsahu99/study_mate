@@ -1,0 +1,424 @@
+#!/usr/bin/env python3
+"""
+=============================================================================
+Build Benchmark for User-Uploaded Project PDFs (eval/build_user_notes_benchmark.py)
+=============================================================================
+Parses the 3 student course PDFs in `project_pdfs/`:
+  1. 24042020_E-R Model.pdf (DBMS - 14 pages)
+  2. CPU-Scheduling-and-Algorithm-.pdf (Operating Systems - 18 pages)
+  3. osi_notes.pdf (Computer Networks - 11 pages)
+
+Generates:
+  - eval/sample_academic_corpus.json (indexed text chunks)
+  - eval/golden_dataset.json (36 curated Q&A pairs with ground-truth citations)
+=============================================================================
+"""
+
+import os
+import json
+import shutil
+import re
+import pymupdf
+
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(CURRENT_DIR, ".."))
+PDF_DIR = os.path.join(PROJECT_ROOT, "project_pdfs")
+CORPUS_PATH = os.path.join(CURRENT_DIR, "sample_academic_corpus.json")
+GOLDEN_PATH = os.path.join(CURRENT_DIR, "golden_dataset.json")
+
+def split_into_chunks(text: str, max_chars: int = 450, overlap_chars: int = 50) -> list[str]:
+    """Splits page text cleanly by paragraphs or sentences."""
+    # Clean up whitespace
+    cleaned = re.sub(r'[ \t]+', ' ', text)
+    cleaned = re.sub(r'\n{3,}', '\n\n', cleaned)
+    paragraphs = [p.strip() for p in cleaned.split("\n\n") if p.strip()]
+    
+    chunks = []
+    current = ""
+    for p in paragraphs:
+        if len(current) + len(p) > max_chars and current:
+            chunks.append(current.strip())
+            current = p
+        else:
+            current = (current + " " + p).strip()
+            
+    if current:
+        chunks.append(current.strip())
+        
+    # If any chunk is still excessively long (> 700 chars), split by sentences
+    final_chunks = []
+    for c in chunks:
+        if len(c) > 700:
+            sentences = re.split(r'(?<=[.?!])\s+', c)
+            sub = ""
+            for s in sentences:
+                if len(sub) + len(s) > max_chars and sub:
+                    final_chunks.append(sub.strip())
+                    sub = s
+                else:
+                    sub = (sub + " " + s).strip()
+            if sub:
+                final_chunks.append(sub.strip())
+        else:
+            final_chunks.append(c)
+    return [c for c in final_chunks if len(c) > 30]
+
+def build_corpus():
+    pdf_files = [
+        "24042020_E-R Model.pdf",
+        "CPU-Scheduling-and-Algorithm-.pdf",
+        "osi_notes.pdf"
+    ]
+    
+    all_chunks = []
+    print("[*] Parsing user course PDFs from project_pdfs/...")
+    
+    for fname in pdf_files:
+        fpath = os.path.join(PDF_DIR, fname)
+        if not os.path.exists(fpath):
+            print(f"[-] Missing: {fpath}")
+            continue
+            
+        doc = pymupdf.open(fpath)
+        doc_chunks = 0
+        for i, page in enumerate(doc):
+            page_text = page.get_text()
+            # Filter boilerplate headers
+            lines = [l for l in page_text.split('\n') if not any(b in l for b in [
+                "Aaron Balchunas", "routeralley", "material may be copied", "Operating System Handout", "Mr. V.N.Kukre"
+            ])]
+            clean_text = "\n".join(lines).strip()
+            
+            p_chunks = split_into_chunks(clean_text)
+            for c in p_chunks:
+                all_chunks.append({
+                    "source": fname,
+                    "page": i + 1,
+                    "text": c
+                })
+                doc_chunks += 1
+        print(f"[+] {fname}: Extracted {doc_chunks} chunks across {len(doc)} pages.")
+
+    # Backup existing
+    if os.path.exists(CORPUS_PATH):
+        shutil.copyfile(CORPUS_PATH, CORPUS_PATH + ".bak")
+        
+    with open(CORPUS_PATH, "w", encoding="utf-8") as f:
+        json.dump(all_chunks, f, indent=2)
+    print(f"[*] Total corpus chunks generated: {len(all_chunks)} -> saved to {os.path.basename(CORPUS_PATH)}")
+
+def build_golden_dataset():
+    golden_questions = [
+        # -------------------------------------------------------------------
+        # 1. DBMS: 24042020_E-R Model.pdf (12 Questions)
+        # -------------------------------------------------------------------
+        {
+            "id": "tc_dbms_01",
+            "question": "What is an Entity Relationship Diagram (ER Diagram) and what are its two main primary components?",
+            "ground_truth_answer": "An Entity-Relationship model (ER model) describes the structure of a database with the help of an ER Diagram, acting as a blueprint. Its two main components are entity sets and relationship sets.",
+            "expected_document": "24042020_E-R Model.pdf",
+            "expected_pages": [1],
+            "key_facts": ["blueprint", "entity set", "relationship set", "structure of a database"]
+        },
+        {
+            "id": "tc_dbms_02",
+            "question": "Which geometric shapes are used in an ER diagram to represent Entity sets, Attributes, and Relationship sets?",
+            "ground_truth_answer": "In an ER diagram, Rectangles represent Entity sets, Ellipses represent Attributes, and Diamonds represent Relationship sets.",
+            "expected_document": "24042020_E-R Model.pdf",
+            "expected_pages": [2],
+            "key_facts": ["Rectangle", "Ellipses", "Diamonds", "Entity sets", "Attributes", "Relationship"]
+        },
+        {
+            "id": "tc_dbms_03",
+            "question": "How are Multivalued attributes and Weak entity sets visually represented in an ER diagram?",
+            "ground_truth_answer": "Multivalued attributes are represented using Double Ellipses, while Weak Entity Sets are represented using Double Rectangles.",
+            "expected_document": "24042020_E-R Model.pdf",
+            "expected_pages": [2],
+            "key_facts": ["Double ellipse", "Double rectangle", "Multivalued", "Weak entity"]
+        },
+        {
+            "id": "tc_dbms_04",
+            "question": "What is the primary difference between a Strong Entity Set and a Weak Entity Set?",
+            "ground_truth_answer": "A Strong entity set always has a primary key that uniquely identifies each entity, whereas a Weak entity set does not have enough attributes to form a primary key on its own and relies on a discriminator or partial key.",
+            "expected_document": "24042020_E-R Model.pdf",
+            "expected_pages": [4, 11],
+            "key_facts": ["primary key", "Weak entity", "discriminator", "key attribute"]
+        },
+        {
+            "id": "tc_dbms_05",
+            "question": "How is a Key attribute defined in an ER diagram and how is it graphically represented?",
+            "ground_truth_answer": "A key attribute uniquely identifies an entity from an entity set (such as a student roll number). It is represented by an oval with the attribute text underlined.",
+            "expected_document": "24042020_E-R Model.pdf",
+            "expected_pages": [5],
+            "key_facts": ["uniquely identify an entity", "underlined", "roll number", "Key attribute"]
+        },
+        {
+            "id": "tc_dbms_06",
+            "question": "Explain the difference between a Composite attribute and a Derived attribute with examples.",
+            "ground_truth_answer": "A composite attribute is a combination of other attributes (e.g., student address composed of city, state, pin). A derived attribute is dynamic and derived from another attribute (e.g., Age derived from Date of Birth, depicted as a dashed oval).",
+            "expected_document": "24042020_E-R Model.pdf",
+            "expected_pages": [5, 6],
+            "key_facts": ["combination of other attributes", "dashed oval", "derived", "composite"]
+        },
+        {
+            "id": "tc_dbms_07",
+            "question": "What is a Many to One Relationship in DBMS and give an academic real-world example?",
+            "ground_truth_answer": "A Many to One relationship occurs when more than one instance of an entity is associated with a single instance of another entity. For example, many students study in a single college.",
+            "expected_document": "24042020_E-R Model.pdf",
+            "expected_pages": [7],
+            "key_facts": ["more than one instances", "single instance", "many students can study in a single college"]
+        },
+        {
+            "id": "tc_dbms_08",
+            "question": "What are the core steps involved in creating an Entity Relationship Diagram for a university scenario?",
+            "ground_truth_answer": "The steps to create an ERD are: 1) Entity Identification, 2) Relationship Identification, 3) Cardinality Identification, 4) Attribute Identification, and 5) Creating the ERD diagram.",
+            "expected_document": "24042020_E-R Model.pdf",
+            "expected_pages": [8, 9, 10],
+            "key_facts": ["Entity Identification", "Relationship Identification", "Cardinality", "Create the ERD"]
+        },
+        {
+            "id": "tc_dbms_09",
+            "question": "How does the Generalization process work in DBMS and how does it reduce attribute redundancy?",
+            "ground_truth_answer": "Generalization is a bottom-up process where common attributes of lower-level entities (like Student and Teacher) are combined into a single higher-level generalized entity (like Person with Name and Address).",
+            "expected_document": "24042020_E-R Model.pdf",
+            "expected_pages": [12],
+            "key_facts": ["generalized entity", "Person", "Student and Teacher", "common attributes", "Name & Address"]
+        },
+        {
+            "id": "tc_dbms_10",
+            "question": "Explain DBMS Aggregation and why a single entity alone is sometimes insufficient in a relationship.",
+            "ground_truth_answer": "Aggregation is a process in which a single entity alone cannot make sense in a relationship, so the relationship between two entities acts as one entity (for example, the relationship 'Works-On' between 'Employee' and 'Project' acts as a single entity managed by a 'Manager').",
+            "expected_document": "24042020_E-R Model.pdf",
+            "expected_pages": [13, 14],
+            "key_facts": ["relationship of two entities acts as one entity", "Employee", "Project", "Manager", "Works-On"]
+        },
+        {
+            "id": "tc_dbms_11",
+            "question": "What are the four cardinality relationships supported in Entity-Relationship modeling?",
+            "ground_truth_answer": "The four cardinality ratios in ER modeling are One to One (1:1), One to Many (1:N), Many to One (N:1), and Many to Many (M:N).",
+            "expected_document": "24042020_E-R Model.pdf",
+            "expected_pages": [7],
+            "key_facts": ["One to One", "One to Many", "Many to One", "Many to Many"]
+        },
+        {
+            "id": "tc_dbms_12",
+            "question": "How does BCNF decomposition prevent multi-valued dependency anomalies in relational schemas?",
+            "ground_truth_answer": "This topic is not discussed in the provided ER Model notes, which specifically focus on Entity-Relationship diagrams, shapes, attributes, and relationships rather than Boyce-Codd Normal Form.",
+            "expected_document": "24042020_E-R Model.pdf",
+            "expected_pages": [],
+            "key_facts": ["not discussed", "ER Model", "Normal Form"]
+        },
+
+        # -------------------------------------------------------------------
+        # 2. OS: CPU-Scheduling-and-Algorithm-.pdf (12 Questions)
+        # -------------------------------------------------------------------
+        {
+            "id": "tc_os_01",
+            "question": "What are the primary objectives of CPU scheduling in an operating system?",
+            "ground_truth_answer": "CPU scheduling aims to be fair when allocating resources, maximize throughput, maximize CPU utilization, minimize turnaround time, minimize waiting time, and minimize response time.",
+            "expected_document": "CPU-Scheduling-and-Algorithm-.pdf",
+            "expected_pages": [1],
+            "key_facts": ["Be Fair", "Maximize throughput", "Maximize CPU utilization", "Minimize turnaround", "waiting time"]
+        },
+        {
+            "id": "tc_os_02",
+            "question": "What is the difference between preemptive scheduling and non-preemptive scheduling?",
+            "ground_truth_answer": "In preemptive scheduling, the CPU can be taken away from a running process when it switches to ready state. In non-preemptive scheduling, once a process gets the CPU, it holds it until termination or I/O wait.",
+            "expected_document": "CPU-Scheduling-and-Algorithm-.pdf",
+            "expected_pages": [2],
+            "key_facts": ["running state to ready", "limited amount of time", "taken away", "Non-preemptive"]
+        },
+        {
+            "id": "tc_os_03",
+            "question": "Define Turnaround time and Waiting time as CPU scheduling evaluation criteria.",
+            "ground_truth_answer": "Turnaround time is the total time required for a process to complete from submission to completion. Waiting time is the total time spent by processes in the ready queue waiting for CPU access.",
+            "expected_document": "CPU-Scheduling-and-Algorithm-.pdf",
+            "expected_pages": [3],
+            "key_facts": ["submission time to completion", "ready queue waiting", "Turnaround time", "Waiting time"]
+        },
+        {
+            "id": "tc_os_04",
+            "question": "How does First Come First Serve (FCFS) CPU scheduling work and what is its main characteristic?",
+            "ground_truth_answer": "In FCFS scheduling, the process that requests the CPU first is allocated the CPU first using a FIFO queue. It is simple, non-preemptive, but can suffer from high average waiting times due to the convoy effect.",
+            "expected_document": "CPU-Scheduling-and-Algorithm-.pdf",
+            "expected_pages": [4],
+            "key_facts": ["First Come First Serve", "FIFO", "non-preemptive", "burst time"]
+        },
+        {
+            "id": "tc_os_05",
+            "question": "Why is Shortest Job First (SJF) considered the optimal CPU scheduling algorithm for minimizing average waiting time?",
+            "ground_truth_answer": "SJF schedules the process with the shortest CPU burst time first. If burst times are equal, FCFS breaks the tie. It is provably the best approach to minimize average waiting time for a given set of processes.",
+            "expected_document": "CPU-Scheduling-and-Algorithm-.pdf",
+            "expected_pages": [6],
+            "key_facts": ["shortest burst time", "FCFS is used to break the tie", "minimize waiting time", "optimal"]
+        },
+        {
+            "id": "tc_os_06",
+            "question": "What is Shortest Remaining Time First (SRTF) scheduling and how does it handle newly arriving processes?",
+            "ground_truth_answer": "SRTF is the preemptive version of SJF. When a new process arrives with a shorter remaining burst time than the currently executing process, the CPU preempts the current process to execute the new one.",
+            "expected_document": "CPU-Scheduling-and-Algorithm-.pdf",
+            "expected_pages": [6, 10],
+            "key_facts": ["pre-emptive", "remaining burst time", "SRTF", "Gantt Chart"]
+        },
+        {
+            "id": "tc_os_07",
+            "question": "How does Round Robin (RR) CPU scheduling work and what is the role of the time quantum?",
+            "ground_truth_answer": "Round Robin is designed for time-sharing systems where each process is allocated the CPU for a fixed time slice called the time quantum. When the quantum expires, the process is preempted and put at the end of the ready queue.",
+            "expected_document": "CPU-Scheduling-and-Algorithm-.pdf",
+            "expected_pages": [11, 12],
+            "key_facts": ["time quantum", "ready queue", "time sharing system", "preemptive"]
+        },
+        {
+            "id": "tc_os_08",
+            "question": "What happens if the time quantum in Round Robin scheduling is set extremely large or extremely small?",
+            "ground_truth_answer": "If the time quantum is very large, Round Robin degenerates into FCFS scheduling. If it is set too small, excessive context switching overhead occurs, reducing CPU efficiency.",
+            "expected_document": "CPU-Scheduling-and-Algorithm-.pdf",
+            "expected_pages": [11],
+            "key_facts": ["FCFS", "context switch", "overhead", "time quantum"]
+        },
+        {
+            "id": "tc_os_09",
+            "question": "What major problem arises in Priority Scheduling and how does the Aging technique resolve it?",
+            "ground_truth_answer": "Priority scheduling can lead to starvation (indefinite blocking) where low-priority processes never execute. Aging solves this by gradually increasing the priority of processes that wait in the system for long periods.",
+            "expected_document": "CPU-Scheduling-and-Algorithm-.pdf",
+            "expected_pages": [13, 14],
+            "key_facts": ["Starvation", "Aging", "indefinite", "priority", "waiting"]
+        },
+        {
+            "id": "tc_os_10",
+            "question": "What are the four Coffman conditions necessary for a system deadlock to arise simultaneously?",
+            "ground_truth_answer": "Deadlock can arise if four conditions hold simultaneously: 1. Mutual Exclusion (non-shareable resources), 2. Hold and Wait, 3. No Preemption (resources cannot be forcibly reclaimed), and 4. Circular Wait.",
+            "expected_document": "CPU-Scheduling-and-Algorithm-.pdf",
+            "expected_pages": [17, 18],
+            "key_facts": ["Mutual Exclusion", "Hold and Wait", "No Preemption", "Circular Wait"]
+        },
+        {
+            "id": "tc_os_11",
+            "question": "How can the Circular Wait condition be eliminated to prevent deadlocks in an operating system?",
+            "ground_truth_answer": "Circular wait can be prevented by numbering all resources linearly and requiring that processes request resources only in strictly increasing order of enumeration.",
+            "expected_document": "CPU-Scheduling-and-Algorithm-.pdf",
+            "expected_pages": [18],
+            "key_facts": ["number all resources", "increasing order", "Circular Wait", "prevent"]
+        },
+        {
+            "id": "tc_os_12",
+            "question": "What mathematical formula defines Turnaround Time and Waiting Time from Exit Time, Arrival Time, and Burst Time?",
+            "ground_truth_answer": "Turn Around Time = Exit Time - Arrival Time; Waiting Time = Turn Around Time - Burst Time.",
+            "expected_document": "CPU-Scheduling-and-Algorithm-.pdf",
+            "expected_pages": [3, 15],
+            "key_facts": ["Turn Around time = Exit time – Arrival time", "Waiting time = Turn Around time – Burst time"]
+        },
+
+        # -------------------------------------------------------------------
+        # 3. CN: osi_notes.pdf (12 Questions)
+        # -------------------------------------------------------------------
+        {
+            "id": "tc_cn_01",
+            "question": "What is the primary purpose of the OSI Reference Model developed by the ISO?",
+            "ground_truth_answer": "The Open Systems Interconnection (OSI) model, developed by the ISO, provides a standardized 7-layer framework ensuring open communication and interoperability between disparate networking systems and vendors.",
+            "expected_document": "osi_notes.pdf",
+            "expected_pages": [1, 2],
+            "key_facts": ["Open Systems Interconnection", "ISO", "layered", "interoperability", "standards"]
+        },
+        {
+            "id": "tc_cn_02",
+            "question": "What role does the Application layer (Layer 7) play and what protocols operate at this layer?",
+            "ground_truth_answer": "The Application layer (Layer 7) is closest to the end user and provides network services directly to applications. Common protocols include HTTP, FTP, DNS, SMTP, and Telnet.",
+            "expected_document": "osi_notes.pdf",
+            "expected_pages": [3],
+            "key_facts": ["Layer-7", "closest to the user", "HTTP", "FTP", "DNS", "application"]
+        },
+        {
+            "id": "tc_cn_03",
+            "question": "What are the primary functions of the Presentation layer (Layer 6) in the OSI model?",
+            "ground_truth_answer": "The Presentation layer (Layer 6) manages data formatting, syntax translation, data compression, and encryption/decryption between the application and network formats.",
+            "expected_document": "osi_notes.pdf",
+            "expected_pages": [4],
+            "key_facts": ["formatting and syntax", "translation", "compression", "encryption", "Layer-6"]
+        },
+        {
+            "id": "tc_cn_04",
+            "question": "Explain the three communication dialog modes managed by the Session layer (Layer 5).",
+            "ground_truth_answer": "The Session layer (Layer 5) manages sessions using Simplex (one-way only), Half-Duplex (two-way but only one direction at a time), and Full-Duplex (simultaneous two-way communication).",
+            "expected_document": "osi_notes.pdf",
+            "expected_pages": [4],
+            "key_facts": ["Simplex", "Half-Duplex", "Full-Duplex", "Session layer", "Layer-5"]
+        },
+        {
+            "id": "tc_cn_05",
+            "question": "What core responsibilities are handled by the Transport layer (Layer 4) regarding data transmission?",
+            "ground_truth_answer": "The Transport layer (Layer 4) provides end-to-end communication, segmentation of data streams, flow control through windowing, error-checking, and service addressing via port numbers.",
+            "expected_document": "osi_notes.pdf",
+            "expected_pages": [5],
+            "key_facts": ["Layer-4", "end-to-end", "flow control", "segmentation", "port"]
+        },
+        {
+            "id": "tc_cn_06",
+            "question": "How does TCP differ from UDP at the Transport layer in terms of connection and reliability?",
+            "ground_truth_answer": "TCP is connection-oriented and guarantees reliable, ordered delivery using sequence numbers and acknowledgements. UDP is connectionless and provides fast, best-effort delivery with lower overhead.",
+            "expected_document": "osi_notes.pdf",
+            "expected_pages": [5],
+            "key_facts": ["TCP is connection-oriented", "reliable", "UDP is connectionless", "overhead"]
+        },
+        {
+            "id": "tc_cn_07",
+            "question": "What are the primary functions and Protocol Data Unit (PDU) of the Network layer (Layer 3)?",
+            "ground_truth_answer": "The Network layer (Layer 3) handles logical addressing (IP addresses) and path determination (routing) across networks. Its Protocol Data Unit is the Packet, and routers operate here.",
+            "expected_document": "osi_notes.pdf",
+            "expected_pages": [6],
+            "key_facts": ["Layer-3", "logical addressing", "IP", "routing", "packets", "routers"]
+        },
+        {
+            "id": "tc_cn_08",
+            "question": "What are the two sublayers of the Data-Link layer (Layer 2) and what is the structure of a MAC address?",
+            "ground_truth_answer": "The Data-Link layer is divided into LLC (Logical Link Control) and MAC (Media Access Control) sublayers. It uses physical 48-bit hexadecimal MAC addresses and encapsulates packets into Frames.",
+            "expected_document": "osi_notes.pdf",
+            "expected_pages": [7],
+            "key_facts": ["LLC", "MAC", "48-bit", "frames", "physical address", "switches"]
+        },
+        {
+            "id": "tc_cn_09",
+            "question": "Trace the encapsulation process as user data travels down the OSI stack from Layer 7 to Layer 1.",
+            "ground_truth_answer": "As data moves down the stack, each layer adds headers: Upper layers produce Data -> Transport layer segments into Segments -> Network layer adds IP header into Packets -> Data-Link adds MAC header/trailer into Frames -> Physical layer converts into Bits.",
+            "expected_document": "osi_notes.pdf",
+            "expected_pages": [8, 9],
+            "key_facts": ["Data", "Segment", "Packet", "Frame", "Bits", "encapsulation"]
+        },
+        {
+            "id": "tc_cn_10",
+            "question": "Describe how a web browser loading an HTTP webpage utilizes the different layers of the OSI model.",
+            "ground_truth_answer": "A web browser initiates an HTTP request at Layer 7, resolves DNS, establishes a TCP connection on port 80/443 at Layer 4, addresses IP packets at Layer 3, frames Ethernet packets with MAC addresses at Layer 2, and transmits raw electrical/optical signals at Layer 1.",
+            "expected_document": "osi_notes.pdf",
+            "expected_pages": [10],
+            "key_facts": ["web browser", "HTTP", "DNS", "TCP", "IP", "Ethernet", "port 80"]
+        },
+        {
+            "id": "tc_cn_11",
+            "question": "How does the 4-layer DoD (TCP/IP) model map to the 7 layers of the OSI reference model?",
+            "ground_truth_answer": "The DoD model maps as follows: Process/Application Layer corresponds to OSI Layers 5-7; Host-to-Host corresponds to Layer 4 (Transport); Internet corresponds to Layer 3 (Network); and Network Access corresponds to Layers 1-2.",
+            "expected_document": "osi_notes.pdf",
+            "expected_pages": [11],
+            "key_facts": ["Process/Application", "Host-to-Host", "Internet", "Network Access", "DoD Model"]
+        },
+        {
+            "id": "tc_cn_12",
+            "question": "What is the function of the Physical layer (Layer 1) and what physical devices operate at this layer?",
+            "ground_truth_answer": "The Physical layer (Layer 1) transmits raw unstructured bit streams over physical transmission mediums (copper cables, fiber optics, wireless). Devices operating at Layer 1 include Hubs, Repeaters, and Network Interface Cards.",
+            "expected_document": "osi_notes.pdf",
+            "expected_pages": [5, 7],
+            "key_facts": ["Layer-1", "bits", "voltage", "cables", "hubs", "repeaters"]
+        }
+    ]
+
+    # Backup existing
+    if os.path.exists(GOLDEN_PATH):
+        shutil.copyfile(GOLDEN_PATH, GOLDEN_PATH + ".bak")
+        
+    with open(GOLDEN_PATH, "w", encoding="utf-8") as f:
+        json.dump(golden_questions, f, indent=2)
+    print(f"[*] Total benchmark questions generated: {len(golden_questions)} -> saved to {os.path.basename(GOLDEN_PATH)}")
+
+if __name__ == "__main__":
+    build_corpus()
+    build_golden_dataset()
+    print("\n[✓] User course notes benchmark successfully created!")

@@ -3,6 +3,9 @@ from typing import List, Dict, Any
 from supabase import create_client, Client
 from dotenv import load_dotenv
 
+# Search both local directory and parent directory for .env
+env_local = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env")
+load_dotenv(env_local)
 load_dotenv()
 
 class SupabaseVectorStore:
@@ -10,13 +13,20 @@ class SupabaseVectorStore:
         url = os.environ.get("SUPABASE_URL")
         key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
         if not url or not key:
-            raise ValueError("SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set in the backend environment.")
-        self.client: Client = create_client(url, key)
+            self.client = None
+        else:
+            try:
+                self.client: Client = create_client(url, key)
+            except Exception as e:
+                print(f"Error initializing Supabase client: {e}")
+                self.client = None
 
     def add_documents(self, user_id: str, chunks: List[Dict[str, Any]], embeddings: List[List[float]]):
         """
         Inserts document chunks and corresponding embeddings into Supabase document_chunks table.
         """
+        if not self.client:
+            raise ValueError("Supabase client is not connected.")
         if not chunks or not embeddings:
             return
             
@@ -30,7 +40,6 @@ class SupabaseVectorStore:
                 "embedding": embedding
             })
             
-        # Perform batch insertion
         try:
             self.client.table("document_chunks").insert(payload).execute()
         except Exception as e:
@@ -41,6 +50,8 @@ class SupabaseVectorStore:
         """
         Calls the PostgreSQL RPC match_document_chunks function to find similar text chunks.
         """
+        if not self.client:
+            return []
         try:
             response = self.client.rpc(
                 "match_document_chunks",
@@ -55,7 +66,6 @@ class SupabaseVectorStore:
             
             results = []
             for item in response.data:
-                # Structure returning values matching the search interface schema
                 results.append({
                     "text": item.get("text_content"),
                     "metadata": {
@@ -73,6 +83,8 @@ class SupabaseVectorStore:
         """
         Gathers list of unique uploaded files and chunk stats for a specific user.
         """
+        if not self.client:
+            return []
         try:
             response = self.client.table("document_chunks").select("filename, page_number").eq("user_id", user_id).execute()
             data = response.data
@@ -107,6 +119,8 @@ class SupabaseVectorStore:
         """
         Clears all document vector records matching the target user.
         """
+        if not self.client:
+            return
         try:
             self.client.table("document_chunks").delete().eq("user_id", user_id).execute()
         except Exception as e:
@@ -117,6 +131,8 @@ class SupabaseVectorStore:
         """
         Deletes vector records matching the target user and specific filename.
         """
+        if not self.client:
+            return
         try:
             self.client.table("document_chunks").delete().eq("user_id", user_id).eq("filename", filename).execute()
         except Exception as e:
@@ -127,6 +143,8 @@ class SupabaseVectorStore:
         """
         Fetches document chunks directly for generating study materials (flashcards/quizzes).
         """
+        if not self.client:
+            return []
         try:
             query = self.client.table("document_chunks").select("text_content, filename, page_number").eq("user_id", user_id)
             if filename != "all":
@@ -146,5 +164,3 @@ class SupabaseVectorStore:
         except Exception as e:
             print(f"Error fetching document chunks for study: {e}")
             return []
-
-

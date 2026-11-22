@@ -1,0 +1,508 @@
+[
+  {
+    "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_001",
+    "source": "cs601_advanced_algorithms_syllabus.pdf",
+    "page": 1,
+    "text": "CS601: Advanced Algorithms and Computational\nComplexity\nDepartment of Computer Science & Engineering | Academic Term: Autumn 2026 | Credits: 4.0\n1. Course Administration & Prerequisites\nPrimary Instructor: Prof. Edward R. Tarjan (Office: Engineering Quad 412, Email: etarjan@university.edu)\nTeaching Assistants: Michael Stone (Head TA), Sarah Lin, David Zhou.\nLectures: Mondays and Wednesdays 10:00 AM - 11:30 AM in Turing Lecture Hall (Auditorium 101).\nPrerequisites: Strict prerequisite enforcement requires a grade of B or higher in CS301 (Data Structures) and CS305\n(Discrete Mathematics). Familiarity with basic probability theory, linear algebra, and graph representations (adjacency lists\nvs adjacency matrices) is required.\n2. Course Catalog Description & Pedagogical Goals",
+    "metadata": {
+      "source": "cs601_advanced_algorithms_syllabus.pdf",
+      "page": 1,
+      "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_001"
+    }
+  },
+  {
+    "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_002",
+    "source": "cs601_advanced_algorithms_syllabus.pdf",
+    "page": 1,
+    "text": "vs adjacency matrices) is required.\n2. Course Catalog Description & Pedagogical Goals\nCS601 explores design principles, mathematical rigor, and asymptotic performance bounds of modern algorithmic\nframeworks. Students learn to formulate non-trivial computational problems into mathematically rigorous graph formulations,\nlinear programs, and network flow models. Beyond polynomial-time algorithms, the course introduces amortized efficiency\nproofs, randomized derandomization strategies, sublinear-time streaming algorithms, and rigorous approximation algorithms\nwith provable performance guarantees for NP-hard optimization problems.\n3. Required Textbooks and Scholarly References\n1. CLRS: Cormen, Leiserson, Rivest, and Stein. Introduction to Algorithms, 4th Edition, MIT Press, 2022.",
+    "metadata": {
+      "source": "cs601_advanced_algorithms_syllabus.pdf",
+      "page": 1,
+      "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_002"
+    }
+  },
+  {
+    "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_003",
+    "source": "cs601_advanced_algorithms_syllabus.pdf",
+    "page": 1,
+    "text": "1. CLRS: Cormen, Leiserson, Rivest, and Stein. Introduction to Algorithms, 4th Edition, MIT Press, 2022.\n2. KT: Kleinberg and Tardos. Algorithm Design, Pearson / Addison-Wesley, 2006.\n3. Vazirani: Vijay Vazirani. Approximation Algorithms, Springer-Verlag, 2001.\n4. Motwani & Raghavan: Rajeev Motwani and Prabhakar Raghavan. Randomized Algorithms, Cambridge University\nPress, 1995.\n4. Academic Integrity & Artificial Intelligence Policy\nAll homework submissions and coding assignments must represent the original intellectual work of each individual student.\nDiscussion of concepts in study groups is permitted, but written solutions must be drafted individually from scratch.\nGenerative AI Policy: Large Language Models (LLMs) such as Gemini, ChatGPT, or Claude may only be used as tutoring",
+    "metadata": {
+      "source": "cs601_advanced_algorithms_syllabus.pdf",
+      "page": 1,
+      "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_003"
+    }
+  },
+  {
+    "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_004",
+    "source": "cs601_advanced_algorithms_syllabus.pdf",
+    "page": 1,
+    "text": "Generative AI Policy: Large Language Models (LLMs) such as Gemini, ChatGPT, or Claude may only be used as tutoring\nassistants for conceptual explanations. Using LLMs to generate verbatim mathematical proofs, pseudo-code\nimplementations, or homework answers constitutes academic dishonesty and will result in a course grade of F and referral\nto the University Disciplinary Board.",
+    "metadata": {
+      "source": "cs601_advanced_algorithms_syllabus.pdf",
+      "page": 1,
+      "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_004"
+    }
+  },
+  {
+    "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_005",
+    "source": "cs601_advanced_algorithms_syllabus.pdf",
+    "page": 2,
+    "text": "CS601 Syllabus (Page 2) - Modules 1 through 4\nModule 1: Advanced Amortized Analysis (Weeks 1-2)\nThis module examines operations whose worst-case individual cost is expensive but whose average cost across a\nsequence of operations is guaranteed to be small. We analyze three foundational techniques: the Aggregate Method\n(computing T(n)/n), the Accounting / Banker's Method (assigning artificial amortized charges with banked credit tokens),\nand the Potential Method. In the Potential Method, a potential function F(D) maps data structure states to real numbers,\nwhere the amortized cost a_i is defined as: a_i = c_i + F(D_i) - F(D_{i-1}). Applications include dynamic table expansion\nand Fibonacci Heaps (O(1) amortized decrease-key).\nModule 2: Network Flow & Matching Algorithms (Weeks 3-4)",
+    "metadata": {
+      "source": "cs601_advanced_algorithms_syllabus.pdf",
+      "page": 2,
+      "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_005"
+    }
+  },
+  {
+    "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_006",
+    "source": "cs601_advanced_algorithms_syllabus.pdf",
+    "page": 2,
+    "text": "and Fibonacci Heaps (O(1) amortized decrease-key).\nModule 2: Network Flow & Matching Algorithms (Weeks 3-4)\nFlow networks model conservation and capacity constraints across directed graphs G=(V,E). We cover the Ford-Fulkerson\nmethod and the augmenting path theorem. The Edmonds-Karp algorithm implements augmenting path searches using\nBreadth-First Search (BFS) to find the shortest augmenting path in terms of edge count, guaranteeing a polynomial upper\nbound runtime of O(V * E^2), eliminating infinite cycling or exponential runtime on irrational capacities. We prove the\nfoundational Max-Flow Min-Cut Theorem: the maximum value of an s-t flow equals the minimum capacity among all cuts",
+    "metadata": {
+      "source": "cs601_advanced_algorithms_syllabus.pdf",
+      "page": 2,
+      "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_006"
+    }
+  },
+  {
+    "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_007",
+    "source": "cs601_advanced_algorithms_syllabus.pdf",
+    "page": 2,
+    "text": "foundational Max-Flow Min-Cut Theorem: the maximum value of an s-t flow equals the minimum capacity among all cuts\nseparating source s from sink t. Applications to bipartite matching and edge-disjoint path routing are explored.\nModule 3: Linear Programming and Duality Theory (Weeks 5-6)\nLinear Programming (LP) solves the optimization of a linear objective function subject to linear inequality constraints. We\nformulate standard form: Maximize c^T x subject to Ax £ b and x ‡ 0. We study the Simplex Algorithm, slack variables, and\npivot operations. While worst-case exponential on Klee-Minty cubes, Simplex is practically efficient. We formally prove\nWeak Duality (for feasible x and y, c^T x £ b^T y) and Strong Duality (if the primal has an optimal solution, the dual has an",
+    "metadata": {
+      "source": "cs601_advanced_algorithms_syllabus.pdf",
+      "page": 2,
+      "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_007"
+    }
+  },
+  {
+    "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_008",
+    "source": "cs601_advanced_algorithms_syllabus.pdf",
+    "page": 2,
+    "text": "Weak Duality (for feasible x and y, c^T x £ b^T y) and Strong Duality (if the primal has an optimal solution, the dual has an\noptimal solution, and their objective values coincide exactly). We introduce Complementary Slackness conditions.\nModule 4: Randomized Algorithms & Probabilistic Analysis (Weeks 7-8)\nRandomization provides simplicity and asymptotic speedup. We differentiate between Las Vegas algorithms (always\ncorrect, runtime is a random variable, e.g., Randomized Quicksort achieving expected O(n log n) time on arbitrary inputs)\nand Monte Carlo algorithms (runtime is deterministic, output is correct with high probability, e.g., Karger's Min-Cut). We\nstudy Skip Lists, achieving O(log n) expected search, insertion, and deletion using probabilistic height assignments with",
+    "metadata": {
+      "source": "cs601_advanced_algorithms_syllabus.pdf",
+      "page": 2,
+      "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_008"
+    }
+  },
+  {
+    "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_009",
+    "source": "cs601_advanced_algorithms_syllabus.pdf",
+    "page": 2,
+    "text": "study Skip Lists, achieving O(log n) expected search, insertion, and deletion using probabilistic height assignments with\nparameter p=0.5. We cover tail bounds: Markov's Inequality, Chebyshev's Inequality, and Chernoff bounds.",
+    "metadata": {
+      "source": "cs601_advanced_algorithms_syllabus.pdf",
+      "page": 2,
+      "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_009"
+    }
+  },
+  {
+    "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_010",
+    "source": "cs601_advanced_algorithms_syllabus.pdf",
+    "page": 3,
+    "text": "CS601 Syllabus (Page 3) - Modules 5 through 7\nModule 5: Approximation Algorithms for NP-Hard Problems (Weeks 9-10)\nWhen an optimization problem is NP-hard, polynomial-time algorithms cannot guarantee exact global optimality unless\nP=NP. We study approximation algorithms with provable approximation ratio a ‡ 1. For the Vertex Cover problem, a\nsimple greedy maximal matching heuristic yields a 2-approximation algorithm running in O(V + E) time. For the Metric\nTraveling Salesperson Problem (Metric TSP) satisfying the triangle inequality, the Minimum Spanning Tree (MST)\ndoubling heuristic achieves a 2-approximation, while Christofides Algorithm combines an MST with a minimum-weight",
+    "metadata": {
+      "source": "cs601_advanced_algorithms_syllabus.pdf",
+      "page": 3,
+      "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_010"
+    }
+  },
+  {
+    "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_011",
+    "source": "cs601_advanced_algorithms_syllabus.pdf",
+    "page": 3,
+    "text": "doubling heuristic achieves a 2-approximation, while Christofides Algorithm combines an MST with a minimum-weight\nperfect matching on odd-degree vertices to achieve a 1.5-approximation ratio. We analyze the greedy Set Cover algorithm\nachieving a logarithmic ratio of H(n) = O(ln n).\nModule 6: NP-Completeness Reductions & Intractability (Weeks 11-12)\nComplexity class P consists of languages decidable in polynomial time by a deterministic Turing Machine. Class NP\nconsists of decision problems verifiable in polynomial time. We prove the seminal Cook-Levin Theorem establishing that\nthe Boolean Satisfiability problem (SAT) is NP-Complete. We teach formal polynomial-time reduction techniques:\nCircuit-SAT £_p 3-SAT, 3-SAT £_p CLIQUE, CLIQUE £_p INDEPENDENT SET, and INDEPENDENT SET £_p VERTEX",
+    "metadata": {
+      "source": "cs601_advanced_algorithms_syllabus.pdf",
+      "page": 3,
+      "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_011"
+    }
+  },
+  {
+    "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_012",
+    "source": "cs601_advanced_algorithms_syllabus.pdf",
+    "page": 3,
+    "text": "Circuit-SAT £_p 3-SAT, 3-SAT £_p CLIQUE, CLIQUE £_p INDEPENDENT SET, and INDEPENDENT SET £_p VERTEX\nCOVER. We discuss co-NP, NP-Hardness, and the theoretical implications of the P vs NP millennium prize problem.\nModule 7: Sublinear & Streaming Algorithms (Weeks 13-14)\nBig data applications require processing massive continuous streams under strict poly-logarithmic memory constraints. We\nanalyze the Count-Min Sketch, a probabilistic sublinear frequency estimation table using d hash functions and w = e/e\ncounters. Count-Min guarantees that with probability 1 - d, frequency estimates satisfy: a_i £ a_hat_i £ a_i + e ||a||_1. We\nalso study the Misra-Gries heavy hitters algorithm finding elements with frequency greater than N/k in O(k) memory, and",
+    "metadata": {
+      "source": "cs601_advanced_algorithms_syllabus.pdf",
+      "page": 3,
+      "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_012"
+    }
+  },
+  {
+    "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_013",
+    "source": "cs601_advanced_algorithms_syllabus.pdf",
+    "page": 3,
+    "text": "also study the Misra-Gries heavy hitters algorithm finding elements with frequency greater than N/k in O(k) memory, and\nReservoir Sampling (Algorithm R) uniformly sampling k items from an unbounded stream of unknown length N with exact\nprobability k/N per item.",
+    "metadata": {
+      "source": "cs601_advanced_algorithms_syllabus.pdf",
+      "page": 3,
+      "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_013"
+    }
+  },
+  {
+    "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_014",
+    "source": "cs601_advanced_algorithms_syllabus.pdf",
+    "page": 4,
+    "text": "CS601 Syllabus (Page 4) - Assessment, Policies & Schedule\n5. Assessment Structure & Grade Weight Distribution\nFinal letter grades are calculated based on cumulative performance across four distinct components. There is no grading\ncurve; standard absolute thresholds apply (A ‡ 90%, B ‡ 80%, C ‡ 70%, D ‡ 60%, F < 60%):\nAssessment Component Weight (%) Frequency / Deadline Core Focus & Objectives\nRigorous written proofs, amortized analysis, and LP\nProblem Sets (5 Homeworks) 25% Bi-weekly submissions\nformulations.\nWeek 8 (In-Class, Closed Modules 1 to 4: Network Flow, Potential Functions, LP\nMidterm Examination 25%\nBook) Duality, Randomization.\nResearch / Implementation Milestone Week 10, Final Week Implementation and empirical evaluation of streaming\n20%",
+    "metadata": {
+      "source": "cs601_advanced_algorithms_syllabus.pdf",
+      "page": 4,
+      "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_014"
+    }
+  },
+  {
+    "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_015",
+    "source": "cs601_advanced_algorithms_syllabus.pdf",
+    "page": 4,
+    "text": "Book) Duality, Randomization.\nResearch / Implementation Milestone Week 10, Final Week Implementation and empirical evaluation of streaming\n20%\nProject 14 sketches or approximation algorithms.\nFinal Comprehensive Cumulative coverage across all 7 modules with\n30% Finals Week (Hall 4B)\nExamination emphasis on NP-reductions and approximation.\n6. Late Submission Policy & Extensions\nDeadlines for problem sets are strictly enforced at 11:59 PM on designated submission dates via the online course portal. A\ngrace penalty of 10% per 24-hour window is assessed for late homework up to a maximum cutoff of 72 hours (3 days).\nAssignments submitted beyond 72 hours receive a grade of 0. Each student is granted two (2) free 24-hour late passes for\nthe entire semester, usable without penalty.",
+    "metadata": {
+      "source": "cs601_advanced_algorithms_syllabus.pdf",
+      "page": 4,
+      "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_015"
+    }
+  },
+  {
+    "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_016",
+    "source": "cs601_advanced_algorithms_syllabus.pdf",
+    "page": 4,
+    "text": "the entire semester, usable without penalty.\n7. Office Hours & Student Accommodations\nInstructor Office Hours: Tuesdays and Thursdays from 2:00 PM to 4:00 PM in Hall 4B (Room 412).\nTA Problem-Solving Clinics: Wednesdays and Fridays 4:00 PM to 6:00 PM in Computer Lab 2.\nDisability Services: Students with verified accommodations through the University Center for Student Disabilities must\nnotify the instructor during the first two weeks of class to ensure testing accommodations (1.5x/2.0x time in quiet rooms) are\ncoordinated.",
+    "metadata": {
+      "source": "cs601_advanced_algorithms_syllabus.pdf",
+      "page": 4,
+      "chunk_id": "cs601_advanced_algorithms_syllabus_chunk_016"
+    }
+  },
+  {
+    "chunk_id": "distributed_systems_consensus_paper_chunk_001",
+    "source": "distributed_systems_consensus_paper.pdf",
+    "page": 1,
+    "text": "Consensus, Fault Tolerance, and Invariants in\nDistributed Systems\nSystems Research Monograph | Distributed Computing Laboratory\n1. Fundamental Limits: The FLP Impossibility Result\nIn distributed systems, achieving consensus among independent computing nodes is essential for transaction processing,\nstate machine replication, and distributed locks. However, Fischer, Lynch, and Paterson (FLP, 1985) proved the\nfoundational FLP Impossibility Theorem: In an asynchronous network model, no deterministic consensus protocol can\nguarantee both safety (nothing bad happens) and liveness (eventually something good happens) in the presence of even a\nsingle unannounced crash failure. Practical protocols (Paxos, Raft) bypass FLP by adopting partial synchrony models with\nrandomized election timeouts.",
+    "metadata": {
+      "source": "distributed_systems_consensus_paper.pdf",
+      "page": 1,
+      "chunk_id": "distributed_systems_consensus_paper_chunk_001"
+    }
+  },
+  {
+    "chunk_id": "distributed_systems_consensus_paper_chunk_002",
+    "source": "distributed_systems_consensus_paper.pdf",
+    "page": 1,
+    "text": "randomized election timeouts.\n2. The CAP Theorem & PACELC Classification\nEric Brewer formulated the CAP Theorem, formally proved by Seth Gilbert and Nancy Lynch (2002). A distributed data\nstore can simultaneously provide at most two out of three guarantees: Consistency (every read receives the most recent\nwrite or an error), Availability (every non-failing node returns a non-error response), and Partition Tolerance (the system\ncontinues to operate despite network partitions dropping arbitrary messages). Because network partitions are physical\nrealities of networked hardware, distributed systems must trade off Consistency (CP systems, e.g., Spanner, HBase) vs\nAvailability (AP systems, e.g., Cassandra, Dynamo) when a partition occurs.",
+    "metadata": {
+      "source": "distributed_systems_consensus_paper.pdf",
+      "page": 1,
+      "chunk_id": "distributed_systems_consensus_paper_chunk_002"
+    }
+  },
+  {
+    "chunk_id": "distributed_systems_consensus_paper_chunk_003",
+    "source": "distributed_systems_consensus_paper.pdf",
+    "page": 1,
+    "text": "Availability (AP systems, e.g., Cassandra, Dynamo) when a partition occurs.\nDaniel Abadi extended CAP via the PACELC Theorem: If there is a Partition (P), trade off Availability (A) and Consistency\n(C); Else (E), trade off Latency (L) and Consistency (C).",
+    "metadata": {
+      "source": "distributed_systems_consensus_paper.pdf",
+      "page": 1,
+      "chunk_id": "distributed_systems_consensus_paper_chunk_003"
+    }
+  },
+  {
+    "chunk_id": "distributed_systems_consensus_paper_chunk_004",
+    "source": "distributed_systems_consensus_paper.pdf",
+    "page": 2,
+    "text": "Distributed Systems (Page 2) - Consensus Protocols: Paxos vs. Raft\n3. Paxos Consensus Protocol\nDesigned by Leslie Lamport, Paxos reaches consensus on a single value through two phases: Phase 1 (Prepare / Promise)\nand Phase 2 (Accept / Accepted). A proposer broadcasts a Prepare request with proposal number n. Acceptors promise not\nto accept proposals with numbers less than n and return the highest-numbered proposal they have already accepted. If a\nmajority of acceptors promise, the proposer sends an Accept request with proposal number n and value v. While\nmathematically elegant, Multi-Paxos is notoriously difficult to understand and implement correctly in production.\n4. The Raft Consensus Protocol: Understandability by Design",
+    "metadata": {
+      "source": "distributed_systems_consensus_paper.pdf",
+      "page": 2,
+      "chunk_id": "distributed_systems_consensus_paper_chunk_004"
+    }
+  },
+  {
+    "chunk_id": "distributed_systems_consensus_paper_chunk_005",
+    "source": "distributed_systems_consensus_paper.pdf",
+    "page": 2,
+    "text": "4. The Raft Consensus Protocol: Understandability by Design\nOngaro and Ousterhout designed Raft to be understandable and equivalent in fault tolerance to Paxos. Raft decomposes\nconsensus into three independent subproblems: Leader Election, Log Replication, and Safety. Raft operates in discrete\nterms. In Leader Election, nodes use randomized election timeouts (typically 150ms to 300ms) to prevent split-vote\ndeadlocks. A candidate becomes leader upon receiving votes from a majority (quorum ‡ N/2 + 1) of nodes. The leader\naccepts log commands from clients, appends them to its log, and issues AppendEntries RPCs. Once an entry is committed\nby a majority, the leader applies it to its local state machine.",
+    "metadata": {
+      "source": "distributed_systems_consensus_paper.pdf",
+      "page": 2,
+      "chunk_id": "distributed_systems_consensus_paper_chunk_005"
+    }
+  },
+  {
+    "chunk_id": "distributed_systems_consensus_paper_chunk_006",
+    "source": "distributed_systems_consensus_paper.pdf",
+    "page": 3,
+    "text": "Distributed Systems (Page 3) - Concurrency Control & Deadlocks\n5. Coffman Conditions for Deadlock\nEdward G. Coffman Jr. identified four necessary and sufficient conditions that must hold simultaneously for a system\ndeadlock to occur in resource allocation:\n(cid:127) 1. Mutual Exclusion: At least one resource must be held in a non-shareable mode; only one process can use the\nresource at any given moment.\n(cid:127) 2. Hold and Wait: A process must currently hold at least one resource while requesting additional resources held by other\nprocesses.\n(cid:127) 3. No Preemption: Resources cannot be forcibly seized; a resource can only be released voluntarily by the holding\nprocess after completing its task.",
+    "metadata": {
+      "source": "distributed_systems_consensus_paper.pdf",
+      "page": 3,
+      "chunk_id": "distributed_systems_consensus_paper_chunk_006"
+    }
+  },
+  {
+    "chunk_id": "distributed_systems_consensus_paper_chunk_007",
+    "source": "distributed_systems_consensus_paper.pdf",
+    "page": 3,
+    "text": "process after completing its task.\n(cid:127) 4. Circular Wait: A closed chain of processes {P_0, P_1, ..., P_n} exists such that P_0 waits for a resource held by P_1,\nP_1 waits for P_2, and P_n waits for P_0.\nDeadlock Prevention Strategy: If any single Coffman condition is eliminated (e.g., imposing a strict global ordering on\nresource acquisition to eliminate circular wait), deadlocks are mathematically impossible.",
+    "metadata": {
+      "source": "distributed_systems_consensus_paper.pdf",
+      "page": 3,
+      "chunk_id": "distributed_systems_consensus_paper_chunk_007"
+    }
+  },
+  {
+    "chunk_id": "distributed_systems_consensus_paper_chunk_008",
+    "source": "distributed_systems_consensus_paper.pdf",
+    "page": 4,
+    "text": "Distributed Systems (Page 4) - Distributed Transactions\n6. Atomic Distributed Commit: Two-Phase Commit (2PC)\nTwo-Phase Commit coordinates atomic transactions across multiple participating database shards. A designated\nCoordinator orchestrates two phases:\n(cid:127) Phase 1 (Prepare): Coordinator sends PREPARE message to all cohorts. Cohorts execute the transaction locally, write\nundo/redo logs to non-volatile disk, and reply VOTE_COMMIT or VOTE_ABORT.\n(cid:127) Phase 2 (Commit): If all cohorts vote VOTE_COMMIT, Coordinator writes GLOBAL_COMMIT to its log and sends\nCOMMIT to cohorts. If any cohort votes VOTE_ABORT or times out, Coordinator writes GLOBAL_ABORT and instructs all\ncohorts to rollback.",
+    "metadata": {
+      "source": "distributed_systems_consensus_paper.pdf",
+      "page": 4,
+      "chunk_id": "distributed_systems_consensus_paper_chunk_008"
+    }
+  },
+  {
+    "chunk_id": "distributed_systems_consensus_paper_chunk_009",
+    "source": "distributed_systems_consensus_paper.pdf",
+    "page": 4,
+    "text": "COMMIT to cohorts. If any cohort votes VOTE_ABORT or times out, Coordinator writes GLOBAL_ABORT and instructs all\ncohorts to rollback.\nThe Blocking Limitation of 2PC: 2PC is a blocking protocol. If the coordinator crashes after cohorts enter the PREPARED\nstate, cohorts are blocked indefinitely holding database locks until the coordinator recovers.",
+    "metadata": {
+      "source": "distributed_systems_consensus_paper.pdf",
+      "page": 4,
+      "chunk_id": "distributed_systems_consensus_paper_chunk_009"
+    }
+  },
+  {
+    "chunk_id": "lecture_slides_vector_search_rag_chunk_001",
+    "source": "lecture_slides_vector_search_rag.pdf",
+    "page": 1,
+    "text": "Lecture 08: High-Dimensional Vector Search & Hybrid RAG\nArchitectures\nCS680: Modern Information Retrieval and Language Systems | Stanford / MIT Guest Series\nLecturer: Dr. Alexander Vance, Principal AI Systems Architect\nDate: Autumn Semester 2026\nCore Agenda for Today:\n(cid:127) 1. Semantic Search Dilemma: Lexical (BM25) vs. Dense Vector Representations\n(cid:127) 2. Approximate Nearest Neighbor (ANN) Indexing: HNSW Graph vs. IVF-Flat\n(cid:127) 3. Multi-Stage Retrieval & Reciprocal Rank Fusion (RRF) Algorithms\n(cid:127) 4. Cross-Encoder Re-Ranking Pipeline & Noise Elimination\n(cid:127) 5. The RAG Triad Evaluation: Groundedness, Relevance, and Citation Accuracy\nSlide 1 of 6 (cid:127) CS680 Lecture Series",
+    "metadata": {
+      "source": "lecture_slides_vector_search_rag.pdf",
+      "page": 1,
+      "chunk_id": "lecture_slides_vector_search_rag_chunk_001"
+    }
+  },
+  {
+    "chunk_id": "lecture_slides_vector_search_rag_chunk_002",
+    "source": "lecture_slides_vector_search_rag.pdf",
+    "page": 2,
+    "text": "Slide 2: Lexical Search vs. Dense Semantic Search\nUnderstanding the fundamental architectural trade-offs in candidate retrieval:\nLexical Retrieval (BM25 / Inverted Index):\n(cid:127) Strength: Exact keyword precision; perfect for rare part numbers, error codes, and technical identifiers.\n(cid:127) Weakness: Suffers from the vocabulary mismatch problem; fails on synonyms (e.g., 'acute myocardial infarction' vs 'heart\nattack').\nDense Semantic Vector Retrieval (Bi-Encoders):\n(cid:127) Strength: Projects text into 384 or 768-dimensional dense vector space; captures abstract semantic concepts and\nparaphrases.\n(cid:127) Weakness: Loses token-level precision; can retrieve superficially similar but factually irrelevant text chunks.",
+    "metadata": {
+      "source": "lecture_slides_vector_search_rag.pdf",
+      "page": 2,
+      "chunk_id": "lecture_slides_vector_search_rag_chunk_002"
+    }
+  },
+  {
+    "chunk_id": "lecture_slides_vector_search_rag_chunk_003",
+    "source": "lecture_slides_vector_search_rag.pdf",
+    "page": 2,
+    "text": "paraphrases.\n(cid:127) Weakness: Loses token-level precision; can retrieve superficially similar but factually irrelevant text chunks.\nKey Engineering Principle: Robust academic RAG systems must utilize Hybrid Search combining both dense vectors and\nsparse BM25 indices.\nSlide 2 of 6 (cid:127) CS680 Lecture Series",
+    "metadata": {
+      "source": "lecture_slides_vector_search_rag.pdf",
+      "page": 2,
+      "chunk_id": "lecture_slides_vector_search_rag_chunk_003"
+    }
+  },
+  {
+    "chunk_id": "lecture_slides_vector_search_rag_chunk_004",
+    "source": "lecture_slides_vector_search_rag.pdf",
+    "page": 3,
+    "text": "Slide 3: Vector Indexing: HNSW vs. IVF-Flat\nScalability considerations for Approximate Nearest Neighbor (ANN) search:\nHierarchical Navigable Small World (HNSW):\n(cid:127) Multi-layer geometric graph structure; upper layers have sparse, long-range skip connections for rapid navigation.\n(cid:127) Bottom layer contains dense, localized nearest neighbor connections.\n(cid:127) Search Complexity: O(log N) average query time with near 99% recall.\n(cid:127) Trade-off: Substantial RAM footprint (must store bidirectional graph edge lists in memory).\nInverted File Index (IVF-Flat):\n(cid:127) Partitions vector space into K Voronoi cells via K-Means clustering.\n(cid:127) Queries only search vectors inside the nearest n_probe Voronoi centroids.",
+    "metadata": {
+      "source": "lecture_slides_vector_search_rag.pdf",
+      "page": 3,
+      "chunk_id": "lecture_slides_vector_search_rag_chunk_004"
+    }
+  },
+  {
+    "chunk_id": "lecture_slides_vector_search_rag_chunk_005",
+    "source": "lecture_slides_vector_search_rag.pdf",
+    "page": 3,
+    "text": "(cid:127) Queries only search vectors inside the nearest n_probe Voronoi centroids.\n(cid:127) Trade-off: Lower memory and fast build time, but lower recall if n_probe is configured too small.\nSlide 3 of 6 (cid:127) CS680 Lecture Series",
+    "metadata": {
+      "source": "lecture_slides_vector_search_rag.pdf",
+      "page": 3,
+      "chunk_id": "lecture_slides_vector_search_rag_chunk_005"
+    }
+  },
+  {
+    "chunk_id": "lecture_slides_vector_search_rag_chunk_006",
+    "source": "lecture_slides_vector_search_rag.pdf",
+    "page": 4,
+    "text": "Slide 4: Multi-Stage Retrieval & Reciprocal Rank Fusion (RRF)\nHow to combine disparate score distributions without manual weighting:\nIn hybrid retrieval, BM25 returns unbounded BM25 scores (e.g. [0, 45]), whereas vector databases return Cosine Similarity in [0,\n1]. Directly summing these raw scores produces disastrous calibration bias.\nReciprocal Rank Fusion (RRF) Formula:\nRRF_Score(d ˛ D) = (cid:229)_{m ˛ M} ( 1 / (k + rank_m(d)) )\nWhy is the smoothing constant k set to 60?\nEmpirical studies by Cormack et al. proved that k = 60 prevents top-ranked items from one retriever from completely dominating\nthe ranking if they are absent or low-ranked in another retriever. It stabilizes ranking variance across noisy academic queries.\nSlide 4 of 6 (cid:127) CS680 Lecture Series",
+    "metadata": {
+      "source": "lecture_slides_vector_search_rag.pdf",
+      "page": 4,
+      "chunk_id": "lecture_slides_vector_search_rag_chunk_006"
+    }
+  },
+  {
+    "chunk_id": "lecture_slides_vector_search_rag_chunk_007",
+    "source": "lecture_slides_vector_search_rag.pdf",
+    "page": 5,
+    "text": "Slide 5: Neural Cross-Encoder Re-Ranking Pipeline\nThe secret to eliminating 25-35% false-positive noise in the top-K context:\nBi-Encoder (First Stage Retrieval):\n(cid:127) Query and documents are embedded into vector space completely separately: E(q) and E(d).\n(cid:127) Cosine similarity measures angle between independent vectors. Fast (<5ms) but cannot capture token-level interaction.\nCross-Encoder (Second Stage Re-ranking):\n(cid:127) Concatenates query and candidate chunk into a single sequence: [CLS] query [SEP] chunk [SEP].\n(cid:127) Full all-to-all cross-attention: every token in the query attends to every token in the candidate text.\n(cid:127) Outcome: Significantly higher Mean Reciprocal Rank (MRR) and Context Precision.\nSlide 5 of 6 (cid:127) CS680 Lecture Series",
+    "metadata": {
+      "source": "lecture_slides_vector_search_rag.pdf",
+      "page": 5,
+      "chunk_id": "lecture_slides_vector_search_rag_chunk_007"
+    }
+  },
+  {
+    "chunk_id": "lecture_slides_vector_search_rag_chunk_008",
+    "source": "lecture_slides_vector_search_rag.pdf",
+    "page": 6,
+    "text": "Slide 6: Quantitative Evaluation: The RAG Triad\nHow to defend your system during viva voce and project defense:\nExaminers test whether your RAG pipeline produces trustworthy, verifiable answers:\n(cid:127) 1. Context Precision / Relevance: Does the top-K retrieved chunk context contain only pertinent information without\nirrelevant distractor chunks?\n(cid:127) 2. Faithfulness (Anti-Hallucination): Can every single factual statement in the generated answer be directly inferred from\nthe retrieved chunks? Penalizes external LLM parametric memory hallucination.\n(cid:127) 3. Answer Relevance: Does the answer directly address the user's inquiry without wandering or evasiveness?",
+    "metadata": {
+      "source": "lecture_slides_vector_search_rag.pdf",
+      "page": 6,
+      "chunk_id": "lecture_slides_vector_search_rag_chunk_008"
+    }
+  },
+  {
+    "chunk_id": "lecture_slides_vector_search_rag_chunk_009",
+    "source": "lecture_slides_vector_search_rag.pdf",
+    "page": 6,
+    "text": "(cid:127) 3. Answer Relevance: Does the answer directly address the user's inquiry without wandering or evasiveness?\n(cid:127) 4. Citation Provenance Accuracy: Do the generated citation tags (e.g. '[Lecture 08, Slide 4]') point to the exact slide/page\nthat verified the claim?\nSlide 6 of 6 (cid:127) CS680 Lecture Series",
+    "metadata": {
+      "source": "lecture_slides_vector_search_rag.pdf",
+      "page": 6,
+      "chunk_id": "lecture_slides_vector_search_rag_chunk_009"
+    }
+  },
+  {
+    "chunk_id": "multimodal_deep_learning_theory_chunk_001",
+    "source": "multimodal_deep_learning_theory.pdf",
+    "page": 1,
+    "text": "Mathematical Foundations of Attention and\nTransformer Architectures\nScholarly Monograph | AI Research Series | Department of Computer Science\n1. Scaled Dot-Product Attention Formulation\nThe transformer model replaces recurrence and convolution entirely with the self-attention mechanism. The core\ncomputational building block is the Scaled Dot-Product Attention function. Let Query matrix Q ˛ R^{n × d_k}, Key matrix K\n˛ R^{m × d_k}, and Value matrix V ˛ R^{m × d_v}, where n represents sequence length of queries, m represents sequence\nlength of keys/values, and d_k is the key dimensionality.\nAttention(Q, K, V) = softmax( (Q * K^T) / sqrt(d_k) ) * V\nThe Role of the Scaling Factor sqrt(d_k): The scaling factor 1 / sqrt(d_k) is mathematically essential. Assume the",
+    "metadata": {
+      "source": "multimodal_deep_learning_theory.pdf",
+      "page": 1,
+      "chunk_id": "multimodal_deep_learning_theory_chunk_001"
+    }
+  },
+  {
+    "chunk_id": "multimodal_deep_learning_theory_chunk_002",
+    "source": "multimodal_deep_learning_theory.pdf",
+    "page": 1,
+    "text": "The Role of the Scaling Factor sqrt(d_k): The scaling factor 1 / sqrt(d_k) is mathematically essential. Assume the\ncomponents of q and k are independent random variables with zero mean and unit variance s^2 = 1. Their dot product q · k\n= (cid:229)_{i=1}^{d_k} q_i k_i has mean 0 and variance d_k. For large projection dimensions (e.g., d_k = 64 or 128), the magnitude\nof the dot products becomes extremely large. When fed into the softmax function, large inputs cause the softmax distribution\nto become extremely peaked (one-hot), driving softmax gradients to near zero (gradient saturation). Dividing by sqrt(d_k)\nrescales the variance back to 1.0, preserving healthy gradient flow during backpropagation.\n2. Multi-Head Attention Mechanism",
+    "metadata": {
+      "source": "multimodal_deep_learning_theory.pdf",
+      "page": 1,
+      "chunk_id": "multimodal_deep_learning_theory_chunk_002"
+    }
+  },
+  {
+    "chunk_id": "multimodal_deep_learning_theory_chunk_003",
+    "source": "multimodal_deep_learning_theory.pdf",
+    "page": 1,
+    "text": "rescales the variance back to 1.0, preserving healthy gradient flow during backpropagation.\n2. Multi-Head Attention Mechanism\nRather than computing a single attention function with d_model dimensional queries, keys, and values, Multi-Head Attention\nprojects the queries, keys, and values h times with distinct learned linear projections to dimensions d_k, d_k, and d_v\nrespectively:\nMultiHead(Q, K, V) = Concat(head_1, head_2, ..., head_h) * W^O\nwhere head_i = Attention(Q * W_i^Q, K * W_i^K, V * W_i^V)\nHere parameter matrices W_i^Q ˛ R^{d_model × d_k}, W_i^K ˛ R^{d_model × d_k}, W_i^V ˛ R^{d_model × d_v}, and W^O\n˛ R^{h*d_v × d_model}. Multi-head attention allows the model to attend simultaneously to information from different",
+    "metadata": {
+      "source": "multimodal_deep_learning_theory.pdf",
+      "page": 1,
+      "chunk_id": "multimodal_deep_learning_theory_chunk_003"
+    }
+  },
+  {
+    "chunk_id": "multimodal_deep_learning_theory_chunk_004",
+    "source": "multimodal_deep_learning_theory.pdf",
+    "page": 1,
+    "text": "˛ R^{h*d_v × d_model}. Multi-head attention allows the model to attend simultaneously to information from different\nrepresentation subspaces at different positions. Typically, h=8 or 16 and d_k = d_v = d_model / h.",
+    "metadata": {
+      "source": "multimodal_deep_learning_theory.pdf",
+      "page": 1,
+      "chunk_id": "multimodal_deep_learning_theory_chunk_004"
+    }
+  },
+  {
+    "chunk_id": "multimodal_deep_learning_theory_chunk_005",
+    "source": "multimodal_deep_learning_theory.pdf",
+    "page": 2,
+    "text": "Mathematical Foundations (Page 2) - Loss Functions & AdamW Optimization\n3. Optimization Objectives & Label Smoothing Regularization\nFor sequence generation and token classification with vocabulary size V, models minimize the Categorical Cross-Entropy\nloss. To prevent overconfidence and calibrate predictive probabilities, we apply Label Smoothing Regularization with\nhyperparameter e ˛ (0, 1). The target distribution y_k is smoothed across uniform distribution U(1/V):\ny'_k = (1 - e) * y_k + (e / V)\nLoss_{LS}(y, y_hat) = - (cid:229)_{k=1}^V y'_k * log(y_hat_k) = (1 - e) * Loss_{CE} + e * D_{KL}(U\n|| y_hat)\n4. The AdamW Optimization Algorithm (Decoupled Weight Decay)\nStandard Adam with L2 weight decay regularizes weights by adding l q directly to the gradient vector g_t before computing",
+    "metadata": {
+      "source": "multimodal_deep_learning_theory.pdf",
+      "page": 2,
+      "chunk_id": "multimodal_deep_learning_theory_chunk_005"
+    }
+  },
+  {
+    "chunk_id": "multimodal_deep_learning_theory_chunk_006",
+    "source": "multimodal_deep_learning_theory.pdf",
+    "page": 2,
+    "text": "Standard Adam with L2 weight decay regularizes weights by adding l q directly to the gradient vector g_t before computing\nmoment estimates. However, Loshchilov and Hutter (2019) demonstrated that in adaptive gradient algorithms, this couples\nweight decay to the second moment preconditioner v_t, leading to suboptimal regularization for parameters with large\ngradient history. AdamW decouples weight decay by subtracting l h q_{t-1} directly during parameter update:\nm_t = b_1 * m_{t-1} + (1 - b_1) * g_t\nv_t = b_2 * v_{t-1} + (1 - b_2) * g_t^2\nm_hat_t = m_t / (1 - b_1^t), v_hat_t = v_t / (1 - b_2^t)\nq_t = q_{t-1} - h_t * ( m_hat_t / (sqrt(v_hat_t) + e) ) - h_t * l * q_{t-1}",
+    "metadata": {
+      "source": "multimodal_deep_learning_theory.pdf",
+      "page": 2,
+      "chunk_id": "multimodal_deep_learning_theory_chunk_006"
+    }
+  },
+  {
+    "chunk_id": "multimodal_deep_learning_theory_chunk_007",
+    "source": "multimodal_deep_learning_theory.pdf",
+    "page": 2,
+    "text": "m_hat_t = m_t / (1 - b_1^t), v_hat_t = v_t / (1 - b_2^t)\nq_t = q_{t-1} - h_t * ( m_hat_t / (sqrt(v_hat_t) + e) ) - h_t * l * q_{t-1}\nStandard hyperparameters for stable LLM pretraining are: learning rate h = 1e-4, first moment exponential decay b_1 = 0.9,\nsecond moment exponential decay b_2 = 0.999 or 0.95, epsilon e = 1e-8, and decoupled weight decay factor l = 0.01.",
+    "metadata": {
+      "source": "multimodal_deep_learning_theory.pdf",
+      "page": 2,
+      "chunk_id": "multimodal_deep_learning_theory_chunk_007"
+    }
+  },
+  {
+    "chunk_id": "multimodal_deep_learning_theory_chunk_008",
+    "source": "multimodal_deep_learning_theory.pdf",
+    "page": 3,
+    "text": "Mathematical Foundations (Page 3) - Architectural Benchmarking\n5. Structural Comparison of Foundational Transformer Architectures\nModern language and multimodal retrieval architectures exhibit distinct trade-offs in parameter scaling, context capacity,\npositional encoding schemes, and computational complexity of attention. Table 1 summarizes the architectural\nconfigurations of key foundational models:\nActivation\nModel Architecture Parameters Context Window Attention Type Positional Encoding\nFunction\nBERT-Large 340M 512 tokens Bidirectional Full Learned Absolute GELU\nRoBERTa-Large 355M 512 tokens Bidirectional Full Learned Absolute GELU\nGPT-3 (Davinci) 175B 2048 tokens Causal Masked Learned Absolute GELU\nLLaMA-2-7B 6.7B 4096 tokens Causal Masked (GQA) RoPE (Rotary) SwiGLU",
+    "metadata": {
+      "source": "multimodal_deep_learning_theory.pdf",
+      "page": 3,
+      "chunk_id": "multimodal_deep_learning_theory_chunk_008"
+    }
+  },
+  {
+    "chunk_id": "multimodal_deep_learning_theory_chunk_009",
+    "source": "multimodal_deep_learning_theory.pdf",
+    "page": 3,
+    "text": "GPT-3 (Davinci) 175B 2048 tokens Causal Masked Learned Absolute GELU\nLLaMA-2-7B 6.7B 4096 tokens Causal Masked (GQA) RoPE (Rotary) SwiGLU\nMistral-7B 7.3B 8192 tokens Sliding Window (SWA) RoPE (Rotary) SwiGLU\nFlashAttention-2 N/A (Kernel) 32K - 64K IO-Aware Tiling Rotary / ALiBi Hardware Tiled\nKey Architectural Observations:\n(cid:127) SwiGLU Activation: LLaMA-2 replaces standard GELU with SwiGLU: SwiGLU(x) = Swish_{b}(x W) ˜ (x V), requiring 3\nmatrix multiplies per feedforward layer but offering superior gradient propagation.\n(cid:127) Rotary Position Embeddings (RoPE): Unlike absolute position embeddings which fail when evaluated on sequences\nlonger than pretraining, RoPE incorporates relative position by rotating query and key vectors in complex 2D subspaces with",
+    "metadata": {
+      "source": "multimodal_deep_learning_theory.pdf",
+      "page": 3,
+      "chunk_id": "multimodal_deep_learning_theory_chunk_009"
+    }
+  },
+  {
+    "chunk_id": "multimodal_deep_learning_theory_chunk_010",
+    "source": "multimodal_deep_learning_theory.pdf",
+    "page": 3,
+    "text": "longer than pretraining, RoPE incorporates relative position by rotating query and key vectors in complex 2D subspaces with\nrotation matrix R_{Q,m}^d.",
+    "metadata": {
+      "source": "multimodal_deep_learning_theory.pdf",
+      "page": 3,
+      "chunk_id": "multimodal_deep_learning_theory_chunk_010"
+    }
+  },
+  {
+    "chunk_id": "multimodal_deep_learning_theory_chunk_011",
+    "source": "multimodal_deep_learning_theory.pdf",
+    "page": 4,
+    "text": "Mathematical Foundations (Page 4) - Empirical Benchmark Results\n6. Downstream NLP & Reading Comprehension Benchmarks\nWe evaluated models across foundational language understanding benchmarks: Multi-Genre Natural Language Inference\n(MNLI), Question Natural Language Inference (QNLI), Stanford Sentiment Treebank (SST-2), and Stanford Question\nAnswering Dataset (SQuAD v2.0). Table 2 presents fine-tuned evaluation accuracy and exact match scores:\nEvaluation Task Metric BERT-Base RoBERTa-Base DeBERTa-v3 Proposed RAG+CE\nMNLI (Matched) Accuracy (%) 84.6% 87.6% 90.2% 91.8%\nQNLI (v2) Accuracy (%) 90.5% 92.8% 94.1% 95.4%\nSST-2 (Sentiment) Accuracy (%) 93.5% 94.8% 95.6% 96.2%\nSQuAD v2.0 Exact Match (EM) 74.2% 80.5% 85.1% 88.7%\nSQuAD v2.0 F1 Score (%) 81.8% 86.5% 90.4% 93.1%\nAnalysis and Findings:",
+    "metadata": {
+      "source": "multimodal_deep_learning_theory.pdf",
+      "page": 4,
+      "chunk_id": "multimodal_deep_learning_theory_chunk_011"
+    }
+  },
+  {
+    "chunk_id": "multimodal_deep_learning_theory_chunk_012",
+    "source": "multimodal_deep_learning_theory.pdf",
+    "page": 4,
+    "text": "SQuAD v2.0 Exact Match (EM) 74.2% 80.5% 85.1% 88.7%\nSQuAD v2.0 F1 Score (%) 81.8% 86.5% 90.4% 93.1%\nAnalysis and Findings:\n1. Disentangled Attention in DeBERTa-v3: DeBERTa-v3 represents each word using two separate vectors (content and\nposition) and computes cross-attention using disentangled matrices. This delivers a substantial 4.6% boost in SQuAD v2.0\nExact Match over RoBERTa-Base.\n2. Proposed Hybrid RAG with Cross-Encoder (CE): Coupling dense retrieval with a cross-encoder re-ranking stage\nestablishes state-of-the-art reading comprehension fidelity, attaining 88.7% Exact Match and 93.1% F1 on SQuAD v2.0 by\neliminating false-positive distractor paragraphs from the prompt context.",
+    "metadata": {
+      "source": "multimodal_deep_learning_theory.pdf",
+      "page": 4,
+      "chunk_id": "multimodal_deep_learning_theory_chunk_012"
+    }
+  }
+]

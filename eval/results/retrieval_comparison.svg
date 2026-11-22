@@ -1,0 +1,40 @@
+<svg width="780" height="480" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, -apple-system, sans-serif">
+<rect width="780" height="480" fill="#0f172a" rx="8"/>
+<text x="390.0" y="34" fill="#f8fafc" font-size="17" font-weight="bold" text-anchor="middle">Ablation Study: Baseline (Vanilla Vector) vs. Proposed (Neural Cross-Encoder)</text>
+<rect x="450" y="20" width="14" height="14" fill="#64748b" rx="3"/>
+<text x="470" y="32" fill="#94a3b8" font-size="12">Config B (Vanilla Vector)</text>
+<rect x="630" y="20" width="14" height="14" fill="#38bdf8" rx="3"/>
+<text x="650" y="32" fill="#e2e8f0" font-size="12" font-weight="600">Config C (Proposed RAG)</text>
+<line x1="190.0" y1="60" x2="190.0" y2="420" stroke="#334155" stroke-dasharray="4"/>
+<text x="190.0" y="440" fill="#94a3b8" font-size="12" text-anchor="middle">0.0</text>
+<line x1="300.0" y1="60" x2="300.0" y2="420" stroke="#334155" stroke-dasharray="4"/>
+<text x="300.0" y="440" fill="#94a3b8" font-size="12" text-anchor="middle">0.2</text>
+<line x1="410.0" y1="60" x2="410.0" y2="420" stroke="#334155" stroke-dasharray="4"/>
+<text x="410.0" y="440" fill="#94a3b8" font-size="12" text-anchor="middle">0.4</text>
+<line x1="520.0" y1="60" x2="520.0" y2="420" stroke="#334155" stroke-dasharray="4"/>
+<text x="520.0" y="440" fill="#94a3b8" font-size="12" text-anchor="middle">0.6</text>
+<line x1="630.0" y1="60" x2="630.0" y2="420" stroke="#334155" stroke-dasharray="4"/>
+<text x="630.0" y="440" fill="#94a3b8" font-size="12" text-anchor="middle">0.8</text>
+<line x1="740.0" y1="60" x2="740.0" y2="420" stroke="#334155" stroke-dasharray="4"/>
+<text x="740.0" y="440" fill="#94a3b8" font-size="12" text-anchor="middle">1.0</text>
+<text x="175" y="109.0" fill="#f1f5f9" font-size="13" font-weight="600" text-anchor="end">Hit@5 (Context Recall)</text>
+<rect x="190" y="79.0" width="550.0" height="24" fill="#64748b" rx="4"/>
+<text x="748.0" y="95.0" fill="#cbd5e1" font-size="11">1.000</text>
+<rect x="190" y="109.0" width="550.0" height="24" fill="#38bdf8" rx="4"/>
+<text x="748.0" y="125.0" fill="#38bdf8" font-size="11" font-weight="bold">1.000</text>
+<text x="175" y="199.0" fill="#f1f5f9" font-size="13" font-weight="600" text-anchor="end">MRR (Mean Reciprocal)</text>
+<rect x="190" y="169.0" width="487.6157407407407" height="24" fill="#64748b" rx="4"/>
+<text x="685.6157407407406" y="185.0" fill="#cbd5e1" font-size="11">0.887</text>
+<rect x="190" y="199.0" width="516.898148148148" height="24" fill="#38bdf8" rx="4"/>
+<text x="714.898148148148" y="215.0" fill="#38bdf8" font-size="11" font-weight="bold">0.940</text>
+<text x="175" y="289.0" fill="#f1f5f9" font-size="13" font-weight="600" text-anchor="end">Context Precision@5</text>
+<rect x="190" y="259.0" width="466.26929012345676" height="24" fill="#64748b" rx="4"/>
+<text x="664.2692901234568" y="275.0" fill="#cbd5e1" font-size="11">0.848</text>
+<rect x="190" y="289.0" width="500.8140432098765" height="24" fill="#38bdf8" rx="4"/>
+<text x="698.8140432098764" y="305.0" fill="#38bdf8" font-size="11" font-weight="bold">0.911</text>
+<text x="175" y="379.0" fill="#f1f5f9" font-size="13" font-weight="600" text-anchor="end">Noise Filtration (1 - FP)</text>
+<rect x="190" y="349.0" width="391.11111111111114" height="24" fill="#64748b" rx="4"/>
+<text x="589.1111111111111" y="365.0" fill="#cbd5e1" font-size="11">0.711</text>
+<rect x="190" y="379.0" width="415.55555555555554" height="24" fill="#38bdf8" rx="4"/>
+<text x="613.5555555555555" y="395.0" fill="#38bdf8" font-size="11" font-weight="bold">0.756</text>
+</svg>

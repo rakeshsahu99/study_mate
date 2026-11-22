@@ -1,0 +1,41 @@
+<svg width="820" height="490" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, -apple-system, sans-serif">
+<rect width="820" height="490" fill="#0b0f19" rx="12"/>
+<rect x="2" y="2" width="816" height="486" fill="none" stroke="#1e293b" stroke-width="2" rx="10"/>
+<text x="410.0" y="38" fill="#f8fafc" font-size="19" font-weight="700" text-anchor="middle">Document Parser Ingestion Throughput Comparison</text>
+<text x="410.0" y="62" fill="#94a3b8" font-size="13" text-anchor="middle">Local PyMuPDF (fitz C-Engine) vs. Gemini 2.5 Flash Multimodal Vision API</text>
+<g transform="translate(45, 90)">
+  <rect width="345" height="260" fill="#111827" stroke="#1f2937" rx="8"/>
+  <text x="172" y="30" fill="#f1f5f9" font-size="15" font-weight="600" text-anchor="middle">Parsing Latency per Page (Lower is Better)</text>
+  <text x="25" y="80" fill="#38bdf8" font-size="13" font-weight="600">Local PyMuPDF</text>
+  <text x="25" y="98" fill="#94a3b8" font-size="11">C-Engine Native Ingestion</text>
+  <rect x="25" y="108" width="6" height="26" fill="#38bdf8" rx="3"/>
+  <text x="42" y="126" fill="#38bdf8" font-size="14" font-weight="bold">7.0 ms/page</text>
+  <text x="25" y="170" fill="#a855f7" font-size="13" font-weight="600">Gemini 2.5 Flash Multimodal</text>
+  <text x="25" y="188" fill="#94a3b8" font-size="11">Cloud Vision + Layout OCR API</text>
+  <rect x="25" y="198" width="220" height="26" fill="#a855f7" rx="3"/>
+  <text x="255" y="216" fill="#c084fc" font-size="14" font-weight="bold">1120 ms/page</text>
+  <text x="172" y="248" fill="#f59e0b" font-size="12" font-weight="600" text-anchor="middle">&#9889; PyMuPDF is 160x faster for text extraction</text>
+</g>
+<g transform="translate(430, 90)">
+  <rect width="345" height="260" fill="#111827" stroke="#1f2937" rx="8"/>
+  <text x="172" y="30" fill="#f1f5f9" font-size="15" font-weight="600" text-anchor="middle">Throughput (Pages / Sec - Higher is Better)</text>
+  <text x="25" y="80" fill="#38bdf8" font-size="13" font-weight="600">Local PyMuPDF</text>
+  <text x="25" y="98" fill="#94a3b8" font-size="11">Batch Ingestion Capacity</text>
+  <rect x="25" y="108" width="230" height="26" fill="#38bdf8" rx="3"/>
+  <text x="265" y="126" fill="#38bdf8" font-size="14" font-weight="bold">142.8 p/s</text>
+  <text x="25" y="170" fill="#a855f7" font-size="13" font-weight="600">Gemini 2.5 Flash Multimodal</text>
+  <text x="25" y="188" fill="#94a3b8" font-size="11">Cloud HTTP Rate Limited</text>
+  <rect x="25" y="198" width="8" height="26" fill="#a855f7" rx="3"/>
+  <text x="42" y="216" fill="#c084fc" font-size="14" font-weight="bold">0.89 p/s</text>
+  <text x="172" y="248" fill="#34d399" font-size="12" font-weight="600" text-anchor="middle">&#10004; 100-page book indexed in &lt;1 second</text>
+</g>
+<g transform="translate(45, 368)">
+  <rect width="730" height="98" fill="#131d2e" stroke="#1e293b" rx="8"/>
+  <text x="20" y="26" fill="#38bdf8" font-size="12" font-weight="bold">PyMuPDF Advantage: </text>
+  <text x="150" y="26" fill="#cbd5e1" font-size="12">Zero API cost ($0.00), zero network dependency, instant batch ingestion for textbooks &amp; lecture notes.</text>
+  <text x="20" y="52" fill="#c084fc" font-size="12" font-weight="bold">Gemini Flash Advantage: </text>
+  <text x="165" y="52" fill="#cbd5e1" font-size="12">Layout-aware visual reconstruction: parses complex Markdown tables, scanned diagrams, &amp; LaTeX math.</text>
+  <text x="20" y="78" fill="#f59e0b" font-size="12" font-weight="bold">Hybrid Dual-Mode: </text>
+  <text x="145" y="78" fill="#fde68a" font-size="12">Fast local text indexing by default with automatic user toggle for complex visual layout documents.</text>
+</g>
+</svg>

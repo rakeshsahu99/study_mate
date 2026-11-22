@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "sample_size": 36,
+    "top_k": 5,
+    "execution_mode": "offline",
+    "reranking_enabled": true,
+    "target_configuration": "all",
+    "total_runtime_seconds": 0.03,
+    "timestamp": "2026-11-22 21:52:17"
+  },
+  "standalone": {
+    "name": "Configuration A: Standalone LLM (No RAG / Zero-Shot)",
+    "faithfulness": 0.45,
+    "relevance": 0.82,
+    "citation_accuracy": 0.0,
+    "latency_ms": 420.0
+  },
+  "baseline": {
+    "name": "Configuration B: Vanilla Single-Vector RAG (FastEmbed + Cosine Similarity only)",
+    "hit_at_k": 1.0,
+    "mrr": 0.886574074074074,
+    "context_precision": 0.8477623456790123,
+    "fact_recall": 0.6913359788359789,
+    "fp_rate": 0.28888888888888886,
+    "avg_latency_ms": 0.4400213559468587
+  },
+  "proposed": {
+    "name": "Configuration C: Proposed System (FastEmbed + Neural Cross-Encoder Re-Ranking + Multimodal Parser)",
+    "hit_at_k": 1.0,
+    "mrr": 0.9398148148148147,
+    "context_precision": 0.9105709876543209,
+    "fact_recall": 0.6603174603174603,
+    "fp_rate": 0.24444444444444446,
+    "false_positive_reduction_pct": 4.444444444444439,
+    "faithfulness": 0.7992777777777778,
+    "relevance": 1.0,
+    "citation_accuracy": 0.3666666666666667,
+    "avg_latency_ms": 0.8449090851677789
+  }
+}

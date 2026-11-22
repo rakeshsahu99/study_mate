@@ -1,0 +1,43 @@
+<svg width="780" height="360" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+<rect width="780" height="360" fill="#0f172a" rx="8"/>
+<text x="390.0" y="32" fill="#f8fafc" font-size="16" font-weight="bold" text-anchor="middle">Comparative Ablation: 3-Way Architectural Benchmark</text>
+<rect x="34.0" y="55" width="224" height="270" fill="#1e293b" stroke="#e11d48" stroke-width="2" rx="8"/>
+<text x="146.0" y="79" fill="#e11d48" font-size="12" font-weight="bold" text-anchor="middle">Configuration A</text>
+<text x="146.0" y="101" fill="#f8fafc" font-size="15" font-weight="bold" text-anchor="middle">Standalone LLM</text>
+<text x="146.0" y="119" fill="#94a3b8" font-size="11" text-anchor="middle">Zero-Shot / No RAG</text>
+<line x1="50.0" y1="130" x2="242.0" y2="130" stroke="#334155"/>
+<text x="50.0" y="160" fill="#94a3b8" font-size="10">Mean Recip Rank (MRR):</text>
+<text x="50.0" y="176" fill="#f1f5f9" font-size="12" font-weight="600">0.000 (No RAG)</text>
+<text x="50.0" y="198" fill="#94a3b8" font-size="10">Faithfulness / Grounding:</text>
+<text x="50.0" y="214" fill="#f1f5f9" font-size="12" font-weight="600">45.0% (Parametric)</text>
+<text x="50.0" y="236" fill="#94a3b8" font-size="10">Noise / False Positives:</text>
+<text x="50.0" y="252" fill="#f1f5f9" font-size="12" font-weight="600">N/A (No Context)</text>
+<text x="50.0" y="274" fill="#94a3b8" font-size="10">Retrieval Latency:</text>
+<text x="50.0" y="290" fill="#f1f5f9" font-size="12" font-weight="600">420 ms</text>
+<rect x="278.0" y="55" width="224" height="270" fill="#1e293b" stroke="#64748b" stroke-width="2" rx="8"/>
+<text x="390.0" y="79" fill="#64748b" font-size="12" font-weight="bold" text-anchor="middle">Configuration B</text>
+<text x="390.0" y="101" fill="#f8fafc" font-size="15" font-weight="bold" text-anchor="middle">Vanilla Vector RAG</text>
+<text x="390.0" y="119" fill="#94a3b8" font-size="11" text-anchor="middle">Single-Vector + Cosine</text>
+<line x1="294.0" y1="130" x2="486.0" y2="130" stroke="#334155"/>
+<text x="294.0" y="160" fill="#94a3b8" font-size="10">Mean Recip Rank (MRR):</text>
+<text x="294.0" y="176" fill="#f1f5f9" font-size="12" font-weight="600">0.887</text>
+<text x="294.0" y="198" fill="#94a3b8" font-size="10">Faithfulness / Grounding:</text>
+<text x="294.0" y="214" fill="#f1f5f9" font-size="12" font-weight="600">82.0%</text>
+<text x="294.0" y="236" fill="#94a3b8" font-size="10">Noise / False Positives:</text>
+<text x="294.0" y="252" fill="#f1f5f9" font-size="12" font-weight="600">28.9% (High Noise)</text>
+<text x="294.0" y="274" fill="#94a3b8" font-size="10">Retrieval Latency:</text>
+<text x="294.0" y="290" fill="#f1f5f9" font-size="12" font-weight="600">140 ms</text>
+<rect x="522.0" y="55" width="224" height="270" fill="#1e293b" stroke="#0ea5e9" stroke-width="2" rx="8"/>
+<text x="634.0" y="79" fill="#0ea5e9" font-size="12" font-weight="bold" text-anchor="middle">Configuration C</text>
+<text x="634.0" y="101" fill="#f8fafc" font-size="15" font-weight="bold" text-anchor="middle">Proposed System</text>
+<text x="634.0" y="119" fill="#94a3b8" font-size="11" text-anchor="middle">Vector + Cross-Encoder</text>
+<line x1="538.0" y1="130" x2="730.0" y2="130" stroke="#334155"/>
+<text x="538.0" y="160" fill="#94a3b8" font-size="10">Mean Recip Rank (MRR):</text>
+<text x="538.0" y="176" fill="#f1f5f9" font-size="12" font-weight="600">0.940</text>
+<text x="538.0" y="198" fill="#94a3b8" font-size="10">Faithfulness / Grounding:</text>
+<text x="538.0" y="214" fill="#f1f5f9" font-size="12" font-weight="600">79.9% (Grounded)</text>
+<text x="538.0" y="236" fill="#94a3b8" font-size="10">Noise / False Positives:</text>
+<text x="538.0" y="252" fill="#f1f5f9" font-size="12" font-weight="600">24.4% (Filtered)</text>
+<text x="538.0" y="274" fill="#94a3b8" font-size="10">Retrieval Latency:</text>
+<text x="538.0" y="290" fill="#f1f5f9" font-size="12" font-weight="600">1 ms</text>
+</svg>

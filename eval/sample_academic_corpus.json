@@ -1,0 +1,792 @@
+[
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 1,
+    "text": "Entity Relationship Diagram \u2013 ER Diagram in DBMS \nAn Entity\u2013relationship model (ER model) describes the structure of a database with the help \nof a diagram, which is known as Entity Relationship Diagram (ER Diagram). An ER model \nis a design or blueprint of a database that can later be implemented as a database. The main \ncomponents of E-R model are: entity set and relationship set. What is an Entity Relationship Diagram (ER Diagram)?"
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 1,
+    "text": "An ER diagram shows the relationship among entity sets. An entity set is a group of similar \nentities and these entities can have attributes. In terms of DBMS, an entity is a table or attribute \nof a table in database, so by showing relationship among tables and their attributes, ER diagram \nshows the complete logical structure of a database. Lets have a look at a simple ER diagram to \nunderstand this concept."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 1,
+    "text": "Facts about ER Diagram Model: \nER model allows you to draw Database Design \nIt is an easy to use graphical tool for modeling data \nWidely used in Database Design \nIt is a GUI representation of the logical structure of a Database \nIt helps you to identifies the entities which exist in a system and the relationships between those \nentities \n \nWhy use ER Diagrams?"
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 1,
+    "text": "Here, are prime reasons for using the ER Diagram \nHelps you to define terms related to entity relationship modeling \nProvide a preview of how all your tables should connect, what fields are going to be on each \ntable \nHelps to describe entities, attributes, relationships \nER diagrams are translatable into relational tables which allows you to build databases quickly \nER diagrams can be used by database designers as a blueprint for implementing data in specific \nsoftware applications \n \nA simple ER Diagram: \nIn the following diagram we have two entities Student and College and their relationship."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 1,
+    "text": "The \nrelationship between Student and College is many to one as a college can have many students \nhowever a student cannot study in multiple colleges at the same time. Student entity has \nattributes such as Stu_Id, Stu_Name & Stu_Addr and College entity has attributes such as \nCol_ID & Col_Name."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 2,
+    "text": "Here are the geometric shapes and their meaning in an E-R Diagram. We will discuss these \nterms in detail in the next section (Components of a ER Diagram) of this guide so don\u2019t worry \ntoo much about these terms now, just go through them once. \nRectangle: Represents Entity sets. \nEllipses: Attributes \nDiamonds: Relationship Set \nLines: They link attributes to Entity Sets and Entity sets to Relationship Set \nDouble Ellipses: Multivalued Attributes \nDashed Ellipses: Derived Attributes \nDouble Rectangles: Weak Entity Sets \nDouble Lines: Total participation of an entity in a relationship set \n \nComponents of a ER Diagram"
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 3,
+    "text": "As shown in the above diagram, an ER diagram has three main components: \n1. Entity \n2. Attribute \n3. Relationship \n \n1. Entity \nAn entity is an object or component of data. An entity is represented as rectangle in an ER \ndiagram. For example: In the following ER diagram we have two entities Student and College and these \ntwo entities have many to one relationship as many students study in a single college."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 3,
+    "text": "We will \nread more about relationships later, for now focus on entities. Weak Entity: \nAn entity that cannot be uniquely identified by its own attributes and relies on the relationship \nwith other entity is called weak entity. The weak entity is represented by a double rectangle. For example \u2013 a bank account cannot be uniquely identified without knowing the bank to which \nthe \naccount \nbelongs, \nso \nbank \naccount \nis \na \nweak \nentity."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 3,
+    "text": "Weak Entities \nA weak entity is a type of entity which doesn't have its key attribute. It can be identified \nuniquely by considering the primary key of another entity. For that, weak entity sets need to \nhave participation."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 4,
+    "text": "In above example, \"Trans No\" is a discriminator within a group of transactions in an ATM.Let's \nlearn more about a weak entity by comparing it with a Strong Entity \nStrong Entity Set\nWeak Entity Set\nStrong entity set always has a primary key. It does not have enough attributes to build a \nprimary key. It is represented by a rectangle symbol. It is represented by a double rectangle \nsymbol."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 4,
+    "text": "It contains a Primary key represented by the \nunderline symbol. It contains a Partial Key which is represented \nby a dashed underline symbol. The member of a strong entity set is called \nas dominant entity set. The member of a weak entity set called as a \nsubordinate entity set. Primary Key is one of its attributes which \nhelps to identify its member."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 4,
+    "text": "In a weak entity set, it is a combination of \nprimary key and partial key of the strong \nentity set. In the ER diagram the relationship between \ntwo strong entity set shown by using a \ndiamond symbol. The relationship between one strong and a \nweak entity set shown by using the double \ndiamond symbol. The connecting line of the strong entity set \nwith the relationship is single."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 4,
+    "text": "The line connecting the weak entity set for \nidentifying relationship is double. 2. Attribute \nAn attribute describes the property of an entity. An attribute is represented as Oval in an ER \ndiagram. There are four types of attributes: \n1. Key attribute \n2. Composite attribute \n3. Multivalued attribute \n4. Derived attribute"
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 5,
+    "text": "1. Key attribute: \nA key attribute can uniquely identify an entity from an entity set. For example, student roll \nnumber can uniquely identify a student from a set of students. Key attribute is represented by \noval same as other attributes however the text of key attribute is underlined. 2. Composite attribute: An attribute that is a combination of other attributes is known as \ncomposite attribute."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 5,
+    "text": "For example, In student entity, the student address is a composite attribute \nas an address is composed of other attributes such as pin code, state, country. 3. Multivalued attribute: \nAn attribute that can hold multiple values is known as multivalued attribute. It is represented \nwith double ovals in an ER Diagram. For example \u2013 A person can have more than one phone \nnumbers so the phone number attribute is multivalued. 4."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 5,
+    "text": "Derived attribute: \nA derived attribute is one whose value is dynamic and derived from another attribute. It is \nrepresented by dashed oval in an ER Diagram. For example \u2013 Person age is a derived attribute \nas it changes over time and can be derived from another attribute (Date of birth)."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 6,
+    "text": "E-R \ndiagram \nwith \nmultivalued \nand \nderived \nattributes: \n \n3. Relationship \nCardinality: Defines the numerical attributes of the relationship between two entities or entity \nsets. A relationship is represented by diamond shape in ER diagram, it shows the relationship among \nentities. There are four types of cardinal relationships: \n1. One to One \n2. One to Many \n3. Many to One \n4. Many to Many \n \n1."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 6,
+    "text": "One to One Relationship \nWhen a single instance of an entity is associated with a single instance of another entity then it \nis called one to one relationship. For example, a person has only one passport and a passport is \ngiven to one person. 2. One to Many Relationship \nWhen a single instance of an entity is associated with more than one instances of another entity \nthen it is called one to many relationship."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 6,
+    "text": "For example \u2013 a customer can place many orders but \na order cannot be placed by many customers."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 7,
+    "text": "3. Many to One Relationship \nWhen more than one instances of an entity is associated with a single instance of another entity \nthen it is called many to one relationship. For example \u2013 many students can study in a single \ncollege \nbut \na \nstudent \ncannot \nstudy \nin \nmany \ncolleges \nat \nthe \nsame \ntime. 4."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 7,
+    "text": "Many to Many Relationship \nWhen more than one instances of an entity is associated with more than one instances of another \nentity then it is called many to many relationship. For example, a can be assigned to many \nprojects \nand \na \nproject \ncan \nbe \nassigned \nto \nmany \nstudents."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 7,
+    "text": "Total Participation of an Entity set \nA Total participation of an entity set represents that each entity in entity set must have at least \none relationship in a relationship set. For example: In the below diagram each college must \nhave at-least one associated Student."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 8,
+    "text": "Steps to Create an ERD (E-R Digram) \nFollowing are the steps to create an ERD. \n \nLet's study them with an example: \nIn a university, a Student enrolls in Courses. A student must be assigned to at least one or more \nCourses. Each course is taught by a single Professor. To maintain instruction quality, a \nProfessor can deliver only one course \nStep 1) Entity Identification \nWe have three entities \n\uf0b7 \nStudent \n\uf0b7 \nCourse \n\uf0b7 \nProfessor \n \nStep 2) Relationship Identification"
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 9,
+    "text": "We have the following two relationships \n\uf0b7 \nThe student is assigned a course \n\uf0b7 \nProfessor delivers a course \n \nStep 3) Cardinality Identification \nFor them problem statement we know that, \n\uf0b7 \nA student can be assigned multiple courses \n\uf0b7 \nA Professor can deliver only one course \n \nStep 4) Identify Attributes \nYou need to study the files, forms, reports, data currently maintained by the organization to \nidentify attributes."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 9,
+    "text": "You can also conduct interviews with various stakeholders to identify \nentities. Initially, it's important to identify the attributes without mapping them to a particular \nentity. Once, you have a list of Attributes, you need to map them to the identified entities. Ensure an \nattribute is to be paired with exactly one entity. If you think an attribute should belong to more \nthan one entity, use a modifier to make it unique."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 9,
+    "text": "Once the mapping is done, identify the primary Keys. If a unique key is not readily available, \ncreate one. Entity \nPrimary Key \nAttribute \nStudent \nStudent_ID \nStudentName \nProfessor \nEmployee_ID \nProfessorName \nCourse \nCourse_ID \nCourseName"
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 10,
+    "text": "For Course Entity, attributes could be Duration, Credits, Assignments, etc. For the sake of ease \nwe have considered just one attribute."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 10,
+    "text": "Step 5) Create the ERD \nA more modern representation of ERD Diagram \n \nBest Practices for Developing Effective ER Diagrams \n\uf0b7 \nEliminate any redundant entities or relationships \n\uf0b7 \nYou need to make sure that all your entities and relationships are properly labeled \n\uf0b7 \nThere may be various valid approaches to an ER diagram."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 10,
+    "text": "You need to make sure that \nthe ER diagram supports all the data you need to store \n\uf0b7 \nYou should assure that each entity only appears a single time in the ER diagram \n\uf0b7 \nName every relationship, entity, and attribute are represented on your diagram \n\uf0b7 \nNever connect relationships to each other \n\uf0b7 \nYou should use colors to highlight important portions of the ER diagram \nSummary \n\uf0b7 \nThe ER model is a high-level data model diagram \n\uf0b7 \nER diagrams are a visual tool which is helpful to represent the ER model \n\uf0b7 \nEntity relationship diagram displays the relationships of entity set stored in a database \n\uf0b7 \nER diagrams help you to define terms related to entity relationship modeling \n\uf0b7 \nER model is based on three basic concepts: Entities, Attributes & Relationships \n\uf0b7 \nAn entity can be place, person, object, event or a concept, which stores data in the \ndatabase"
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 11,
+    "text": "\uf0b7 \nRelationship is nothing but an association among two or more entities \n\uf0b7 \nA weak entity is a type of entity which doesn't have its key attribute \n\uf0b7 \nIt is a single-valued property of either an entity-type or a relationship-type \n\uf0b7 \nIt helps you to defines the numerical attributes of the relationship between two entities \nor entity sets \n\uf0b7 \nER- Diagram is a visual representation of data that describe how data is related to each \nother \n\uf0b7 \nWhile Drawing ER diagram you need to make sure all your entities and relationships \nare properly labeled."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 11,
+    "text": "DBMS Generalization \nGeneralization is a process in which the common attributes of more than one entities form a \nnew entity. This newly formed entity is called generalized entity. Generalization Example \nLets say we have two entities Student and Teacher."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 11,
+    "text": "Attributes of Entity Student are: Name, Address & Grade \nAttributes of Entity Teacher are: Name, Address & Salary \n \nThe \nER \ndiagram \nbefore \ngeneralization \nlooks \nlike \nthis: \n \nThese two entities have two common attributes: Name and Address, we can make a generalized \nentity with these common attributes. Lets have a look at the ER model after generalization. The ER diagram after generalization:"
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 12,
+    "text": "We have created a new generalized entity Person and this entity has the common attributes of \nboth the entities."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 12,
+    "text": "As you can see in the following ER diagram that after the generalization \nprocess the entities Student and Teacher only has the specialized attributes Grade and Salary \nrespectively and their common attributes (Name & Address) are now associated with a new \nentity Person which is in the relationship with both the entities (Student & Teacher). Note: \n1."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 12,
+    "text": "Generalization uses bottom-up approach where two or more lower level entities combine \ntogether to form a higher level new entity. 2. The new generalized entity can further combine together with lower level entity to create a \nfurther higher level generalized entity. DBMS Specialization \nSpecialization is a process in which an entity is divided into sub-entities."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 12,
+    "text": "You can think of it \nas a reverse process of generalization, in generalization two entities combine together to form \na new higher level entity. Specialization is a top-down process. The idea behind Specialization is to find the subsets of entities that have few distinguish \nattributes."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 12,
+    "text": "For example \u2013 Consider an entity employee which can be further classified as sub-\nentities Technician, Engineer & Accountant because these sub entities have some distinguish \nattributes. Specialization Example \nIn this diagram, we can see that we have a higher level entity \u201cEmployee\u201d which we have \ndivided in sub entities \u201cTechnician\u201d, \u201cEngineer\u201d & \u201cAccountant\u201d."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 12,
+    "text": "All of these are just an \nemployee of a company, however their role is completely different and they have few different \nattributes. Just for the example, I have shown that Technician handles service requests, \nEngineer works on a project and Accountant handles the credit & debit details."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 12,
+    "text": "All of these \nthree employee types have few attributes common such as name & salary which we had left \nassociated with the parent entity \u201cEmployee\u201d as shown in the above diagram."
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 13,
+    "text": "DBMS Aggregration \nAggregation is a process in which a single entity alone is not able to make sense in a \nrelationship so the relationship of two entities acts as one entity. I know it sounds confusing \nbut don\u2019t worry the example we will take, will clear all the doubts. \nAggregration Example \n \nIn real world, we know that a manager not only manages the employee working under them \nbut he has to manage the project as well. In such scenario if entity \u201cManager\u201d makes a \n\u201cmanages\u201d relationship with either \u201cEmployee\u201d or \u201cProject\u201d entity alone then it will not make"
+  },
+  {
+    "source": "24042020_E-R Model.pdf",
+    "page": 14,
+    "text": "any sense because he has to manage both. In these cases the relationship of two entities acts as \none entity. In our example, the relationship \u201cWorks-On\u201d between \u201cEmployee\u201d & \u201cProject\u201d acts \nas one entity that has a relationship \u201cManages\u201d with the entity \u201cManager\u201d. \n \nMapping from ER Model to Relational Model \nGo to following link \nhttps://www.geeksforgeeks.org/mapping-from-er-model-to-relational-model/"
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 1,
+    "text": "Unit IV \u2013 CPU Scheduling and Algorithm \nSection 4.1 Scheduling types \nScheduling Objectives \n\uf0b7 Be Fair while allocating resources to the processes \n\uf0b7 Maximize throughput of the system \n\uf0b7 Maximize number of users receiving acceptable response times."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 1,
+    "text": "\uf0b7 Be predictable \n\uf0b7 Balance resource use \n\uf0b7 Avoid indefinite postponement \n\uf0b7 Enforce Priorities \n\uf0b7 Give preference to processes holding key resources \n\uf0b7 Give better service to processes that have desirable behaviour patterns \n \nCPU and I/O Burst Cycle: \n\uf0b7 Process execution consists of a cycle of CPU execution and I/O wait. \uf0b7 Processes alternate between these two states."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 1,
+    "text": "\uf0b7 Process execution begins with a CPU burst, followed by an I/O burst, then another CPU \nburst ... etc \n\uf0b7 The last CPU burst will end with a system request to terminate execution rather than \nwith another I/O burst. \uf0b7 The duration of these CPU burst have been measured. \uf0b7 An I/O-bound program would typically have many short CPU bursts, A CPU-bound \nprogram might have a few very long CPU bursts."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 1,
+    "text": "\uf0b7 This can help to select an appropriate CPU-scheduling algorithm."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 2,
+    "text": "Preemptive Scheduling: \n\uf0b7 Preemptive scheduling is used when a process switches from running state to ready \nstate or from waiting state to ready state. \uf0b7 The resources (mainly CPU cycles) are allocated to the process for the limited amount \nof time and then is taken away, and the process is again placed back in the ready queue \nif that process still has CPU burst time remaining."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 2,
+    "text": "\uf0b7 That process stays in ready queue till it gets next chance to execute. Non-Preemptive Scheduling: \n\uf0b7 Non-preemptive Scheduling is used when a process terminates, or a process switches \nfrom running to waiting state. \uf0b7 In this scheduling, once the resources (CPU cycles) is allocated to a process, the process \nholds the CPU till it gets terminated or it reaches a waiting state."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 2,
+    "text": "\uf0b7 In case of non-preemptive scheduling does not interrupt a process running CPU in \nmiddle of the execution. \uf0b7 Instead, it waits till the process complete its CPU burst time and then it can allocate the \nCPU to another process. Basis for \nComparison \nPreemptive Scheduling \nNon Preemptive Scheduling \nBasic \nThe resources are allocated to a \nprocess for a limited time."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 2,
+    "text": "Once resources are allocated to a \nprocess, the process holds it till it \ncompletes its burst time or switches to \nwaiting state. Interrupt \nProcess can be interrupted in \nbetween. Process can not be interrupted till it \nterminates or switches to waiting state. Starvation \nIf a high priority process \nfrequently arrives in the ready \nqueue, low priority process may \nstarve."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 2,
+    "text": "If a process with long burst time is \nrunning CPU, then another process with \nless CPU burst time may starve. Overhead \nPreemptive scheduling has \noverheads of scheduling the \nprocesses. Non-preemptive scheduling does not \nhave overheads. Flexibility \nPreemptive scheduling is flexible. Non-preemptive scheduling is rigid. Cost \nPreemptive scheduling is cost \nassociated. Non-preemptive scheduling is not cost \nassociative."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 2,
+    "text": "Scheduling Criteria \n\uf0b7 \nThere are several different criteria to consider when trying to select the \"best\" \nscheduling algorithm for a particular situation and environment, including: \no CPU utilization - Ideally the CPU would be busy 100% of the time, so \nas to waste 0 CPU cycles. On a real system CPU usage should range from \n40% ( lightly loaded ) to 90% ( heavily loaded. ) \no Throughput - Number of processes completed per unit time."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 2,
+    "text": "May range \nfrom 10 / second to 1 / hour depending on the specific processes."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 3,
+    "text": "o Turnaround time - Time required for a particular process to complete, \nfrom submission time to completion. o Waiting time - How much time processes spend in the ready queue \nwaiting their turn to get on the CPU. o Response time - The time taken in an interactive program from the \nissuance of a command to the commence of a response to that command. In brief: \nArrival Time: Time at which the process arrives in the ready queue."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 3,
+    "text": "Completion \nTime: \nTime \nat \nwhich \nprocess \ncompletes \nits \nexecution. Burst \nTime: \nTime \nrequired \nby \na \nprocess \nfor \nCPU \nexecution. Turn Around Time: Time Difference between completion time and arrival time. Turn Around Time = Completion Time \u2013 Arrival Time \nWaiting Time(W.T): Time Difference between turnaround time and burst time."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 3,
+    "text": "Waiting Time = Turn Around Time \u2013 Burst Time \n \n4.2 Types of Scheduling Algorithm \n \n(a) First Come First Serve (FCFS) \nIn FCFS Scheduling \n\uf0b7 The process which arrives first in the ready queue is firstly assigned the CPU. \uf0b7 In case of a tie, process with smaller process id is executed first. \uf0b7 It is always non-preemptive in nature. \uf0b7 Jobs are executed on first come, first serve basis. \uf0b7 It is a non-preemptive, pre-emptive scheduling algorithm."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 3,
+    "text": "\uf0b7 Easy to understand and implement. \uf0b7 Its implementation is based on FIFO queue. \uf0b7 Poor in performance as average wait time is high. Advantages- \n\uf0b7 It is simple and easy to understand. \uf0b7 It can be easily implemented using queue data structure. \uf0b7 It does not lead to starvation. Disadvantages- \n\uf0b7 It does not consider the priority or burst time of the processes. \uf0b7 It suffers from convoy effect i.e."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 3,
+    "text": "processes with higher burst time arrived before \nthe processes with smaller burst time."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 4,
+    "text": "Example 1: \n \n \nExample 2: \nConsider the processes P1, P2, P3 given in the below table, arrives for execution in \nthe same order, with Arrival Time 0, and given Burst Time, \nPROCESS \nARRIVAL TIME \nBURST TIME \nP1 \n0 \n24 \nP2 \n0 \n3 \nP3 \n0 \n3 \nGantt chart \n \nP1 \nP2 \nP3 \n0 24 27 30"
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 5,
+    "text": "PROCESS \nWAIT TIME \nTURN AROUND TIME \nP1 \n0 \n24 \nP2 \n24 \n27 \nP3 \n27 \n30 \n \nTotal Wait Time = 0 + 24 + 27 = 51 ms \n \nAverage Waiting Time = (Total Wait Time) / (Total number of processes) = 51/3 = 17 ms \n \nTotal Turn Around Time: 24 + 27 + 30 = 81 ms \n \nAverage Turn Around time = (Total Turn Around Time) / (Total number of processes) \n= 81 / 3 = 27 ms \nThroughput = 3 jobs/30 sec = 0.1 jobs/sec \nExample 3: \nConsider the processes P1, P2, P3, P4 given in the below table, arrives for execution \nin the same order, with given Arrival Time and Burst Time."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 5,
+    "text": "PROCESS \nARRIVAL TIME BURST TIME \nP1 \n0 \n8 \nP2 \n1 \n4 \nP3 \n2 \n9 \nP4 \n3 \n5 \n \nGantt chart \nP1 \nP2 \nP3 \nP4 \n 0 8 12 21 26 \n \nPROCESS \nWAIT TIME \nTURN AROUND TIME \nP1 \n0 \n8 \u2013 0 = 8 \nP2 \n8 \u2013 1 = 7 \n12 \u2013 1 = 11 \nP3 \n12 \u2013 2 = 10 \n21 \u2013 2 = 19 \nP4 \n21 \u2013 3 = 18 \n26 \u2013 3 = 23 \n \nTotal Wait Time:= 0 + 7 + 10 + 18 = 35 ms \n \nAverage Waiting Time = (Total Wait Time) / (Total number of processes)= 35/4 = 8.75 ms \n \nTotal Turn Around Time: 8 + 11 + 19 + 23 = 61 ms \n \nAverage Turn Around time = (Total Turn Around Time) / (Total number of processes) \n61/4 = 15.25 ms \n \nThroughput: 4 jobs/26 sec = 0.15385 jobs/sec"
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 6,
+    "text": "(b) Shortest Job First (SJF) \n\uf0b7 Process which have the shortest burst time are scheduled first. \uf0b7 If two processes have the same bust time, then FCFS is used to break the tie. \uf0b7 This is a non-pre-emptive, pre-emptive scheduling algorithm. \uf0b7 Best approach to minimize waiting time. \uf0b7 Easy to implement in Batch systems where required CPU time is known in advance. \uf0b7 Impossible to implement in interactive systems where required CPU time is not \nknown."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 6,
+    "text": "\uf0b7 The processer should know in advance how much time process will take. \uf0b7 Pre-emptive mode of Shortest Job First is called as Shortest Remaining Time \nFirst (SRTF). Advantages- \n\uf0b7 \nSRTF is optimal and guarantees the minimum average waiting time. \uf0b7 \nIt provides a standard for other algorithms since no other algorithm performs \nbetter than it."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 6,
+    "text": "Disadvantages- \n\uf0b7 \nIt can not be implemented practically since burst time of the processes can not \nbe known in advance. \uf0b7 \nIt leads to starvation for processes with larger burst time. \uf0b7 \nPriorities can not be set for the processes. \uf0b7 \nProcesses with larger burst time have poor response time."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 6,
+    "text": "Example-01: \n Consider the set of 5 processes whose arrival time and burst time are given below- \nProcess Id \nArrival time \nBurst time \nP1 \n3 \n1 \nP2 \n1 \n4 \nP3 \n4 \n2 \nP4 \n0 \n6 \nP5 \n2 \n3 \nSolution- \nIf the CPU scheduling policy is SJF non-preemptive, calculate the average waiting \ntime and average turnaround time. Gantt Chart- \n \n \n \nNow, we know- \n\uf0b7 \nTurn Around time = Exit time \u2013 Arrival time \n\uf0b7 \nWaiting time = Turn Around time \u2013 Burst time"
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 7,
+    "text": "Process Id \nExit time \nTurn Around time \nWaiting time \nP1 \n7 \n7 \u2013 3 = 4 \n4 \u2013 1 = 3 \nP2 \n16 \n16 \u2013 1 = 15 \n15 \u2013 4 = 11 \nP3 \n9 \n9 \u2013 4 = 5 \n5 \u2013 2 = 3 \nP4 \n6 \n6 \u2013 0 = 6 \n6 \u2013 6 = 0 \nP5 \n12 \n12 \u2013 2 = 10 \n10 \u2013 3 = 7 \n Now, \n\uf0b7 \nAverage Turn Around time = (4 + 15 + 5 + 6 + 10) / 5 = 40 / 5 = 8 unit \n\uf0b7 \nAverage waiting time = (3 + 11 + 3 + 0 + 7) / 5 = 24 / 5 = 4.8 unit \n \nExample-02: \n Consider the set of 5 processes whose arrival time and burst time are given below- \nProcess Id \nArrival time \nBurst time \nP1 \n3 \n1 \nP2 \n1 \n4 \nP3 \n4 \n2 \nP4 \n0 \n6 \nP5 \n2 \n3 \nIf the CPU scheduling policy is SJF pre-emptive, calculate the average waiting time and \naverage turnaround time."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 7,
+    "text": "Solution- \n Gantt Chart- \n \nProcess Id \nExit time \nTurn Around time \nWaiting time \nP1 \n4 \n4 \u2013 3 = 1 \n1 \u2013 1 = 0 \nP2 \n6 \n6 \u2013 1 = 5 \n5 \u2013 4 = 1 \nP3 \n8 \n8 \u2013 4 = 4 \n4 \u2013 2 = 2 \nP4 \n16 \n16 \u2013 0 = 16 \n16 \u2013 6 = 10 \nP5 \n11 \n11 \u2013 2 = 9 \n9 \u2013 3 = 6 \nNow, \n\uf0b7 \nAverage Turn Around time = (1 + 5 + 4 + 16 + 9) / 5 = 35 / 5 = 7 unit \n\uf0b7 \nAverage waiting time = (0 + 1 + 2 + 10 + 6) / 5 = 19 / 5 = 3.8 unit"
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 8,
+    "text": "Example-03: \n \nConsider the set of 6 processes whose arrival time and burst time are given below- \n \nProcess Id \nArrival time \nBurst time \nP1 \n0 \n7 \nP2 \n1 \n5 \nP3 \n2 \n3 \nP4 \n3 \n1 \nP5 \n4 \n2 \nP6 \n5 \n1 \n \nIf the CPU scheduling policy is shortest remaining time first, calculate the average \nwaiting time and average turnaround time."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 8,
+    "text": "Solution- \nGantt Chart- \n \n \n \nNow, we know- \n\uf0b7 \nTurn Around time = Exit time \u2013 Arrival time \n\uf0b7 \nWaiting time = Turn Around time \u2013 Burst time \n \nProcess Id \nExit time \nTurn Around time \nWaiting time \nP1 \n19 \n19 \u2013 0 = 19 \n19 \u2013 7 = 12 \nP2 \n13 \n13 \u2013 1 = 12 \n12 \u2013 5 = 7 \nP3 \n6 \n6 \u2013 2 = 4 \n4 \u2013 3 = 1 \nP4 \n4 \n4 \u2013 3 = 1 \n1 \u2013 1 = 0 \nP5 \n9 \n9 \u2013 4 = 5 \n5 \u2013 2 = 3 \nP6 \n7 \n7 \u2013 5 = 2 \n2 \u2013 1 = 1 \n \nNow, \n\uf0b7 \nAverage Turn Around time = (19 + 12 + 4 + 1 + 5 + 2) / 6 = 43 / 6 = 7.17 unit \n\uf0b7 \nAverage waiting time = (12 + 7 + 1 + 0 + 3 + 1) / 6 = 24 / 6 = 4 unit"
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 9,
+    "text": "Example -04: \n \nConsider the set of 3 processes whose arrival time and burst time are given below- \n \nProcess Id \nArrival time \nBurst time \nP1 \n0 \n9 \nP2 \n1 \n4 \nP3 \n2 \n9 \n \nIf the CPU scheduling policy is SRTF, calculate the average waiting time and average \nturn around time."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 9,
+    "text": "Solution- \n Gantt Chart- \n \n \nNow, we know- \n\uf0b7 \nTurn Around time = Exit time \u2013 Arrival time \n\uf0b7 \nWaiting time = Turn Around time \u2013 Burst time \n \nProcess Id \nExit time \nTurn Around time \nWaiting time \nP1 \n13 \n13 \u2013 0 = 13 \n13 \u2013 9 = 4 \nP2 \n5 \n5 \u2013 1 = 4 \n4 \u2013 4 = 0 \nP3 \n22 \n22- 2 = 20 \n20 \u2013 9 = 11 \n \nNow, \n\uf0b7 \nAverage Turn Around time = (13 + 4 + 20) / 3 = 37 / 3 = 12.33 unit \n\uf0b7 \nAverage waiting time = (4 + 0 + 11) / 3 = 15 / 3 = 5 unit \n \nExample-05: \n \nConsider the set of 4 processes whose arrival time and burst time are given below- \n \nProcess Id \nArrival time \nBurst time \nP1 \n0 \n20 \nP2 \n15 \n25 \nP3 \n30 \n10 \nP4 \n45 \n15"
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 10,
+    "text": "If the CPU scheduling policy is SRTF, calculate the waiting time of process P2."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 10,
+    "text": "Solution- \n \nGantt Chart- \n \n \n \nNow, we know- \n\uf0b7 \nTurn Around time = Exit time \u2013 Arrival time \n\uf0b7 \nWaiting time = Turn Around time \u2013 Burst time \n \nThus, \n\uf0b7 \nTurn Around Time of process P2 = 55 \u2013 15 = 40 unit \n\uf0b7 \nWaiting time of process P2 = 40 \u2013 25 = 15 unit \n \n(c) Round Robin Scheduling \n\uf0b7 \nCPU is assigned to the process on the basis of FCFS for a fixed amount of time. \uf0b7 \nThis fixed amount of time is called as time quantum or time slice."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 10,
+    "text": "\uf0b7 \nAfter the time quantum expires, the running process is preempted and sent to the \nready queue. \uf0b7 \nThen, the processor is assigned to the next arrived process. \uf0b7 \nIt is always preemptive in nature."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 11,
+    "text": "Advantages- \n \n\uf0b7 \nIt gives the best performance in terms of average response time. \uf0b7 \nIt is best suited for time sharing system, client server architecture and \ninteractive system. Disadvantages- \n \n\uf0b7 \nIt leads to starvation for processes with larger burst time as they have to repeat \nthe cycle many times. \uf0b7 \nIts performance heavily depends on time quantum. \uf0b7 \nPriorities can not be set for the processes."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 11,
+    "text": "With decreasing value of time quantum, \n\uf0b7 \nNumber of context switch increases \n\uf0b7 \nResponse time decreases \n\uf0b7 \nChances of starvation decreases \n \nThus, smaller value of time quantum is better in terms of response time. With increasing value of time quantum, \n\uf0b7 \nNumber of context switch decreases \n\uf0b7 \nResponse time increases \n\uf0b7 \nChances of starvation increases \n \nThus, higher value of time quantum is better in terms of number of context switch."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 11,
+    "text": "\uf0b7 \nWith increasing value of time quantum, Round Robin Scheduling tends to \nbecome FCFS Scheduling. \uf0b7 \nWhen time quantum tends to infinity, Round Robin Scheduling becomes FCFS \nScheduling. \uf0b7 \nThe performance of Round Robin scheduling heavily depends on the value of \ntime quantum. \uf0b7 \nThe value of time quantum should be such that it is neither too big nor too \nsmall."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 11,
+    "text": "Example-01: \n Consider the set of 5 processes whose arrival time and burst time are given below- \n \nProcess Id \nArrival time \nBurst time \nP1 \n0 \n5 \nP2 \n1 \n3 \nP3 \n2 \n1 \nP4 \n3 \n2 \nP5 \n4 \n3"
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 12,
+    "text": "If the CPU scheduling policy is Round Robin with time quantum = 2 unit, calculate \nthe average waiting time and average turnaround time."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 12,
+    "text": "Solution- \n \n \n \nReady Queue- \n \n \nP5, P1, P2, P5, P4, P1, P3, P2, P1 \nGantt Chart- \n \nNow, we know- \n\uf0b7 \nTurn Around time = Exit time \u2013 Arrival time \n\uf0b7 \nWaiting time = Turn Around time \u2013 Burst time \nProcess Id \nExit time \nTurn Around time \nWaiting time \nP1 \n13 \n13 \u2013 0 = 13 \n13 \u2013 5 = 8 \nP2 \n12 \n12 \u2013 1 = 11 \n11 \u2013 3 = 8 \nP3 \n5 \n5 \u2013 2 = 3 \n3 \u2013 1 = 2 \nP4 \n9 \n9 \u2013 3 = 6 \n6 \u2013 2 = 4 \nP5 \n14 \n14 \u2013 4 = 10 \n10 \u2013 3 = 7 \n Now, \n\uf0b7 \nAverage Turn Around time = (13 + 11 + 3 + 6 + 10) / 5 = 43 / 5 = 8.6 unit \n\uf0b7 \nAverage waiting time = (8 + 8 + 2 + 4 + 7) / 5 = 29 / 5 = 5.8 unit \n Problem-02: \n Consider the set of 6 processes whose arrival time and burst time are given below- \n Process Id \nArrival time \nBurst time \nP1 \n0 \n4 \nP2 \n1 \n5 \nP3 \n2 \n2 \nP4 \n3 \n1 \nP5 \n4 \n6 \nP6 \n6 \n3 \nIf the CPU scheduling policy is Round Robin with time quantum = 2, calculate the average \nwaiting time and average turnaround time."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 12,
+    "text": "Solution- \nReady Queue- \nP5, P6, P2, P5, P6, P2, P5, P4, P1, P3, P2, P1 \nGantt chart- \n \n \nNow, we know- \n\uf0b7 \nTurn Around time = Exit time \u2013 Arrival time \n\uf0b7 \nWaiting time = Turn Around time \u2013 Burst time"
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 13,
+    "text": "Process Id \nExit time \nTurn Around time \nWaiting time \nP1 \n8 \n8 \u2013 0 = 8 \n8 \u2013 4 = 4 \nP2 \n18 \n18 \u2013 1 = 17 \n17 \u2013 5 = 12 \nP3 \n6 \n6 \u2013 2 = 4 \n4 \u2013 2 = 2 \nP4 \n9 \n9 \u2013 3 = 6 \n6 \u2013 1 = 5 \nP5 \n21 \n21 \u2013 4 = 17 \n17 \u2013 6 = 11 \nP6 \n19 \n19 \u2013 6 = 13 \n13 \u2013 3 = 10 \n Now, \n\uf0b7 \nAverage Turn Around time = (8 + 17 + 4 + 6 + 17 + 13) / 6 = 65 / 6 = 10.84 unit \n\uf0b7 \nAverage waiting time = (4 + 12 + 2 + 5 + 11 + 10) / 6 = 44 / 6 = 7.33 unit \nProblem-03: Consider the set of 6 processes whose arrival time and burst time are \ngiven below- \nProcess Id \nArrival time \nBurst time \nP1 \n5 \n5 \nP2 \n4 \n6 \nP3 \n3 \n7 \nP4 \n1 \n9 \nP5 \n2 \n2 \nP6 \n6 \n3 \nIf the CPU scheduling policy is Round Robin with time quantum = 3, calculate the \naverage waiting time and average turnaround time."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 13,
+    "text": "Solution- \nReady Queue- P3, P1, P4, P2, P3, P6, P1, P4, P2, P3, P5, P4 \nGantt chart- \n \nNow, we know- \n\uf0b7 \nTurn Around time = Exit time \u2013 Arrival time \n\uf0b7 \nWaiting time = Turn Around time \u2013 Burst time \nProcess Id \nExit time \nTurn Around time \nWaiting time \nP1 \n32 \n32 \u2013 5 = 27 \n27 \u2013 5 = 22 \nP2 \n27 \n27 \u2013 4 = 23 \n23 \u2013 6 = 17 \nP3 \n33 \n33 \u2013 3 = 30 \n30 \u2013 7 = 23 \nP4 \n30 \n30 \u2013 1 = 29 \n29 \u2013 9 = 20 \nP5 \n6 \n6 \u2013 2 = 4 \n4 \u2013 2 = 2 \nP6 \n21 \n21 \u2013 6 = 15 \n15 \u2013 3 = 12"
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 14,
+    "text": "Now, \n\uf0b7 \nAverage Turn Around time = (27 + 23 + 30 + 29 + 4 + 15) / 6 = 128 / 6 = 21.33 unit \n\uf0b7 \nAverage waiting time = (22 + 17 + 23 + 20 + 2 + 12) / 6 = 96 / 6 = 16 unit \n(d) Priority Scheduling \n\uf0b7 \nOut of all the available processes, CPU is assigned to the process having the \nhighest priority. \uf0b7 \nIn case of a tie, it is broken by FCFS Scheduling. \uf0b7 \nPriority Scheduling can be used in both preemptive and non-preemptive mode."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 14,
+    "text": "\uf0b7 \nThe waiting time for the process having the highest priority will always be zero in \npreemptive mode. \uf0b7 \nThe waiting time for the process having the highest priority may not be zero in non-\npreemptive mode."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 14,
+    "text": "Priority scheduling in preemptive and non-preemptive mode behaves exactly same under \nfollowing conditions- \n\uf0b7 \nThe arrival time of all the processes is same \n\uf0b7 \nAll the processes become available \nAdvantages- \n\uf0b7 \nIt considers the priority of the processes and allows the important processes to \nrun first. \uf0b7 \nPriority scheduling in pre-emptive mode is best suited for real time operating \nsystem."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 14,
+    "text": "Disadvantages- \n\uf0b7 \nProcesses with lesser priority may starve for CPU. \uf0b7 \nThere is no idea of response time and waiting time."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 14,
+    "text": "Problem-01: \n Consider the set of 5 processes whose arrival time and burst time are given below- \n Process Id \nArrival time \nBurst time \n Priority \nP1 \n0 \n4 \n2 \nP2 \n1 \n3 \n3 \nP3 \n2 \n1 \n4 \nP4 \n3 \n5 \n5 \nP5 \n4 \n2 \n5 \n If the CPU scheduling policy is priority non-preemptive, calculate the average waiting time \nand average turnaround time. (Higher number represents higher priority)"
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 15,
+    "text": "Solution- \nGantt Chart- \n \nNow, we know- \n\uf0b7 \nTurn Around time = Exit time \u2013 Arrival time \n\uf0b7 \nWaiting time = Turn Around time \u2013 Burst time \nProcess Id \nExit time \nTurn Around time \nWaiting time \nP1 \n4 \n4 \u2013 0 = 4 \n4 \u2013 4 = 0 \nP2 \n15 \n15 \u2013 1 = 14 \n14 \u2013 3 = 11 \nP3 \n12 \n12 \u2013 2 = 10 \n10 \u2013 1 = 9 \nP4 \n9 \n9 \u2013 3 = 6 \n6 \u2013 5 = 1 \nP5 \n11 \n11 \u2013 4 = 7 \n7 \u2013 2 = 5 \nNow, \n\uf0b7 \nAverage Turn Around time = (4 + 14 + 10 + 6 + 7) / 5 = 41 / 5 = 8.2 unit \n\uf0b7 \nAverage waiting time = (0 + 11 + 9 + 1 + 5) / 5 = 26 / 5 = 5.2 unit \n \nProblem-02: Consider the set of 5 processes whose arrival time and burst time are \ngiven below- \nProcess Id \nArrival time \nBurst time \n Priority \nP1 \n0 \n4 \n2 \nP2 \n1 \n3 \n3 \nP3 \n2 \n1 \n4 \nP4 \n3 \n5 \n5 \nP5 \n4 \n2 \n5 \nIf the CPU scheduling policy is priority preemptive, calculate the average waiting \ntime and average turn around time."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 15,
+    "text": "(Higher number represents higher priority). Solution- \nGantt Chart- \n \nNow, we know- \n\uf0b7 \nTurn Around time = Exit time \u2013 Arrival time \n\uf0b7 \nWaiting time = Turn Around time \u2013 Burst time \nProcess Id \nExit time \nTurn Around time \nWaiting time \nP1 \n15 \n15 \u2013 0 = 15 \n15 \u2013 4 = 11 \nP2 \n12 \n12 \u2013 1 = 11 \n11 \u2013 3 = 8 \nP3 \n3 \n3 \u2013 2 = 1 \n1 \u2013 1 = 0 \nP4 \n8 \n8 \u2013 3 = 5 \n5 \u2013 5 = 0 \nP5 \n10 \n10 \u2013 4 = 6 \n6 \u2013 2 = 4"
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 16,
+    "text": "Now, \n\uf0b7 \nAverage Turn Around time = (15 + 11 + 1 + 5 + 6) / 5 = 38 / 5 = 7.6 unit \n\uf0b7 \nAverage waiting time = (11 + 8 + 0 + 0 + 4) / 5 = 23 / 5 = 4.6 unit \n \n(d) Multilevel Queue Scheduling \nA multi-level queue scheduling algorithm partitions the ready queue into several separate \nqueues. The processes are permanently assigned to one queue, generally based on some \nproperty of the process, such as memory size, process priority, or process type."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 16,
+    "text": "Each queue has \nits own scheduling algorithm. Let us consider an example of a multilevel queue-scheduling algorithm with five queues: \n1. System Processes \n2. Interactive Processes \n3. Interactive Editing Processes \n4. Batch Processes \n5. Student Processes \nEach queue has absolute priority over lower-priority queues."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 16,
+    "text": "No process in the batch queue, \nfor example, could run unless the queues for system processes, interactive processes, and \ninteractive editing processes were all empty. If an interactive editing process entered the ready \nqueue while a batch process was running, the batch process will be pre-empted."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 16,
+    "text": "4.3 Deadlock \n\uf0b7 Deadlock is a situation where a set of processes are blocked because each process is \nholding a resource and waiting for another resource acquired by some other process. \uf0b7 For example, in the below diagram, Process 1 is holding Resource 1 and waiting for \nresource 2 which is acquired by process 2, and process 2 is waiting for resource 1."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 17,
+    "text": "Deadlock can arise if following four necessary conditions hold simultaneously. 1. Mutual Exclusion: One or more than one resource are non-sharable means Only one \nprocess can use at a time. 2. Hold and Wait: A process is holding at least one resource and waiting for another \nresources. 3."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 17,
+    "text": "No Pre-emption: A resource cannot be taken from a process unless the process releases \nthe resource means the process which once scheduled will be executed till the \ncompletion and no other process can be scheduled by the scheduler meanwhile. 4."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 17,
+    "text": "Circular Wait: A set of processes are waiting for each other in circular form means \nAll the processes must be waiting for the resources in a cyclic manner so that the last \nprocess is waiting for the resource which is being held by the first process. Difference between Starvation and Deadlock \nSr."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 17,
+    "text": "Deadlock \nStarvation \n1 Deadlock is a situation where no process got \nblocked and no process proceeds \nStarvation is a situation where the low \npriority process got blocked and the high \npriority processes proceed. 2 Deadlock is an infinite waiting. Starvation is a long waiting but not infinite. 3 Every Deadlock is always a starvation. Every starvation need not be deadlock. 4 The requested resource is blocked by the other \nprocess."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 17,
+    "text": "The requested resource is continuously be \nused by the higher priority processes. 5 \nDeadlock happens when Mutual exclusion, hold \nand wait, No preemption and circular wait \noccurs simultaneously. It occurs due to the uncontrolled priority and \nresource management. Deadlock Handling \nThe various strategies for handling deadlock are- \n1. Deadlock Prevention \n2. Deadlock Avoidance \n3. Deadlock Detection and Recovery \n4. Deadlock Ignorance \n1."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 17,
+    "text": "Deadlock Prevention \n\uf0b7 Deadlocks can be prevented by preventing at least one of the four required \nconditions: \nMutual Exclusion \n\uf0b7 \nShared resources such as read-only files do not lead to deadlocks. \uf0b7 \nUnfortunately, some resources, such as printers and tape drives, require exclusive \naccess by a single process."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 17,
+    "text": "Hold and Wait \n\uf0b7 To prevent this condition processes must be prevented from holding one or more \nresources while simultaneously waiting for one or more others."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 18,
+    "text": "No Preemption \n\uf0b7 Preemption of process resource allocations can prevent this condition of deadlocks, \nwhen it is possible. Circular Wait \n\uf0b7 One way to avoid circular wait is to number all resources, and to require that processes \nrequest resources only in strictly increasing ( or decreasing ) order. 2."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 18,
+    "text": "Deadlock Avoidance \n\uf0b7 In deadlock avoidance, the operating system checks whether the system is in safe state \nor in unsafe state at every step which the operating system performs. \uf0b7 The process continues until the system is in safe state. \uf0b7 Once the system moves to unsafe state, the OS has to backtrack one step. \uf0b7 In simple words, The OS reviews each allocation so that the allocation doesn't cause \nthe deadlock in the system. 3."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 18,
+    "text": "Deadlock detection and recovery \n\uf0b7 \nThis strategy involves waiting until a deadlock occurs. \uf0b7 \nAfter deadlock occurs, the system state is recovered. \uf0b7 \nThe main challenge with this approach is detecting the deadlock. 4. Deadlock Ignorance \n\uf0b7 \nThis strategy involves ignoring the concept of deadlock and assuming as if it does not \nexist. \uf0b7 \nThis strategy helps to avoid the extra overhead of handling deadlock."
+  },
+  {
+    "source": "CPU-Scheduling-and-Algorithm-.pdf",
+    "page": 18,
+    "text": "\uf0b7 \nWindows and Linux use this strategy and it is the most widely used method."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 1,
+    "text": "* * * \nunless otherwise noted. All other material copyright \u00a9 of their respective owners. 1\n- OSI Reference Model - \n \nNetwork Reference Models \n \nA computer network connects two or more devices together to share \ninformation and services. Multiple networks connected together form an \ninternetwork. Internetworking present challenges - interoperating between products from \ndifferent manufacturers requires consistent standards."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 1,
+    "text": "Network reference \nmodels were developed to address these challenges. A network reference \nmodel serves as a blueprint, detailing how communication between network \ndevices should occur. The two most recognized network reference models are: \n\u2022 The Open Systems Interconnection (OSI) model \n\u2022 The Department of Defense (DoD) model \n \nWithout the framework that network models provide, all network hardware \nand software would have been proprietary."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 1,
+    "text": "Organizations would have been \nlocked into a single vendor\u2019s equipment, and global networks like the \nInternet would have been impractical, if not impossible. Network models are organized into layers, with each layer representing a \nspecific networking function. These functions are controlled by protocols, \nwhich are rules that govern end-to-end communication between devices."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 1,
+    "text": "Protocols on one layer will interact with protocols on the layer above and \nbelow it, forming a protocol suite or stack. The TCP/IP suite is the most \nprevalent protocol suite, and is the foundation of the Internet. A network model is not a physical entity \u2013 there is no OSI device. Manufacturers do not always strictly adhere to a reference model\u2019s blueprint, \nand thus not every protocol fits perfectly within a single layer."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 1,
+    "text": "Some \nprotocols can function across multiple layers."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 2,
+    "text": "* * * \nunless otherwise noted. All other material copyright \u00a9 of their respective owners. 2\nOSI Reference Model \n \nThe Open Systems Interconnection (OSI) model was developed by the \nInternational Organization for Standardization (ISO), and formalized in \n1984. It provided the first framework governing how information should be \nsent across a network."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 2,
+    "text": "The OSI model consists of seven layers, each corresponding to a specific \nnetwork function: \n \n7\nApplication \n6\nPresentation \n5\nSession \n4\nTransport \n3\nNetwork \n2\nData-link \n1\nPhysical \n \nNote that the bottom layer is Layer 1."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 2,
+    "text": "Various mnemonics make it easier to \nremember the order of the OSI model\u2019s layers: \n \n7 Application \nAll \nAway \n6 Presentation \nPeople \nPizza \n5 Session \nSeem \nSausage \n4 Transport \nTo \nThrow \n3 Network \nNeed \nNot \n2 Data-link \nData \nDo \n1 Physical \nProcessing \nPlease \n \nISO further developed an entire protocol suite based on the OSI model; \nhowever, the OSI protocol suite was never widely implemented."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 2,
+    "text": "The OSI model itself is now somewhat deprecated \u2013 modern protocol suites, \nsuch as the TCP/IP suite, are difficult to fit cleanly within the OSI model\u2019s \nseven layers. This is especially true of the upper three layers. The bottom (or lower) four layers are more clearly defined, and \nterminology from those layers is still prevalently used. Many protocols and \ndevices are described by which lower layer they operate at."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 3,
+    "text": "* * * \nunless otherwise noted. All other material copyright \u00a9 of their respective owners. 3\nOSI Model - The Upper Layers \n \nThe top three layers of the OSI model are often referred to as the upper \nlayers: \n\u2022 Layer-7 - Application layer \n\u2022 Layer-6 - Presentation layer \n\u2022 Layer-5 - Session layer \n \nProtocols that operate at these layers manage application-level functions, \nand are generally implemented in software."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 3,
+    "text": "The function of the upper layers of the OSI model can be difficult to \nvisualize. Upper layer protocols do not always fit perfectly within a layer, \nand often function across multiple layers. OSI Model - The Application Layer \n \nThe Application layer (Layer-7) provides the interface between the user \napplication and the network. A web browser and an email client are \nexamples of user applications."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 3,
+    "text": "The user application itself does not reside at the Application layer - the \nprotocol does. The user interacts with the application, which in turn interacts \nwith the application protocol."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 3,
+    "text": "Examples of Application layer protocols include: \n\u2022 FTP, via an FTP client \n\u2022 HTTP, via a web browser \n\u2022 POP3 and SMTP, via an email client \n\u2022 Telnet \n \nThe Application layer provides a variety of functions: \n\u2022 Identifies communication partners \n\u2022 Determines resource availability \n\u2022 Synchronizes communication \n \nThe Application layer interacts with the Presentation layer below it."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 3,
+    "text": "As it is \nthe top-most layer, it does not interact with any layers above it. (Reference: http://docwiki.cisco.com/wiki/Internetworking_Basics)"
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 4,
+    "text": "* * * \nunless otherwise noted. All other material copyright \u00a9 of their respective owners. 4\nOSI Model - The Presentation Layer \n \nThe Presentation layer (Layer-6) controls the formatting and syntax of user \ndata for the application layer. This ensures that data from the sending \napplication can be understood by the receiving application. Standards have been developed for the formatting of data types, such as text, \nimages, audio, and video."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 4,
+    "text": "Examples of Presentation layer formats include: \n\u2022 Text - RTF, ASCII, EBCDIC \n\u2022 Images - GIF, JPG, TIF \n\u2022 Audio - MIDI, MP3, WAV \n\u2022 Movies - MPEG, AVI, MOV \n \nIf two devices do not support the same format or syntax, the Presentation \nlayer can provide conversion or translation services to facilitate \ncommunication. Additionally, the Presentation layer can perform encryption and \ncompression of data, as required."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 4,
+    "text": "However, these functions can also be \nperformed at lower layers as well. For example, the Network layer can \nperform encryption, using IPSec. OSI Model - The Session Layer \n \nThe Session layer (Layer-5) is responsible for establishing, maintaining, \nand ultimately terminating sessions between devices. If a session is broken, \nthis layer can attempt to recover the session."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 4,
+    "text": "Sessions communication falls under one of three categories: \n\u2022 Full-Duplex \u2013 simultaneous two-way communication \n\u2022 Half-Duplex \u2013 two-way communication, but not simultaneous \n\u2022 Simplex \u2013 one-way communication \n \nMany modern protocol suites, such as TCP/IP, do not implement Session \nlayer protocols. Connection management is often controlled by lower layers, \nsuch as the Transport layer."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 4,
+    "text": "The lack of true Session layer protocols can present challenges for high-\navailability and failover. Reliance on lower-layer protocols for session \nmanagement offers less flexibility than a strict adherence to the OSI model."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 5,
+    "text": "* * * \nunless otherwise noted. All other material copyright \u00a9 of their respective owners."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 5,
+    "text": "5\nOSI Model - The Lower Layers \n \nThe bottom four layers of the OSI model are often referred to as the lower \nlayers: \n\u2022 Layer-4 \u2013 Transport layer \n\u2022 Layer-3 \u2013 Network layer \n\u2022 Layer-2 \u2013 Data-Link layer \n\u2022 Layer-1 \u2013 Physical layer \n \nProtocols that operate at these layers control the end-to-end transport of data \nbetween devices, and are implemented in both software and hardware."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 5,
+    "text": "OSI Model - The Transport Layer \n \nThe Transport layer (Layer-4) does not actually send data, despite its \nname. Instead, this layer is responsible for the reliable transfer of data, by \nensuring that data arrives at its destination error-free and in order. Transport layer communication falls under two categories: \n\u2022 Connection-oriented \u2013 requires that a connection with specific \nagreed-upon parameters be established before data is sent."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 5,
+    "text": "\u2022 Connectionless \u2013 requires no connection before data is sent. Connection-oriented protocols provide several important services: \n\u2022 Segmentation and sequencing \u2013 data is segmented into smaller \npieces for transport. Each segment is assigned a sequence number, so \nthat the receiving device can reassemble the data on arrival. \u2022 Connection establishment \u2013 connections are established, maintained, \nand ultimately terminated between devices."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 5,
+    "text": "\u2022 Acknowledgments \u2013 receipt of data is confirmed through the use of \nacknowledgments. Otherwise, data is retransmitted, guaranteeing \ndelivery. \u2022 Flow control (or windowing) \u2013 data transfer rate is negotiated to \nprevent congestion."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 5,
+    "text": "The TCP/IP protocol suite incorporates two Transport layer protocols: \n\u2022 Transmission Control Protocol (TCP) \u2013 connection-oriented \n\u2022 User Datagram Protocol (UDP) - connectionless \n \n(Reference: http://www.tcpipguide.com/free/t_TransportLayerLayer4-2.htm)"
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 6,
+    "text": "* * * \nunless otherwise noted. All other material copyright \u00a9 of their respective owners. 6\nOSI Model - The Network Layer \n \nThe Network layer (Layer-3) controls internetwork communication, and \nhas two key responsibilities: \n\u2022 Logical addressing \u2013 provides a unique address that identifies both \nthe host, and the network that host exists on."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 6,
+    "text": "\u2022 Routing \u2013 determines the best path to a particular destination \nnetwork, and then routes data accordingly. Two of the most common Network layer protocols are: \n\u2022 Internet Protocol (IP) \n\u2022 Novell\u2019s Internetwork Packet Exchange (IPX). IPX is almost entirely deprecated. IP version 4 (IPv4) and IP version 6 \n(IPv6) are covered in nauseating detail in other guides."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 6,
+    "text": "OSI Model - The Data-Link Layer \n \nWhile the Network layer is concerned with transporting data between \nnetworks, the Data-Link layer (Layer-2) is responsible for transporting \ndata within a network. The Data-Link layer consists of two sublayers: \n\u2022 Logical Link Control (LLC) sublayer \n\u2022 Media Access Control (MAC) sublayer \n \nThe LLC sublayer serves as the intermediary between the physical link and \nall higher layer protocols."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 6,
+    "text": "It ensures that protocols like IP can function \nregardless of what type of physical technology is being used. Additionally, the LLC sublayer can perform flow-control and error-\nchecking, though such functions are often provided by Transport layer \nprotocols, such as TCP. The MAC sublayer controls access to the physical medium, serving as \nmediator if multiple devices are competing for the same physical link."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 6,
+    "text": "Data-\nlink layer technologies have various methods of accomplishing this - \nEthernet uses Carrier Sense Multiple Access with Collision Detection \n(CSMA/CD), and Token Ring utilizes a token. Ethernet is covered in great detail in another guide."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 7,
+    "text": "* * * \nunless otherwise noted. All other material copyright \u00a9 of their respective owners. 7\nOSI Model - The Data-Link Layer (continued) \n \nThe Data-link layer packages the higher-layer data into frames, so that the \ndata can be put onto the physical wire. This packaging process is referred to \nas framing or encapsulation. The encapsulation type will vary depending on the underlying technology."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 7,
+    "text": "Common Data-link layer technologies include following: \n\u2022 Ethernet \u2013 the most common LAN data-link technology \n\u2022 Token Ring \u2013 almost entirely deprecated \n\u2022 FDDI (Fiber Distributed Data Interface) \n\u2022 802.11 Wireless \n\u2022 Frame-Relay \n\u2022 ATM (Asynchronous Transfer Mode) \n \nThe data-link frame contains the source and destination hardware (or \nphysical) address."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 7,
+    "text": "Hardware addresses uniquely identify a host within a \nnetwork, and are often hardcoded onto physical network interfaces. However, hardware addresses contain no mechanism for differentiating one \nnetwork from another, and can only identify a host within a network. The most common hardware address is the Ethernet MAC address."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 7,
+    "text": "OSI Model - The Physical Layer \n \nThe Physical layer (Layer-1) controls the signaling and transferring of raw \nbits onto the physical medium. The Physical layer is closely related to the \nData-link layer, as many technologies (such as Ethernet) contain both data-\nlink and physical functions."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 7,
+    "text": "The Physical layer provides specifications for a variety of hardware: \n\u2022 Cabling \n\u2022 Connectors and transceivers \n\u2022 Network interface cards (NICs) \n\u2022 Wireless radios \n\u2022 Hubs \n \nPhysical-layer devices and topologies are covered extensively in other \nguides."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 8,
+    "text": "* * * \nunless otherwise noted. All other material copyright \u00a9 of their respective owners. 8\nEncapsulation and Layered Communication \n \nAs data is passed from the user application down the virtual layers of the \nOSI model, each layer adds a header (and sometimes a trailer) containing \nprotocol information specific to that layer. These headers are called Protocol \nData Units (PDUs), and the process of adding these headers is called \nencapsulation."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 8,
+    "text": "Note that in the TCP/IP protocol suite only the lower layers \nperform encapsulation, generally. For example, a Transport layer protocol such as TCP will add a header \ncontaining flow control, port numbers, and sequencing. The Network layer \nheader contains logical addressing information, and the Data-link header \ncontains physical addressing and other hardware specific information."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 8,
+    "text": "The PDU of each layer is identified with a different term: \n \nLayer \nPDU Name \n \n \nApplication \n- \nPresentation \n- \nSession \n- \nTransport \nSegments \nNetwork \nPackets \nData-Link \nFrames \nPhysical \nBits \n \nEach layer communicates with the corresponding layer on the receiving \ndevice. For example, on the sending device, source and destination hardware \naddressing is placed in a Data-link header."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 8,
+    "text": "On the receiving device, that \nData-link header is processed and stripped away (decapsulated) before \nbeing sent up to the Network and other upper layers. Network devices are commonly identified by the OSI layer they operate at; \nor, more specifically, what header or PDU the device processes."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 8,
+    "text": "For example, switches are generally identified as Layer-2 devices, as \nswitches process information stored in the Data-Link header of a frame, \nsuch as Ethernet MAC addresses. Similarly, routers are identified as Layer-\n3 devices, as routers process logical addressing information in the Network \nheader of a packet, such as IP addresses."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 9,
+    "text": "* * * \nunless otherwise noted. All other material copyright \u00a9 of their respective owners. 9\nEncapsulation Illustrated \n \nThe following illustrates how basic encapsulation occurs with the TCP/IP \nstack, which typically performs encapsulation only at the lower layers: \n \n \nDuring encapsulation on the sending host: \n\u2022 Data from the user application is handed off to the Transport layer."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 9,
+    "text": "\u2022 The Transport layer adds a header containing protocol-specific \ninformation, and then hands the segment to the Network layer. \u2022 The Network layer adds a header containing source and destination \nlogical addressing, and then hands the packet to the Data-Link layer. \u2022 The Data-Link layer adds a header containing source and destination \nphysical addressing and other hardware-specific information."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 9,
+    "text": "\u2022 The Data-Link frame is then handed off to the Physical layer to be \ntransmitted on the network medium as bits. During decapsulation on the receiving host, the reverse occurs: \n\u2022 The frame is received from the physical medium. \u2022 The Data-Link layer processes its header, strips it off, and then hands \nit off to the Network layer. \u2022 The Network layer processes its header, strips it off, and then hands it \noff to the Transport layer."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 9,
+    "text": "\u2022 The Transport layer processes its header, strips it off, and then hands \nthe data to the user application."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 10,
+    "text": "* * * \nunless otherwise noted. All other material copyright \u00a9 of their respective owners. 10\nOSI Reference Model Example \n \nA web browser serves as a good practical illustration of the OSI model and \nthe TCP/IP protocol suite: \n \n\u2022 \u03a4he web browser serves as the user interface for accessing a website. The \nbrowser itself does not function at the Application layer."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 10,
+    "text": "Instead, the \nweb browser invokes the Hyper Text Transfer Protocol (HTTP) to \ninterface with the remote web server, which is why http:// precedes every \nweb address. \u2022 The Internet can provide data in a wide variety of formats, a function of \nthe Presentation layer. Common formats on the Internet include HTML, \nXML, PHP, GIF, and JPEG. Any encryption or compression mechanisms \nused on a website are also considered a Presentation layer function."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 10,
+    "text": "\u2022 The Session layer is responsible for establishing, maintaining, and \nterminating the session between devices, and determining whether the \ncommunication is half-duplex or full-duplex. However, the TCP/IP stack \ngenerally does not include session-layer protocols, and is reliant on \nlower-layer protocols to perform these functions. \u2022 HTTP utilizes the TCP Transport layer protocol to ensure the reliable \ndelivery of data."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 10,
+    "text": "TCP establishes and maintains a connection from the \nclient to the web server, and packages the higher-layer data into \nsegments. A sequence number is assigned to each segment so that data \ncan be reassembled upon arrival. \u2022 The best path to route the data between the client and the web server is \ndetermined by IP, a Network layer protocol."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 10,
+    "text": "IP is also responsible for \nthe assigned logical addresses on the client and server, and for \nencapsulating segments into packets. \u2022 Data cannot be sent directly to a logical address. As packets travel from \nnetwork to network, IP addresses are translated to hardware addresses, \nwhich are a function of the Data-Link layer. The packets are \nencapsulated into frames to be placed onto the physical medium."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 10,
+    "text": "\u2022 The data is finally transferred onto the network medium at the Physical \nlayer, in the form of raw bits. Signaling and encoding mechanisms are \ndefined at this layer, as is the hardware that forms the physical \nconnection between the client and the web server."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 11,
+    "text": "* * * \nunless otherwise noted. All other material copyright \u00a9 of their respective owners. 11\nIP and the DoD Model \n \nThe Internet Protocol (IP) was originally developed by the Department of \nDefense (DoD), and was a cornerstone for a group of protocols that became \nknown as the TCP/IP protocol suite. The DoD developed their own networking model, which became known as \nthe DoD or TCP/IP Model."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 11,
+    "text": "It consists of four layers: \n \n \nOSI Model \n \nDoD Model \n \n \n \n \n7\nApplication \n6\nPresentation \n5\nSession \n4 \nApplication \n4\nTransport \n3 \nHost-to-Host \n3\nNetwork \n2 \nInternet \n2\nData-link \n1\nPhysical \n1 \nNetwork Access \n \nThe consolidated DoD model is generally regarded as more practical than \nthe OSI model. Upper layer protocols often provide services that span the \ntop three layers."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 11,
+    "text": "A converged Data-link and Physical layer is also sensible, \nas many technologies provide specifications for both layers, such as \nEthernet."
+  },
+  {
+    "source": "osi_notes.pdf",
+    "page": 11,
+    "text": "The following chart illustrates where common protocols fit into the DoD \nmodel: \n \nLayer \nExample Protocols \n \n \nApplication \nFTP, HTTP, SMTP \nHost-to-Host \nTCP, UDP \nInternet \nIP \nNetwork Access \nEthernet \n \nDespite the practicality of the DoD model, the OSI model is still the basis \nfor most network terminology. So, Please Do Not Throw Sausage Pizza Away. \u263a"
+  }
+]

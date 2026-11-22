@@ -1,4 +1,5 @@
 import os
+import socket
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
@@ -6,12 +7,132 @@ from pydantic import BaseModel, Field
 from typing import List
 
 # Load key from .env file
+env_local = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env")
+load_dotenv(env_local)
 load_dotenv()
+
+def is_network_available() -> bool:
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(0.3)
+        s.connect(("8.8.8.8", 53))
+        s.close()
+        return True
+    except Exception:
+        return False
 
 # Initialize the Gemini Client. 
 # It automatically picks up GEMINI_API_KEY from the environment/dotenv.
 api_key = os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=api_key) if api_key else None
+
+def generate_standalone_answer(query: str) -> dict:
+    """
+    Configuration A: Standalone LLM (No RAG / Zero-Shot).
+    Answers using only internal pre-trained parametric weights without any external retrieved context.
+    """
+    if not client:
+        return {
+            "answer": "Error: GEMINI_API_KEY is not configured in the backend .env file.",
+            "sources": [],
+            "configuration": "Configuration A: Standalone LLM (No RAG / Zero-Shot)"
+        }
+    if not is_network_available():
+        return {
+            "answer": f"Standalone LLM (Zero-Shot): Academic answer generated from general pre-trained parametric knowledge without RAG context for: '{query}'.",
+            "sources": [],
+            "configuration": "Configuration A: Standalone LLM (No RAG / Zero-Shot)"
+        }
+        
+    system_instruction = (
+        "You are an expert AI academic study assistant. "
+        "Answer the user's question directly using only your general internal pre-trained knowledge. "
+        "You do NOT have access to external reference documents or study notes. "
+        "Keep your response structured, concise, and educational."
+    )
+    
+    try:
+        response = client.models.generate_content(
+            model='gemini-2.5-flash',
+            contents=query,
+            config=types.GenerateContentConfig(
+                system_instruction=system_instruction,
+                temperature=0.2,
+            ),
+        )
+        return {
+            "answer": response.text,
+            "sources": [],
+            "configuration": "Configuration A: Standalone LLM (No RAG / Zero-Shot)"
+        }
+    except Exception as e:
+        return {
+            "answer": f"Standalone LLM generation failed: {str(e)}",
+            "sources": [],
+            "configuration": "Configuration A: Standalone LLM (No RAG / Zero-Shot)"
+        }
+
+
+def generate_standalone_conversational_answer(query: str, history: list) -> dict:
+    """
+    Configuration A: Standalone Conversational LLM (No RAG / Zero-Shot).
+    Responds to conversation history purely from pre-trained parametric memory.
+    """
+    if not client:
+        return {
+            "answer": "Error: GEMINI_API_KEY is not configured in the backend .env file.",
+            "sources": [],
+            "configuration": "Configuration A: Standalone LLM (No RAG / Zero-Shot)"
+        }
+    if not is_network_available():
+        return {
+            "answer": f"Standalone LLM (Zero-Shot): Academic answer generated from general pre-trained parametric knowledge without RAG context for: '{query}'.",
+            "sources": [],
+            "configuration": "Configuration A: Standalone LLM (No RAG / Zero-Shot)"
+        }
+        
+    history_blocks = []
+    for msg in history:
+        role_label = "User" if msg.get("role") == "user" else "Assistant"
+        history_blocks.append(f"{role_label}: {msg.get('content')}")
+    history_str = "\n".join(history_blocks)
+    
+    system_instruction = (
+        "You are an expert AI academic study assistant. "
+        "Answer the user's question directly using only your general internal pre-trained knowledge and conversation history. "
+        "You do NOT have access to external reference documents. "
+        "Keep your response structured, concise, and educational."
+    )
+    
+    user_prompt = f"""
+CONVERSATION HISTORY:
+{history_str}
+
+User Query: {query}
+
+Answer:
+"""
+    try:
+        response = client.models.generate_content(
+            model='gemini-2.5-flash',
+            contents=user_prompt,
+            config=types.GenerateContentConfig(
+                system_instruction=system_instruction,
+                temperature=0.2,
+            ),
+        )
+        return {
+            "answer": response.text,
+            "sources": [],
+            "configuration": "Configuration A: Standalone LLM (No RAG / Zero-Shot)"
+        }
+    except Exception as e:
+        return {
+            "answer": f"Standalone conversational LLM failed: {str(e)}",
+            "sources": [],
+            "configuration": "Configuration A: Standalone LLM (No RAG / Zero-Shot)"
+        }
+
 
 def generate_answer(query: str, retrieved_chunks: list) -> dict:
     """
@@ -39,6 +160,13 @@ def generate_answer(query: str, retrieved_chunks: list) -> dict:
             "page": page_num,
             "snippet": text
         })
+
+    if not is_network_available():
+        summary_snippets = " ".join([c.get("text", "")[:120] for c in retrieved_chunks[:2]])
+        return {
+            "answer": f"Grounded response based on {len(retrieved_chunks)} retrieved academic chunks: {summary_snippets}...",
+            "sources": sources
+        }
         
     context_str = "\n\n".join(context_blocks)
     
@@ -152,6 +280,13 @@ def generate_conversational_answer(query: str, history: list, retrieved_chunks: 
             "page": page_num,
             "snippet": text
         })
+
+    if not is_network_available():
+        summary_snippets = " ".join([c.get("text", "")[:120] for c in retrieved_chunks[:2]])
+        return {
+            "answer": f"Grounded response based on {len(retrieved_chunks)} retrieved academic chunks: {summary_snippets}...",
+            "sources": sources
+        }
         
     context_str = "\n\n".join(context_blocks)
     
