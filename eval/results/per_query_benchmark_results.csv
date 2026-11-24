@@ -1,0 +1,37 @@
+Query_Index,Query_ID,Subject,Target_Doc,Target_Pages,Key_Facts_Count,Baseline_First_Hit_Rank,Proposed_First_Hit_Rank,Baseline_Hit@1,Proposed_Hit@1,Baseline_Hit@3,Proposed_Hit@3,Baseline_Hit@5,Proposed_Hit@5,Baseline_MRR,Proposed_MRR,Baseline_False_Positives_Top5,Proposed_False_Positives_Top5
+1,tc_dbms_01,DBMS,24042020_E-R Model.pdf,[1],4,1,2,1,0,1,1,1,1,1.0,0.5,2,1
+2,tc_dbms_02,DBMS,24042020_E-R Model.pdf,[2],6,1,1,1,1,1,1,1,1,1.0,1.0,0,0
+3,tc_dbms_03,DBMS,24042020_E-R Model.pdf,[2],4,1,1,1,1,1,1,1,1,1.0,1.0,2,0
+4,tc_dbms_04,DBMS,24042020_E-R Model.pdf,"[4, 11]",4,1,1,1,1,1,1,1,1,1.0,1.0,1,0
+5,tc_dbms_05,DBMS,24042020_E-R Model.pdf,[5],4,1,1,1,1,1,1,1,1,1.0,1.0,2,1
+6,tc_dbms_06,DBMS,24042020_E-R Model.pdf,"[5, 6]",4,1,1,1,1,1,1,1,1,1.0,1.0,1,1
+7,tc_dbms_07,DBMS,24042020_E-R Model.pdf,[7],3,4,2,0,0,0,1,1,1,0.25,0.5,3,2
+8,tc_dbms_08,DBMS,24042020_E-R Model.pdf,"[8, 9, 10]",4,2,2,0,0,1,1,1,1,0.5,0.5,3,3
+9,tc_dbms_09,DBMS,24042020_E-R Model.pdf,[12],5,1,1,1,1,1,1,1,1,1.0,1.0,3,0
+10,tc_dbms_10,DBMS,24042020_E-R Model.pdf,"[13, 14]",5,3,1,0,1,1,1,1,1,0.333,1.0,4,4
+11,tc_dbms_11,DBMS,24042020_E-R Model.pdf,[7],4,1,1,1,1,1,1,1,1,1.0,1.0,3,4
+12,tc_dbms_12,DBMS,24042020_E-R Model.pdf,[],3,2,2,0,0,1,1,1,1,0.5,0.5,4,3
+13,tc_os_01,OS,CPU-Scheduling-and-Algorithm-.pdf,[1],5,2,1,0,1,1,1,1,1,0.5,1.0,3,3
+14,tc_os_02,OS,CPU-Scheduling-and-Algorithm-.pdf,[2],4,1,1,1,1,1,1,1,1,1.0,1.0,0,0
+15,tc_os_03,OS,CPU-Scheduling-and-Algorithm-.pdf,[3],4,1,1,1,1,1,1,1,1,1.0,1.0,0,0
+16,tc_os_04,OS,CPU-Scheduling-and-Algorithm-.pdf,[4],4,1,1,1,1,1,1,1,1,1.0,1.0,2,1
+17,tc_os_05,OS,CPU-Scheduling-and-Algorithm-.pdf,[6],4,1,1,1,1,1,1,1,1,1.0,1.0,3,2
+18,tc_os_06,OS,CPU-Scheduling-and-Algorithm-.pdf,"[6, 10]",4,1,1,1,1,1,1,1,1,1.0,1.0,1,1
+19,tc_os_07,OS,CPU-Scheduling-and-Algorithm-.pdf,"[11, 12]",4,1,1,1,1,1,1,1,1,1.0,1.0,1,0
+20,tc_os_08,OS,CPU-Scheduling-and-Algorithm-.pdf,[11],4,1,1,1,1,1,1,1,1,1.0,1.0,0,0
+21,tc_os_09,OS,CPU-Scheduling-and-Algorithm-.pdf,"[13, 14]",5,1,1,1,1,1,1,1,1,1.0,1.0,2,1
+22,tc_os_10,OS,CPU-Scheduling-and-Algorithm-.pdf,"[17, 18]",4,1,1,1,1,1,1,1,1,1.0,1.0,0,1
+23,tc_os_11,OS,CPU-Scheduling-and-Algorithm-.pdf,[18],4,1,1,1,1,1,1,1,1,1.0,1.0,1,1
+24,tc_os_12,OS,CPU-Scheduling-and-Algorithm-.pdf,"[3, 15]",2,1,1,1,1,1,1,1,1,1.0,1.0,1,2
+25,tc_cn_01,CN,osi_notes.pdf,"[1, 2]",5,1,1,1,1,1,1,1,1,1.0,1.0,1,0
+26,tc_cn_02,CN,osi_notes.pdf,[3],6,1,1,1,1,1,1,1,1,1.0,1.0,1,1
+27,tc_cn_03,CN,osi_notes.pdf,[4],5,1,1,1,1,1,1,1,1,1.0,1.0,1,2
+28,tc_cn_04,CN,osi_notes.pdf,[4],5,1,1,1,1,1,1,1,1,1.0,1.0,1,1
+29,tc_cn_05,CN,osi_notes.pdf,[5],5,1,1,1,1,1,1,1,1,1.0,1.0,2,1
+30,tc_cn_06,CN,osi_notes.pdf,[5],4,1,1,1,1,1,1,1,1,1.0,1.0,1,2
+31,tc_cn_07,CN,osi_notes.pdf,[6],6,1,1,1,1,1,1,1,1,1.0,1.0,1,1
+32,tc_cn_08,CN,osi_notes.pdf,[7],6,1,1,1,1,1,1,1,1,1.0,1.0,2,2
+33,tc_cn_09,CN,osi_notes.pdf,"[8, 9]",6,1,1,1,1,1,1,1,1,1.0,1.0,1,0
+34,tc_cn_10,CN,osi_notes.pdf,[10],7,1,1,1,1,1,1,1,1,1.0,1.0,0,1
+35,tc_cn_11,CN,osi_notes.pdf,[11],5,1,1,1,1,1,1,1,1,1.0,1.0,1,2
+36,tc_cn_12,CN,osi_notes.pdf,"[5, 7]",6,1,1,1,1,1,1,1,1,1.0,1.0,1,2
